@@ -100,7 +100,9 @@ export default function App() {
             <Space>
               <Button
                 type="primary"
-                onClick={() => motionSync.current?.play("/sayhi.wav")}
+                onClick={() =>
+                  motionSync.current?.play("/live2d-motionSync/sayhi.wav")
+                }
               >
                 Play
               </Button>
