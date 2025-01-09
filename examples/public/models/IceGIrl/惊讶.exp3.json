@@ -1,0 +1,30 @@
+{
+    "Type": "Live2D Expression",
+    "Parameters": [
+        {
+            "Id": "JingYa",
+            "Value": -1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamBrowLForm",
+            "Value": 0.5802018642425537,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamBrowRForm",
+            "Value": 0.6046086549758911,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamMouthForm",
+            "Value": -0.5460337400436401,
+            "Blend": "Add"
+        },
+        {
+            "Id": "Param50",
+            "Value": 0.6729494333267212,
+            "Blend": "Add"
+        }
+    ]
+}

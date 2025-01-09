@@ -1,0 +1,26 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "IceGirl.moc3",
+		"Textures": [
+			"IceGirl.8192/texture_00.png",
+			"IceGirl.8192/texture_01.png",
+			"IceGirl.8192/texture_02.png",
+			"IceGirl.8192/texture_03.png"
+		],
+		"Physics": "IceGirl.physics3.json",
+		"DisplayInfo": "IceGirl.cdi3.json"
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		}
+	]
+}
