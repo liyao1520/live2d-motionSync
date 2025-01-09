@@ -1,5 +1,6 @@
 export const modelMap: Record<string, string> = {
-  kei_vowels_pro: "/models/kei_vowels_pro/kei_vowels_pro.model3.json",
-  IceGirl: "/models/IceGIrl/IceGirl.model3.json",
-  ganyu: "/models/character/ganyu.model3.json",
+  kei_vowels_pro:
+    "/live2d-motionSync/models/kei_vowels_pro/kei_vowels_pro.model3.json",
+  IceGirl: "/live2d-motionSync/models/IceGIrl/IceGirl.model3.json",
+  ganyu: "/live2d-motionSync/models/character/ganyu.model3.json",
 };

@@ -2,9 +2,12 @@
   "name": "live2d-lip-sync-sdk",
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "predeploy": "cd examples && npm run build",
+    "deploy": "gh-pages -d examples/dist"
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "tsx": "^4.17.0",
     "vite": "^5.4.11"
   },
