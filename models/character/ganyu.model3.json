@@ -1,0 +1,46 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "ganyu.moc3",
+		"Textures": [
+			"ganyu.4096/texture_00.png"
+		],
+		"Physics": "ganyu.physics3.json",
+		"DisplayInfo": "ganyu.cdi3.json",
+		"Expressions": [
+			{
+				"Name": "CHIDAI",
+				"File": "expressions/CHIDAI.exp3.json"
+			},
+			{
+				"Name": "HAIXIU",
+				"File": "expressions/HAIXIU.exp3.json"
+			},
+			{
+				"Name": "LIANHEI",
+				"File": "expressions/LIANHEI.exp3.json"
+			},
+			{
+				"Name": "SHENGQI",
+				"File": "expressions/SHENGQI.exp3.json"
+			},
+			{
+				"Name": "XINGXINGYAN",
+				"File": "expressions/XINGXINGYAN.exp3.json"
+			}
+		]
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": []
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": []
+		}
+	],
+	"HitAreas": []
+}
