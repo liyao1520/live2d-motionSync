@@ -2,6 +2,7 @@
   "name": "live2d-motionsync",
   "version": "0.0.1",
   "type": "module",
+  "private": false,
   "license": "MIT",
   "description": "Live2D Motionsync, a lip-sync library for Live2D models.",
   "repository": {

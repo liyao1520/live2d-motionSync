@@ -22,6 +22,10 @@ npm install live2d-motionsync
 
 ## 使用
 
+```ts
+import { MotionSync } from "live2d-motionsync";
+```
+
 提前安装 `pixi-live2d-display`
 
 ```bash
@@ -32,6 +36,7 @@ npm install pixi-live2d-display pixi.js@6.5.10
 ```ts
 import * as PIXI from "pixi.js";
 import { Live2DModel } from "pixi-live2d-display";
+import { MotionSync } from "live2d-motionsync";
 
 // expose PIXI to window so that this plugin is able to
 // reference window.PIXI.Ticker to automatically update Live2D models
@@ -78,7 +83,7 @@ window.PIXI = PIXI;
 })();
 ```
 
-## API
+## MotionSync API
 
 ### 构造函数
 
