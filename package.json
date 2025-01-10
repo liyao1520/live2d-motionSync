@@ -1,6 +1,6 @@
 {
   "name": "live2d-motionsync",
-  "version": "0.0.1-beta",
+  "version": "0.0.1-beta-2",
   "type": "module",
   "license": "MIT",
   "description": "Live2D Motionsync, a lip-sync library for Live2D models.",
@@ -17,7 +17,7 @@
     ".": {
       "types": "./dist/live2d-motionsync.d.ts",
       "require": "./dist/live2d-motionsync.cjs.js",
-      "import": "./dist/live2d-motionsync.esm.js"
+      "import": "./dist/live2d-motionsync.es.js"
     }
   },
   "types": "./dist/live2d-motionsync.d.ts",
@@ -32,9 +32,8 @@
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "tsx": "^4.17.0",
-    "vite": "^5.4.11"
-  },
-  "dependencies": {
+    "vite": "^5.4.11",
     "vite-plugin-dts": "^4.4.0"
-  }
+  },
+  "dependencies": {}
 }
