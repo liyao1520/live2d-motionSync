@@ -6,6 +6,7 @@ export default defineConfig({
     lib: {
       entry: "./src/index.ts",
       name: "Live2dLipSync",
+      formats: ["es", "cjs"],
       fileName: (format) => `live2d-motionsync.${format}.js`,
     },
   },

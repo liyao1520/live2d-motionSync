@@ -1,16 +1,28 @@
+<!-- english docs -->
+
 # live2d-motionsync
 
-一个 live2d 的 motionsync 库
+A live2d motionsync library
 
-## 安装
+![demo](./static/demo.gif)
+
+## Prerequisites
+
+1. **Only support Cubism 4 models**
+
+2. **Models need to support motionsync3**
+
+   Reference: https://docs.live2d.com/en/cubism-editor-manual/motion-sync/
+
+## Install
 
 ```bash
 npm install live2d-motionsync
 ```
 
-## 使用
+## Usage
 
-提前安装 `pixi-live2d-display`
+1. Install `pixi-live2d-display`
 
 ```bash
 npm install pixi-live2d-display pixi.js@6.5.10
@@ -32,17 +44,19 @@ window.PIXI = PIXI;
 
   const model = await Live2DModel.from("kei_vowels_pro.model3.json");
 
-  // 初始化 motionsync
+  // init motionsync
   const motionSync = new MotionSync(model.internalModel);
-  // 加载 motionsync 文件
+  // load motionsync file
   motionSync.loadMotionSyncFromUrl("kei_vowels_pro.motionsync3.json");
-  // 没有 motionsync3 文件可以加载默认 motionsync3 配置
+  // if no motionsync3 file, load default motionsync3 config
   // motionSync.loadDefaultMotionSync();
 
-  // 确保已经页面交互
-  // 播放音频
-  motionSync.play("/audio/test.wav");
-  // 停止音频
+  // ensure page interaction
+  // play audio
+  motionSync.play("/audio/test.wav").then(() => {
+    console.log("play end");
+  });
+  // stop audio
   // motionSync.stop();
 
   app.stage.addChild(model);
@@ -66,94 +80,96 @@ window.PIXI = PIXI;
 
 ## API
 
-### 构造函数
+### `constructor(internalModel: any)`
 
-#### `constructor(internalModel: any)`
+Initialize a new `MotionSync` instance.
 
-初始化 `MotionSync` 类的新实例。
+- **Parameters:**
 
-- **参数:**
+  - `internalModel`: The internal model object containing the core model and other necessary components.
 
-  - `internalModel`: 包含核心模型和其他必要组件的内部模型对象。
-
-- **描述:**
-  - 该构造函数使用提供的 `internalModel` 初始化 `MotionSync` 类，并启动和初始化 `CubismMotionSync` 框架。
+- **Description:**
+  - This constructor uses the provided `internalModel` to initialize the `MotionSync` class and start and initialize the `CubismMotionSync` framework.
 
 ### `async loadAudio(url: string)`
 
-从指定的 URL 加载音频文件。
+Load audio file from specified URL.
 
-- **参数:**
+- **Parameters:**
 
-  - `url`: 要加载的音频文件的 URL。
+  - `url`: The URL of the audio file to load.
 
-- **描述:**
-  - 该方法从给定的 URL 获取音频文件，解码并将其存储在 `audioBuffer` 属性中。同时会重置 `MotionSync` 实例的当前状态。
+- **Description:**
+  - This method fetches the audio file from the given URL, decodes it, and stores it in the `audioBuffer` property. It also resets the current state of the `MotionSync` instance.
 
 ### `async loadAudioBuffer(audioBuffer: AudioBuffer)`
 
-直接加载音频缓冲区。
+Load audio buffer directly.
 
-- **参数:**
+- **Parameters:**
 
-  - `audioBuffer`: 要加载的 `AudioBuffer` 对象。
+  - `audioBuffer`: The `AudioBuffer` object to load.
 
-- **描述:**
-  - 该方法将提供的 `AudioBuffer` 设置为当前音频缓冲区，并重置 `MotionSync` 实例。
+- **Description:**
+  - This method sets the provided `AudioBuffer` as the current audio buffer and resets the `MotionSync` instance.
 
 ### `reset()`
 
-将 `MotionSync` 实例重置为初始状态。
+Reset the `MotionSync` instance to its initial state.
 
-- **描述:**
-  - 该方法停止任何正在进行的音频播放，重置嘴部状态。
+- **Description:**
+  - This method stops any ongoing audio playback and resets the mouth state.
 
-### `async play(src: string | AudioBuffer)`
+### `async play(src: string | AudioBuffer): Promise<void>`
 
-从指定的源播放音频。
+- **Return:**
 
-- **参数:**
+  - `Promise<void>`: A Promise that resolves when the audio playback ends.
 
-  - `src`: 音频源，可以是 URL 字符串或 `AudioBuffer` 对象。
+Play audio from specified source.
 
-- **描述:**
+- **Parameters:**
 
-  - 该方法从给定的源加载音频并开始播放。返回一个在音频播放结束时解析的 Promise。
+  - `src`: The audio source, which can be a URL string or an `AudioBuffer` object.
+
+- **Description:**
+
+  - This method loads audio from the given source and starts playback. It returns a Promise that resolves when the audio playback ends.
 
 ### `loadMotionSync(buffer: ArrayBuffer, samplesPerSec = SamplesPerSec)`
 
-从 `ArrayBuffer` 加载运动同步数据。
+Load motion sync data from `ArrayBuffer`.
 
-- **参数:**
+- **Parameters:**
 
-  - `buffer`: 包含运动同步数据的 `ArrayBuffer`。
-  - `samplesPerSec`: 音频数据的采样率（默认为 48000）。
+  - `buffer`: The `ArrayBuffer` containing the motion sync data.
+  - `samplesPerSec`: The sample rate of the audio data (default is 48000).
 
-- **描述:**
-  - 该方法使用提供的运动同步数据初始化 `CubismMotionSync` 实例。
+- **Description:**
+  - This method uses the provided motion sync data to initialize the `CubismMotionSync` instance.
 
 ### `async loadDefaultMotionSync(samplesPerSec = SamplesPerSec)`
 
-加载默认的运动同步数据。
+Load default motion sync data.
 
-- **参数:**
+- **Parameters:**
 
-  - `samplesPerSec`: 音频数据的采样率（默认为 48000）。
+  - `samplesPerSec`: The sample rate of the audio data (default is 48000).
 
-- **描述:**
-  - 该方法从预定义的 URL 加载默认的运动同步数据。
+- **Description:**
+  - This method loads the default motion sync data from a predefined URL.
 
 ### `async loadMotionSyncFromUrl(url: string, samplesPerSec = SamplesPerSec)`
 
-从 URL 加载运动同步数据。
+Load motion sync data from URL.
 
-- **参数:**
+- **Parameters:**
 
-  - `url`: 运动同步数据的 URL。
-  - `samplesPerSec`: 音频数据的采样率（默认为 48000）。
+  - `url`: The URL of the motion sync data.
+  - `samplesPerSec`: The sample rate of the audio data (default is 48000).
 
-- **描述:**
+- **Description:**
 
-  - 该方法从指定的 URL 获取运动同步数据并初始化 `CubismMotionSync` 实例。如果获取失败，则回退到加载默认的运动同步数据。
+  - This method fetches the motion sync data from the specified URL and initializes the `CubismMotionSync` instance. If the fetch fails, it falls back to loading the default motion sync data.
 
 - [pixi-live2d-display](https://github.com/pixijs/pixi-live2d-display)

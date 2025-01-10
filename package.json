@@ -1,6 +1,29 @@
 {
-  "name": "live2d-lip-sync-sdk",
+  "name": "live2d-motionsync",
+  "version": "0.0.1-beta",
   "type": "module",
+  "license": "MIT",
+  "description": "Live2D Motionsync, a lip-sync library for Live2D models.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liyao1520/live2d-motionSync.git"
+  },
+  "keywords": [
+    "live2d",
+    "motionsync",
+    "lip-sync"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/live2d-motionsync.d.ts",
+      "require": "./dist/live2d-motionsync.cjs.js",
+      "import": "./dist/live2d-motionsync.esm.js"
+    }
+  },
+  "types": "./dist/live2d-motionsync.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build",
     "predeploy": "cd examples && npm run build",
