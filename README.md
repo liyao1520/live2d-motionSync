@@ -2,6 +2,8 @@
 
 # live2d-motionsync
 
+[中文文档](./README_ZH.md)
+
 A live2d motionsync library
 
 ![demo](./static/demo.gif)
