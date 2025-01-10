@@ -98,35 +98,6 @@ window.PIXI = PIXI;
 - **描述:**
   - 该构造函数使用提供的 `internalModel` 初始化 `MotionSync` 类，并启动和初始化 `CubismMotionSync` 框架。
 
-### `async loadAudio(url: string)`
-
-从指定的 URL 加载音频文件。
-
-- **参数:**
-
-  - `url`: 要加载的音频文件的 URL。
-
-- **描述:**
-  - 该方法从给定的 URL 获取音频文件，解码并将其存储在 `audioBuffer` 属性中。同时会重置 `MotionSync` 实例的当前状态。
-
-### `async loadAudioBuffer(audioBuffer: AudioBuffer)`
-
-直接加载音频缓冲区。
-
-- **参数:**
-
-  - `audioBuffer`: 要加载的 `AudioBuffer` 对象。
-
-- **描述:**
-  - 该方法将提供的 `AudioBuffer` 设置为当前音频缓冲区，并重置 `MotionSync` 实例。
-
-### `reset()`
-
-将 `MotionSync` 实例重置为初始状态。
-
-- **描述:**
-  - 该方法停止任何正在进行的音频播放，重置嘴部状态。
-
 ### `async play(src: string | AudioBuffer): Promise<void>`
 
 - **返回值:**
@@ -140,6 +111,13 @@ window.PIXI = PIXI;
 - **描述:**
 
   - 该方法从给定的源加载音频并开始播放。返回一个在音频播放结束时解析的 Promise。
+
+### `reset()`
+
+将 `MotionSync` 实例重置为初始状态。
+
+- **描述:**
+  - 该方法停止任何正在进行的音频播放，重置嘴部状态。
 
 ### `loadMotionSync(buffer: ArrayBuffer, samplesPerSec = SamplesPerSec)`
 

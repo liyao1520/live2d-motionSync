@@ -94,35 +94,6 @@ Initialize a new `MotionSync` instance.
 - **Description:**
   - This constructor uses the provided `internalModel` to initialize the `MotionSync` class and start and initialize the `CubismMotionSync` framework.
 
-### `async loadAudio(url: string)`
-
-Load audio file from specified URL.
-
-- **Parameters:**
-
-  - `url`: The URL of the audio file to load.
-
-- **Description:**
-  - This method fetches the audio file from the given URL, decodes it, and stores it in the `audioBuffer` property. It also resets the current state of the `MotionSync` instance.
-
-### `async loadAudioBuffer(audioBuffer: AudioBuffer)`
-
-Load audio buffer directly.
-
-- **Parameters:**
-
-  - `audioBuffer`: The `AudioBuffer` object to load.
-
-- **Description:**
-  - This method sets the provided `AudioBuffer` as the current audio buffer and resets the `MotionSync` instance.
-
-### `reset()`
-
-Reset the `MotionSync` instance to its initial state.
-
-- **Description:**
-  - This method stops any ongoing audio playback and resets the mouth state.
-
 ### `async play(src: string | AudioBuffer): Promise<void>`
 
 - **Return:**
@@ -138,6 +109,13 @@ Play audio from specified source.
 - **Description:**
 
   - This method loads audio from the given source and starts playback. It returns a Promise that resolves when the audio playback ends.
+
+### `reset()`
+
+Reset the `MotionSync` instance to its initial state.
+
+- **Description:**
+  - This method stops any ongoing audio playback and resets the mouth state.
 
 ### `loadMotionSync(buffer: ArrayBuffer, samplesPerSec = SamplesPerSec)`
 
