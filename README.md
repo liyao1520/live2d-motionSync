@@ -8,6 +8,8 @@ A live2d motionsync library
 
 ![demo](./static/demo.gif)
 
+[codesandbox demo](https://codesandbox.io/p/sandbox/5yyr55?file=%2Fpackage.json%3A16%2C23)
+
 ## Prerequisites
 
 1. **Only support Cubism 4 models**

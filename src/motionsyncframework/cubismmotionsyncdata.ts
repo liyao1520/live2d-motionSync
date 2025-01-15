@@ -79,7 +79,6 @@ export class CubismMotionSyncData {
         cubismParameterIndex++
       ) {
         let partIndex: number = parameterCount;
-        console.log(model);
         for (
           let modelParameterIndex = 0;
           modelParameterIndex < model.getParameterCount();

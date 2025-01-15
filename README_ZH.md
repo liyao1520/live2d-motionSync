@@ -6,6 +6,8 @@
 
 ![demo](./static/demo.gif)
 
+[codesandbox demo](https://codesandbox.io/p/sandbox/5yyr55?file=%2Fpackage.json%3A16%2C23)
+
 ## 提前准备
 
 1. **仅支持 Cubism 4 模型**

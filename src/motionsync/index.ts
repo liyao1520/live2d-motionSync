@@ -3,7 +3,7 @@ import {
   CubismMotionSync,
   MotionSyncOption,
 } from "../motionsyncframework/live2dcubismmotionsync";
-
+import fallbackMotionsync3 from "../assets/fallback.motionsync3.json?raw";
 import { getAudioContext, initAudioContext } from "./audio";
 
 // 初始化音频上下文
@@ -175,9 +175,8 @@ export class MotionSync {
     this.modelUpdateWithMotionSync();
   }
   public async loadDefaultMotionSync(samplesPerSec = SamplesPerSec) {
-    const url = new URL("../assets/fallback.motionsync3.json", import.meta.url);
-    const response = await fetch(url);
-    const arrayBuffer = await response.arrayBuffer();
+    const blob = new Blob([fallbackMotionsync3], { type: "application/json" });
+    const arrayBuffer = await blob.arrayBuffer();
     this.loadMotionSync(arrayBuffer, samplesPerSec);
   }
   public async loadMotionSyncFromUrl(

@@ -1,6 +1,6 @@
-var S9 = Object.defineProperty;
-var N9 = (r, v, P) => v in r ? S9(r, v, { enumerable: !0, configurable: !0, writable: !0, value: P }) : r[v] = P;
-var t = (r, v, P) => N9(r, typeof v != "symbol" ? v + "" : v, P);
+var C9 = Object.defineProperty;
+var I9 = (r, v, P) => v in r ? C9(r, v, { enumerable: !0, configurable: !0, writable: !0, value: P }) : r[v] = P;
+var t = (r, v, P) => I9(r, typeof v != "symbol" ? v + "" : v, P);
 const M9 = `/**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
@@ -461,12 +461,12 @@ if(d.preInit)for("function"==typeof d.preInit&&(d.preInit=[d.preInit]);0<d.preIn
 var _em = _em_module();
 })(Live2DCubismMotionSyncCore || (Live2DCubismMotionSyncCore = {}));
 //# sourceMappingURL=live2dcubismmotionsynccore.js.map`;
-function W9(r) {
+function p9(r) {
   const v = document.createElement("script");
   v.type = "text/javascript", v.innerHTML = r, document.body.appendChild(v);
 }
-W9(M9);
-class o {
+p9(M9);
+class u {
   /**
    * 引数付きコンストラクタ
    * @param iniitalCapacity 初期化後のキャパシティ。データサイズは_capacity * sizeof(T)
@@ -494,8 +494,8 @@ class o {
    */
   get(v = 0) {
     const P = new Array();
-    for (let e = v; e < this._size; e++)
-      P.push(this._ptr[e]);
+    for (let a = v; a < this._size; a++)
+      P.push(this._ptr[a]);
     return P;
   }
   /**
@@ -503,7 +503,7 @@ class o {
    * @param value PushBack処理で追加する値
    */
   pushBack(v) {
-    this._size >= this._capacity && this.prepareCapacity(this._capacity == 0 ? o.DefaultSize : this._capacity * 2), this._ptr[this._size++] = v;
+    this._size >= this._capacity && this.prepareCapacity(this._capacity == 0 ? u.DefaultSize : this._capacity * 2), this._ptr[this._size++] = v;
   }
   /**
    * コンテナの全要素を解放する
@@ -525,8 +525,8 @@ class o {
    */
   assign(v, P) {
     this._size < v && this.prepareCapacity(v);
-    for (let a = 0; a < v; a++)
-      this._ptr[a] = P;
+    for (let e = 0; e < v; e++)
+      this._ptr[e] = P;
     this._size = v;
   }
   /**
@@ -538,17 +538,17 @@ class o {
   /**
    * サイズ変更
    */
-  updateSize(v, P = null, e = !0) {
+  updateSize(v, P = null, a = !0) {
     if (this._size < v)
-      if (this.prepareCapacity(v), e)
-        for (let i = this._size; i < v; i++)
-          typeof P == "function" ? this._ptr[i] = JSON.parse(JSON.stringify(new P())) : this._ptr[i] = P;
+      if (this.prepareCapacity(v), a)
+        for (let b = this._size; b < v; b++)
+          typeof P == "function" ? this._ptr[b] = JSON.parse(JSON.stringify(new P())) : this._ptr[b] = P;
       else
-        for (let i = this._size; i < v; i++)
-          this._ptr[i] = P;
+        for (let b = this._size; b < v; b++)
+          this._ptr[b] = P;
     else {
-      const i = this._size - v;
-      this._ptr.splice(this._size - i, i);
+      const b = this._size - v;
+      this._ptr.splice(this._size - b, b);
     }
     this._size = v;
   }
@@ -558,16 +558,16 @@ class o {
    * @param begin 挿入するコンテナの開始位置
    * @param end 挿入するコンテナの終端位置
    */
-  insert(v, P, e) {
-    let a = v._index;
-    const i = P._index, b = e._index, n = b - i;
+  insert(v, P, a) {
+    let e = v._index;
+    const b = P._index, i = a._index, n = i - b;
     this.prepareCapacity(this._size + n);
-    const c = this._size - a;
+    const c = this._size - e;
     if (c > 0)
-      for (let g = 0; g < c; g++)
-        this._ptr.splice(a + g, 0, null);
-    for (let g = i; g < b; g++, a++)
-      this._ptr[a] = P._vector._ptr[g];
+      for (let s = 0; s < c; s++)
+        this._ptr.splice(e + s, 0, null);
+    for (let s = b; s < i; s++, e++)
+      this._ptr[e] = P._vector._ptr[s];
     this._size = this._size + n;
   }
   /**
@@ -607,12 +607,12 @@ class o {
     return new cv(this, this._size);
   }
   getOffset(v) {
-    const P = new o();
+    const P = new u();
     return P._ptr = this.get(v), P._size = this.get(v).length, P._capacity = this.get(v).length, P;
   }
 }
-o.DefaultSize = 10;
-let cv = class Jv {
+u.DefaultSize = 10;
+let cv = class Lv {
   /**
    * コンストラクタ
    */
@@ -641,13 +641,13 @@ let cv = class Jv {
    * 後置き++演算子
    */
   increment() {
-    return new Jv(this._vector, this._index++);
+    return new Lv(this._vector, this._index++);
   }
   /**
    * 後置き--演算子
    */
   decrement() {
-    return new Jv(this._vector, this._index--);
+    return new Lv(this._vector, this._index--);
   }
   /**
    * ptr
@@ -668,11 +668,11 @@ let cv = class Jv {
     return this._index != v._index || this._vector != v._vector;
   }
 };
-var Wv;
+var pv;
 (function(r) {
-  r.csmVector = o, r.iterator = cv;
-})(Wv || (Wv = {}));
-class Q {
+  r.csmVector = u, r.iterator = cv;
+})(pv || (pv = {}));
+class j {
   /**
    * 文字列を後方に追加する
    *
@@ -689,7 +689,7 @@ class Q {
    * @return 更新された文字列
    */
   expansion(v, P) {
-    for (let e = 0; e < v; e++)
+    for (let a = 0; a < v; a++)
       this.append(P);
     return this;
   }
@@ -749,7 +749,7 @@ class Q {
 }
 var Ov;
 (function(r) {
-  r.csmString = Q;
+  r.csmString = j;
 })(Ov || (Ov = {}));
 class F {
   /**
@@ -775,7 +775,7 @@ class F {
    * @return 同じならばtrue,異なっていればfalseを返す
    */
   isEqual(v) {
-    return typeof v == "string" ? this._id.isEqual(v) : v instanceof Q ? this._id.isEqual(v.s) : v instanceof F ? this._id.isEqual(v._id.s) : !1;
+    return typeof v == "string" ? this._id.isEqual(v) : v instanceof j ? this._id.isEqual(v.s) : v instanceof F ? this._id.isEqual(v._id.s) : !1;
   }
   /**
    * idを比較
@@ -783,7 +783,7 @@ class F {
    * @return 同じならばtrue,異なっていればfalseを返す
    */
   isNotEqual(v) {
-    return typeof v == "string" ? !this._id.isEqual(v) : v instanceof Q ? !this._id.isEqual(v.s) : v instanceof F ? !this._id.isEqual(v._id.s) : !1;
+    return typeof v == "string" ? !this._id.isEqual(v) : v instanceof j ? !this._id.isEqual(v.s) : v instanceof F ? !this._id.isEqual(v._id.s) : !1;
   }
   /**
    * プライベートコンストラクタ
@@ -792,22 +792,22 @@ class F {
    */
   constructor(v) {
     if (typeof v == "string") {
-      this._id = new Q(v);
+      this._id = new j(v);
       return;
     }
     this._id = v;
   }
 }
-var pv;
+var Wv;
 (function(r) {
   r.CubismId = F;
-})(pv || (pv = {}));
-class A9 {
+})(Wv || (Wv = {}));
+class g9 {
   /**
    * コンストラクタ
    */
   constructor() {
-    this._ids = new o();
+    this._ids = new u();
   }
   /**
    * デストラクタ相当の処理
@@ -874,7 +874,7 @@ class A9 {
 }
 var Yv;
 (function(r) {
-  r.CubismIdManager = A9;
+  r.CubismIdManager = g9;
 })(Yv || (Yv = {}));
 class Y {
   /**
@@ -890,8 +890,8 @@ class Y {
    * @param b 行列b
    * @return 乗算結果の行列
    */
-  static multiply(v, P, e) {
-    const a = new Float32Array([
+  static multiply(v, P, a) {
+    const e = new Float32Array([
       0,
       0,
       0,
@@ -908,13 +908,13 @@ class Y {
       0,
       0,
       0
-    ]), i = 4;
-    for (let b = 0; b < i; ++b)
-      for (let n = 0; n < i; ++n)
-        for (let c = 0; c < i; ++c)
-          a[n + b * 4] += v[c + b * 4] * P[n + c * 4];
-    for (let b = 0; b < 16; ++b)
-      e[b] = a[b];
+    ]), b = 4;
+    for (let i = 0; i < b; ++i)
+      for (let n = 0; n < b; ++n)
+        for (let c = 0; c < b; ++c)
+          e[n + i * 4] += v[c + i * 4] * P[n + c * 4];
+    for (let i = 0; i < 16; ++i)
+      a[i] = e[i];
   }
   /**
    * 単位行列に初期化する
@@ -1025,7 +1025,7 @@ class Y {
    * @param y Y軸の移動量
    */
   translateRelative(v, P) {
-    const e = new Float32Array([
+    const a = new Float32Array([
       1,
       0,
       0,
@@ -1043,7 +1043,7 @@ class Y {
       0,
       1
     ]);
-    Y.multiply(e, this._tr, this._tr);
+    Y.multiply(a, this._tr, this._tr);
   }
   /**
    * 現在の行列の位置を移動
@@ -1079,7 +1079,7 @@ class Y {
    * @param y Y軸の拡大率
    */
   scaleRelative(v, P) {
-    const e = new Float32Array([
+    const a = new Float32Array([
       v,
       0,
       0,
@@ -1097,7 +1097,7 @@ class Y {
       0,
       1
     ]);
-    Y.multiply(e, this._tr, this._tr);
+    Y.multiply(a, this._tr, this._tr);
   }
   /**
    * 現在の行列の拡大率を指定した倍率に設定する
@@ -1140,8 +1140,8 @@ class O9 {
    * @param w 幅
    * @param h 高さ
    */
-  constructor(v, P, e, a) {
-    this.x = v, this.y = P, this.width = e, this.height = a;
+  constructor(v, P, a, e) {
+    this.x = v, this.y = P, this.width = a, this.height = e;
   }
   /**
    * 矩形中央のX座標を取得する
@@ -1187,7 +1187,7 @@ var Uv;
 (function(r) {
   r.csmRect = O9;
 })(Uv || (Uv = {}));
-class f9 {
+class Q9 {
   /**
    * レンダラのインスタンスを生成して取得する
    *
@@ -1238,8 +1238,8 @@ class f9 {
    * @param blue 青チャンネルの値
    * @param alpha αチャンネルの値
    */
-  setModelColor(v, P, e, a) {
-    v < 0 ? v = 0 : v > 1 && (v = 1), P < 0 ? P = 0 : P > 1 && (P = 1), e < 0 ? e = 0 : e > 1 && (e = 1), a < 0 ? a = 0 : a > 1 && (a = 1), this._modelColor.r = v, this._modelColor.g = P, this._modelColor.b = e, this._modelColor.a = a;
+  setModelColor(v, P, a, e) {
+    v < 0 ? v = 0 : v > 1 && (v = 1), P < 0 ? P = 0 : P > 1 && (P = 1), a < 0 ? a = 0 : a > 1 && (a = 1), e < 0 ? e = 0 : e > 1 && (e = 1), this._modelColor.r = v, this._modelColor.g = P, this._modelColor.b = a, this._modelColor.a = e;
   }
   /**
    * モデルの色を取得する
@@ -1336,26 +1336,26 @@ class f9 {
    * コンストラクタ
    */
   constructor() {
-    this._isCulling = !1, this._isPremultipliedAlpha = !1, this._anisotropy = 0, this._model = null, this._modelColor = new Q9(), this._useHighPrecisionMask = !1, this._mvpMatrix4x4 = new Y(), this._mvpMatrix4x4.loadIdentity();
+    this._isCulling = !1, this._isPremultipliedAlpha = !1, this._anisotropy = 0, this._model = null, this._modelColor = new j9(), this._useHighPrecisionMask = !1, this._mvpMatrix4x4 = new Y(), this._mvpMatrix4x4.loadIdentity();
   }
 }
-var Lv;
+var hv;
 (function(r) {
   r[r.CubismBlendMode_Normal = 0] = "CubismBlendMode_Normal", r[r.CubismBlendMode_Additive = 1] = "CubismBlendMode_Additive", r[r.CubismBlendMode_Multiplicative = 2] = "CubismBlendMode_Multiplicative";
-})(Lv || (Lv = {}));
-class Q9 {
+})(hv || (hv = {}));
+class j9 {
   /**
    * コンストラクタ
    */
-  constructor(v = 1, P = 1, e = 1, a = 1) {
-    this.r = v, this.g = P, this.b = e, this.a = a;
+  constructor(v = 1, P = 1, a = 1, e = 1) {
+    this.r = v, this.g = P, this.b = a, this.a = e;
   }
 }
 var Gv;
 (function(r) {
-  r.CubismBlendMode = Lv, r.CubismRenderer = f9, r.CubismTextureColor = Q9;
+  r.CubismBlendMode = hv, r.CubismRenderer = Q9, r.CubismTextureColor = j9;
 })(Gv || (Gv = {}));
-class j9 {
+class z9 {
   /**
    * コンストラクタ
    * @param key Keyとしてセットする値
@@ -1365,7 +1365,7 @@ class j9 {
     this.first = v ?? null, this.second = P ?? null;
   }
 }
-class N {
+class I {
   /**
    * 引数付きコンストラクタ
    * @param size 初期化時点で確保するサイズ
@@ -1384,7 +1384,7 @@ class N {
    * @param key 新たに追加するキー
    */
   appendKey(v) {
-    this.prepareCapacity(this._size + 1, !1), this._keyValues[this._size] = new j9(v), this._size += 1;
+    this.prepareCapacity(this._size + 1, !1), this._keyValues[this._size] = new z9(v), this._size += 1;
   }
   /**
    * 添字演算子[key]のオーバーロード(get)
@@ -1392,9 +1392,9 @@ class N {
    */
   getValue(v) {
     let P = -1;
-    for (let e = 0; e < this._size; e++)
-      if (this._keyValues[e].first == v) {
-        P = e;
+    for (let a = 0; a < this._size; a++)
+      if (this._keyValues[a].first == v) {
+        P = a;
         break;
       }
     return P >= 0 ? this._keyValues[P].second : (this.appendKey(v), this._keyValues[this._size - 1].second);
@@ -1405,13 +1405,13 @@ class N {
    * @param value 代入するValue値
    */
   setValue(v, P) {
-    let e = -1;
-    for (let a = 0; a < this._size; a++)
-      if (this._keyValues[a].first == v) {
-        e = a;
+    let a = -1;
+    for (let e = 0; e < this._size; e++)
+      if (this._keyValues[e].first == v) {
+        a = e;
         break;
       }
-    e >= 0 ? this._keyValues[e].second = P : (this.appendKey(v), this._keyValues[this._size - 1].second = P);
+    a >= 0 ? this._keyValues[a].second = P : (this.appendKey(v), this._keyValues[this._size - 1].second = P);
   }
   /**
    * 引数で渡したKeyを持つ要素が存在するか
@@ -1445,7 +1445,7 @@ class N {
    * @param fitToSize trueなら指定したサイズに合わせる。falseならサイズを2倍確保しておく。
    */
   prepareCapacity(v, P) {
-    v > this._keyValues.length && (this._keyValues.length == 0 ? (!P && v < N.DefaultSize && (v = N.DefaultSize), this._keyValues.length = v) : (!P && v < this._keyValues.length * 2 && (v = this._keyValues.length * 2), this._keyValues.length = v));
+    v > this._keyValues.length && (this._keyValues.length == 0 ? (!P && v < I.DefaultSize && (v = I.DefaultSize), this._keyValues.length = v) : (!P && v < this._keyValues.length * 2 && (v = this._keyValues.length * 2), this._keyValues.length = v));
   }
   /**
    * コンテナの先頭要素を返す
@@ -1473,17 +1473,17 @@ class N {
    */
   dumpAsInt() {
     for (let v = 0; v < this._size; v++)
-      Iv("{0} ,", this._keyValues[v]), Iv(`
+      kv("{0} ,", this._keyValues[v]), kv(`
 `);
   }
 }
-N.DefaultSize = 10;
+I.DefaultSize = 10;
 class U {
   /**
    * コンストラクタ
    */
   constructor(v, P) {
-    this._map = v ?? new N(), this._index = P ?? 0;
+    this._map = v ?? new I(), this._index = P ?? 0;
   }
   /**
    * =演算子のオーバーロード
@@ -1531,53 +1531,53 @@ class U {
 }
 var xv;
 (function(r) {
-  r.csmMap = N, r.csmPair = j9, r.iterator = U;
+  r.csmMap = I, r.csmPair = z9, r.iterator = U;
 })(xv || (xv = {}));
-class sv {
+class ov {
   static parseJsonObject(v, P) {
-    return Object.keys(v).forEach((e) => {
-      if (typeof v[e] == "boolean") {
-        const a = !!v[e];
-        P.put(e, new J(a));
-      } else if (typeof v[e] == "string") {
-        const a = String(v[e]);
-        P.put(e, new $(a));
-      } else if (typeof v[e] == "number") {
-        const a = Number(v[e]);
-        P.put(e, new uv(a));
-      } else v[e] instanceof Array ? P.put(e, sv.parseJsonArray(v[e])) : v[e] instanceof Object ? P.put(e, sv.parseJsonObject(v[e], new H())) : v[e] == null ? P.put(e, new X()) : P.put(e, v[e]);
+    return Object.keys(v).forEach((a) => {
+      if (typeof v[a] == "boolean") {
+        const e = !!v[a];
+        P.put(a, new L(e));
+      } else if (typeof v[a] == "string") {
+        const e = String(v[a]);
+        P.put(a, new $(e));
+      } else if (typeof v[a] == "number") {
+        const e = Number(v[a]);
+        P.put(a, new fv(e));
+      } else v[a] instanceof Array ? P.put(a, ov.parseJsonArray(v[a])) : v[a] instanceof Object ? P.put(a, ov.parseJsonObject(v[a], new H())) : v[a] == null ? P.put(a, new X()) : P.put(a, v[a]);
     }), P;
   }
   static parseJsonArray(v) {
-    const P = new yv();
-    return Object.keys(v).forEach((e) => {
-      if (typeof Number(e) == "number")
-        if (typeof v[e] == "boolean") {
-          const i = !!v[e];
-          P.add(new J(i));
-        } else if (typeof v[e] == "string") {
-          const i = String(v[e]);
-          P.add(new $(i));
-        } else if (typeof v[e] == "number") {
-          const i = Number(v[e]);
-          P.add(new uv(i));
-        } else v[e] instanceof Array ? P.add(this.parseJsonArray(v[e])) : v[e] instanceof Object ? P.add(this.parseJsonObject(v[e], new H())) : v[e] == null ? P.add(new X()) : P.add(v[e]);
-      else if (v[e] instanceof Array)
-        P.add(this.parseJsonArray(v[e]));
-      else if (v[e] instanceof Object)
-        P.add(this.parseJsonObject(v[e], new H()));
-      else if (v[e] == null)
+    const P = new Nv();
+    return Object.keys(v).forEach((a) => {
+      if (typeof Number(a) == "number")
+        if (typeof v[a] == "boolean") {
+          const b = !!v[a];
+          P.add(new L(b));
+        } else if (typeof v[a] == "string") {
+          const b = String(v[a]);
+          P.add(new $(b));
+        } else if (typeof v[a] == "number") {
+          const b = Number(v[a]);
+          P.add(new fv(b));
+        } else v[a] instanceof Array ? P.add(this.parseJsonArray(v[a])) : v[a] instanceof Object ? P.add(this.parseJsonObject(v[a], new H())) : v[a] == null ? P.add(new X()) : P.add(v[a]);
+      else if (v[a] instanceof Array)
+        P.add(this.parseJsonArray(v[a]));
+      else if (v[a] instanceof Object)
+        P.add(this.parseJsonObject(v[a], new H()));
+      else if (v[a] == null)
         P.add(new X());
       else {
-        const i = Array(v[e]);
-        for (let b = 0; b < i.length; b++)
-          P.add(i[b]);
+        const b = Array(v[a]);
+        for (let i = 0; i < b.length; i++)
+          P.add(b[i]);
       }
     }), P;
   }
 }
-const ov = "Error: type mismatch", p9 = "Error: index out of bounds";
-let z = class C {
+const uv = "Error: type mismatch", W9 = "Error: index out of bounds";
+let d = class y {
   /**
    * コンストラクタ
    */
@@ -1622,7 +1622,7 @@ let z = class C {
   /**
    * 要素をコンテナで返す(array)
    */
-  getVector(v = new o()) {
+  getVector(v = new u()) {
     return v;
   }
   /**
@@ -1635,13 +1635,13 @@ let z = class C {
    * 添字演算子[index]
    */
   getValueByIndex(v) {
-    return C.errorValue.setErrorNotForClientCall(ov);
+    return y.errorValue.setErrorNotForClientCall(uv);
   }
   /**
    * 添字演算子[string | csmString]
    */
   getValueByString(v) {
-    return C.nullValue.setErrorNotForClientCall(ov);
+    return y.nullValue.setErrorNotForClientCall(uv);
   }
   /**
    * マップのキー一覧をコンテナで返す
@@ -1649,7 +1649,7 @@ let z = class C {
    * @return マップのキーの一覧
    */
   getKeys() {
-    return C.dummyKeys;
+    return y.dummyKeys;
   }
   /**
    * Valueの種類がエラー値ならtrue
@@ -1712,13 +1712,13 @@ let z = class C {
    * 初期化用メソッド
    */
   static staticInitializeNotForClientCall() {
-    J.trueValue = new J(!0), J.falseValue = new J(!1), C.errorValue = new Pv("ERROR", !0), C.nullValue = new X(), C.dummyKeys = new o();
+    L.trueValue = new L(!0), L.falseValue = new L(!1), y.errorValue = new Pv("ERROR", !0), y.nullValue = new X(), y.dummyKeys = new u();
   }
   /**
    * リリース用メソッド
    */
   static staticReleaseNotForClientCall() {
-    J.trueValue = null, J.falseValue = null, C.errorValue = null, C.nullValue = null, C.dummyKeys = null;
+    L.trueValue = null, L.falseValue = null, y.errorValue = null, y.nullValue = null, y.dummyKeys = null;
   }
 };
 class G {
@@ -1726,7 +1726,7 @@ class G {
    * コンストラクタ
    */
   constructor(v, P) {
-    this._parseCallback = sv.parseJsonObject, this._error = null, this._lineCount = 0, this._root = null, v != null && this.parseBytes(v, P, this._parseCallback);
+    this._parseCallback = ov.parseJsonObject, this._error = null, this._lineCount = 0, this._root = null, v != null && this.parseBytes(v, P, this._parseCallback);
   }
   /**
    * バイトデータから直接ロードしてパースする
@@ -1736,8 +1736,8 @@ class G {
    * @return CubismJsonクラスのインスタンス。失敗したらNULL
    */
   static create(v, P) {
-    const e = new G();
-    return e.parseBytes(v, P, e._parseCallback) ? e : (G.delete(e), null);
+    const a = new G();
+    return a.parseBytes(v, P, a._parseCallback) ? a : (G.delete(a), null);
   }
   /**
    * パースしたJSONオブジェクトの解放処理
@@ -1760,10 +1760,10 @@ class G {
    */
   static arrayBufferToString(v) {
     const P = new Uint8Array(v);
-    let e = "";
-    for (let a = 0, i = P.length; a < i; ++a)
-      e += "%" + this.pad(P[a].toString(16));
-    return e = decodeURIComponent(e), e;
+    let a = "";
+    for (let e = 0, b = P.length; e < b; ++e)
+      a += "%" + this.pad(P[e].toString(16));
+    return a = decodeURIComponent(a), a;
   }
   /**
    * エンコード、パディング
@@ -1778,14 +1778,14 @@ class G {
    * return true : 成功
    * return false: 失敗
    */
-  parseBytes(v, P, e) {
-    const a = new Array(1), i = G.arrayBufferToString(v);
-    if (e == null ? this._root = this.parseValue(i, P, 0, a) : this._root = e(JSON.parse(i), new H()), this._error) {
-      let b = "\0";
-      return b = "Json parse error : @line " + (this._lineCount + 1) + `
-`, this._root = new $(b), f("{0}", this._root.getRawString()), !1;
+  parseBytes(v, P, a) {
+    const e = new Array(1), b = G.arrayBufferToString(v);
+    if (a == null ? this._root = this.parseValue(b, P, 0, e) : this._root = a(JSON.parse(b), new H()), this._error) {
+      let i = "\0";
+      return i = "Json parse error : @line " + (this._lineCount + 1) + `
+`, this._root = new $(i), Q("{0}", this._root.getRawString()), !1;
     } else if (this._root == null)
-      return this._root = new Pv(new Q(this._error), !1), !1;
+      return this._root = new Pv(new j(this._error), !1), !1;
     return !0;
   }
   /**
@@ -1810,12 +1810,12 @@ class G {
    * @param   outEndPos   パース終了時の位置
    * @return      パースから取得したValueオブジェクト
    */
-  parseValue(v, P, e, a) {
+  parseValue(v, P, a, e) {
     if (this._error)
       return null;
-    let i = null, b = e, n;
-    for (; b < P; b++)
-      switch (v[b]) {
+    let b = null, i = a, n;
+    for (; i < P; i++)
+      switch (v[i]) {
         case "-":
         case ".":
         case "0":
@@ -1828,25 +1828,25 @@ class G {
         case "7":
         case "8":
         case "9": {
-          const g = new Array(1);
-          return n = Y9(v.slice(b), g), a[0] = v.indexOf(g[0]), new uv(n);
+          const s = new Array(1);
+          return n = Y9(v.slice(i), s), e[0] = v.indexOf(s[0]), new fv(n);
         }
         case '"':
-          return new $(this.parseString(v, P, b + 1, a));
+          return new $(this.parseString(v, P, i + 1, e));
         case "[":
-          return i = this.parseArray(v, P, b + 1, a), i;
+          return b = this.parseArray(v, P, i + 1, e), b;
         case "{":
-          return i = this.parseObject(v, P, b + 1, a), i;
+          return b = this.parseObject(v, P, i + 1, e), b;
         case "n":
-          return b + 3 < P ? (i = new X(), a[0] = b + 4) : this._error = "parse null", i;
+          return i + 3 < P ? (b = new X(), e[0] = i + 4) : this._error = "parse null", b;
         case "t":
-          return b + 3 < P ? (i = J.trueValue, a[0] = b + 4) : this._error = "parse true", i;
+          return i + 3 < P ? (b = L.trueValue, e[0] = i + 4) : this._error = "parse true", b;
         case "f":
-          return b + 4 < P ? (i = J.falseValue, a[0] = b + 5) : this._error = "illegal ',' position", i;
+          return i + 4 < P ? (b = L.falseValue, e[0] = i + 5) : this._error = "illegal ',' position", b;
         case ",":
           return this._error = "illegal ',' position", null;
         case "]":
-          return a[0] = b, null;
+          return e[0] = i, null;
         case `
 `:
           this._lineCount++;
@@ -1862,21 +1862,21 @@ class G {
    * @param  outEndPos   ->  パース終了時の位置
    * @return      パースした文F字列要素
    */
-  parseString(v, P, e, a) {
+  parseString(v, P, a, e) {
     if (this._error)
       return null;
     if (!v)
       return this._error = "string is null", null;
-    let i = e, b, n;
-    const c = new Q("");
-    let g = e;
-    for (; i < P; i++)
-      switch (b = v[i], b) {
+    let b = a, i, n;
+    const c = new j("");
+    let s = a;
+    for (; b < P; b++)
+      switch (i = v[b], i) {
         case '"':
-          return a[0] = i + 1, c.append(v.slice(g), i - g), c.s;
+          return e[0] = b + 1, c.append(v.slice(s), b - s), c.s;
         case "//":
-          if (i++, i - 1 > g && c.append(v.slice(g), i - g), g = i + 1, i < P)
-            switch (n = v[i], n) {
+          if (b++, b - 1 > s && c.append(v.slice(s), b - s), s = b + 1, b < P)
+            switch (n = v[b], n) {
               case "\\":
                 c.expansion(1, "\\");
                 break;
@@ -1920,25 +1920,25 @@ class G {
    * @param outEndPos パース終了時の位置
    * @return パースから取得したValueオブジェクト
    */
-  parseObject(v, P, e, a) {
+  parseObject(v, P, a, e) {
     if (this._error)
       return null;
     if (!v)
       return this._error = "buffer is null", null;
-    const i = new H();
-    let b = "", n = e, c = "";
-    const g = Array(1);
-    let s = !1;
+    const b = new H();
+    let i = "", n = a, c = "";
+    const s = Array(1);
+    let o = !1;
     for (; n < P; n++) {
       v: for (; n < P; n++)
         switch (c = v[n], c) {
           case '"':
-            if (b = this.parseString(v, P, n + 1, g), this._error)
+            if (i = this.parseString(v, P, n + 1, s), this._error)
               return null;
-            n = g[0], s = !0;
+            n = s[0], o = !0;
             break v;
           case "}":
-            return a[0] = n + 1, i;
+            return e[0] = n + 1, b;
           case ":":
             this._error = "illegal ':' position";
             break;
@@ -1946,13 +1946,13 @@ class G {
 `:
             this._lineCount++;
         }
-      if (!s)
+      if (!o)
         return this._error = "key not found", null;
-      s = !1;
+      o = !1;
       v: for (; n < P; n++)
         switch (c = v[n], c) {
           case ":":
-            s = !0, n++;
+            o = !0, n++;
             break v;
           case "}":
             this._error = "illegal '}' position";
@@ -1961,18 +1961,18 @@ class G {
 `:
             this._lineCount++;
         }
-      if (!s)
+      if (!o)
         return this._error = "':' not found", null;
-      const A = this.parseValue(v, P, n, g);
+      const g = this.parseValue(v, P, n, s);
       if (this._error)
         return null;
-      n = g[0], i.put(b, A);
+      n = s[0], b.put(i, g);
       v: for (; n < P; n++)
         switch (c = v[n], c) {
           case ",":
             break v;
           case "}":
-            return a[0] = n + 1, i;
+            return e[0] = n + 1, b;
           case `
 `:
             this._lineCount++;
@@ -1988,33 +1988,33 @@ class G {
    * @param outEndPos パース終了時の位置
    * @return パースから取得したValueオブジェクト
    */
-  parseArray(v, P, e, a) {
+  parseArray(v, P, a, e) {
     if (this._error)
       return null;
     if (!v)
       return this._error = "buffer is null", null;
-    let i = new yv(), b = e, n;
+    let b = new Nv(), i = a, n;
     const c = new Array(1);
-    for (; b < P; b++) {
-      const g = this.parseValue(v, P, b, c);
+    for (; i < P; i++) {
+      const s = this.parseValue(v, P, i, c);
       if (this._error)
         return null;
-      b = c[0], g && i.add(g);
-      v: for (; b < P; b++)
-        switch (n = v[b], n) {
+      i = c[0], s && b.add(s);
+      v: for (; i < P; i++)
+        switch (n = v[i], n) {
           case ",":
             break v;
           case "]":
-            return a[0] = b + 1, i;
+            return e[0] = i + 1, b;
           case `
 `:
             ++this._lineCount;
         }
     }
-    return i = void 0, this._error = "illegal end of parseObject", null;
+    return b = void 0, this._error = "illegal end of parseObject", null;
   }
 }
-class uv extends z {
+class fv extends d {
   /**
    * コンストラクタ
    */
@@ -2031,8 +2031,8 @@ class uv extends z {
    * 要素を文字列で返す(csmString型)
    */
   getString(v, P) {
-    const e = "\0";
-    return this._value = parseFloat(e), this._stringBuffer = e, this._stringBuffer;
+    const a = "\0";
+    return this._value = parseFloat(a), this._stringBuffer = a, this._stringBuffer;
   }
   /**
    * 要素を数値型で返す(number)
@@ -2050,7 +2050,7 @@ class uv extends z {
     return typeof v == "number" ? Math.round(v) ? !1 : v == this._value : !1;
   }
 }
-class J extends z {
+class L extends d {
   /**
    * Valueの種類が真偽値ならtrue
    */
@@ -2085,9 +2085,9 @@ class J extends z {
     super(), this._boolValue = v;
   }
 }
-class $ extends z {
+class $ extends d {
   constructor(v) {
-    super(), typeof v == "string" && (this._stringBuffer = v), v instanceof Q && (this._stringBuffer = v.s);
+    super(), typeof v == "string" && (this._stringBuffer = v), v instanceof j && (this._stringBuffer = v.s);
   }
   /**
    * Valueの種類が文字列ならtrue
@@ -2102,7 +2102,7 @@ class $ extends z {
     return this._stringBuffer;
   }
   equals(v) {
-    return typeof v == "string" ? this._stringBuffer == v : v instanceof Q ? this._stringBuffer == v.s : !1;
+    return typeof v == "string" ? this._stringBuffer == v : v instanceof j ? this._stringBuffer == v.s : !1;
   }
 }
 class Pv extends $ {
@@ -2131,7 +2131,7 @@ class Pv extends $ {
     return !0;
   }
 }
-class X extends z {
+class X extends d {
   /**
    * Valueの種類がNULL値ならtrue
    */
@@ -2163,12 +2163,12 @@ class X extends z {
     super(), this._stringBuffer = "NullValue";
   }
 }
-class yv extends z {
+class Nv extends d {
   /**
    * コンストラクタ
    */
   constructor() {
-    super(), this._array = new o();
+    super(), this._array = new u();
   }
   /**
    * デストラクタ相当の処理
@@ -2190,28 +2190,28 @@ class yv extends z {
    */
   getValueByIndex(v) {
     if (v < 0 || this._array.getSize() <= v)
-      return z.errorValue.setErrorNotForClientCall(p9);
+      return d.errorValue.setErrorNotForClientCall(W9);
     const P = this._array.at(v);
-    return P ?? z.nullValue;
+    return P ?? d.nullValue;
   }
   /**
    * 添字演算子[string | csmString]
    */
   getValueByString(v) {
-    return z.errorValue.setErrorNotForClientCall(ov);
+    return d.errorValue.setErrorNotForClientCall(uv);
   }
   /**
    * 要素を文字列で返す(csmString型)
    */
   getString(v, P) {
-    const e = P + `[
+    const a = P + `[
 `;
-    for (let a = this._array.begin(); a.notEqual(this._array.end()); a.increment()) {
-      const i = a.ptr();
-      this._stringBuffer += P + "" + i.getString(P + " ") + `
+    for (let e = this._array.begin(); e.notEqual(this._array.end()); e.increment()) {
+      const b = e.ptr();
+      this._stringBuffer += P + "" + b.getString(P + " ") + `
 `;
     }
-    return this._stringBuffer = e + P + `]
+    return this._stringBuffer = a + P + `]
 `, this._stringBuffer;
   }
   /**
@@ -2234,12 +2234,12 @@ class yv extends z {
     return this._array.getSize();
   }
 }
-class H extends z {
+class H extends d {
   /**
    * コンストラクタ
    */
   constructor() {
-    super(), this._map = new N();
+    super(), this._map = new I();
   }
   /**
    * デストラクタ相当の処理
@@ -2261,20 +2261,20 @@ class H extends z {
    * 添字演算子[string | csmString]
    */
   getValueByString(v) {
-    if (v instanceof Q) {
+    if (v instanceof j) {
       const P = this._map.getValue(v.s);
-      return P ?? z.nullValue;
+      return P ?? d.nullValue;
     }
     for (let P = this._map.begin(); P.notEqual(this._map.end()); P.preIncrement())
       if (P.ptr().first == v)
-        return P.ptr().second == null ? z.nullValue : P.ptr().second;
-    return z.nullValue;
+        return P.ptr().second == null ? d.nullValue : P.ptr().second;
+    return d.nullValue;
   }
   /**
    * 添字演算子[index]
    */
   getValueByIndex(v) {
-    return z.errorValue.setErrorNotForClientCall(ov);
+    return d.errorValue.setErrorNotForClientCall(uv);
   }
   /**
    * 要素を文字列で返す(csmString型)
@@ -2282,11 +2282,11 @@ class H extends z {
   getString(v, P) {
     this._stringBuffer = P + `{
 `;
-    const e = this._map.begin();
-    for (; e.notEqual(this._map.end()); ) {
-      const a = e.ptr().first, i = e.ptr().second;
-      this._stringBuffer += P + " " + a + " : " + i.getString(P + "   ") + ` 
-`, e.preIncrement();
+    const a = this._map.begin();
+    for (; a.notEqual(this._map.end()); ) {
+      const e = a.ptr().first, b = a.ptr().second;
+      this._stringBuffer += P + " " + e + " : " + b.getString(P + "   ") + ` 
+`, a.preIncrement();
     }
     return this._stringBuffer += P + `}
 `, this._stringBuffer;
@@ -2308,7 +2308,7 @@ class H extends z {
    */
   getKeys() {
     if (!this._keys) {
-      this._keys = new o();
+      this._keys = new u();
       const v = this._map.begin();
       for (; v.notEqual(this._map.end()); ) {
         const P = v.ptr().first;
@@ -2326,23 +2326,23 @@ class H extends z {
 }
 var qv;
 (function(r) {
-  r.CubismJson = G, r.JsonArray = yv, r.JsonBoolean = J, r.JsonError = Pv, r.JsonFloat = uv, r.JsonMap = H, r.JsonNullvalue = X, r.JsonString = $, r.Value = z;
+  r.CubismJson = G, r.JsonArray = Nv, r.JsonBoolean = L, r.JsonError = Pv, r.JsonFloat = fv, r.JsonMap = H, r.JsonNullvalue = X, r.JsonString = $, r.Value = d;
 })(qv || (qv = {}));
 function Y9(r, v) {
   let P = 0;
-  for (let a = 1; ; a++) {
-    const i = r.slice(a - 1, a);
-    if (i == "e" || i == "-" || i == "E")
+  for (let e = 1; ; e++) {
+    const b = r.slice(e - 1, e);
+    if (b == "e" || b == "-" || b == "E")
       continue;
-    const b = r.substring(0, a), n = Number(b);
+    const i = r.substring(0, e), n = Number(i);
     if (isNaN(n))
       break;
-    P = a;
+    P = e;
   }
-  let e = parseFloat(r);
-  return isNaN(e) && (e = NaN), v[0] = r.slice(P), e;
+  let a = parseFloat(r);
+  return isNaN(a) && (a = NaN), v[0] = r.slice(P), a;
 }
-let l = !1, q = !1, B = null, vv = null;
+let A = !1, q = !1, B = null, vv = null;
 const E9 = Object.freeze({
   vertexOffset: 0,
   // メッシュ頂点のオフセット値
@@ -2352,7 +2352,7 @@ const E9 = Object.freeze({
 function U9(r) {
   r && (r = void 0);
 }
-class hv {
+class Jv {
   /**
    * Cubism FrameworkのAPIを使用可能にする。
    *  APIを実行する前に必ずこの関数を実行すること。
@@ -2363,20 +2363,20 @@ class hv {
    * @return   準備処理が完了したらtrueが返ります。
    */
   static startUp(v = null) {
-    if (l)
-      return f("CubismFramework.startUp() is already done."), l;
-    if (B = v, B != null && Live2DCubismCore.Logging.csmSetLogFunction(B.logFunction), l = !0, l) {
-      const P = Live2DCubismCore.Version.csmGetVersion(), e = (P & 4278190080) >> 24, a = (P & 16711680) >> 16, i = P & 65535, b = P;
-      f("Live2D Cubism Core version: {0}.{1}.{2} ({3})", ("00" + e).slice(-2), ("00" + a).slice(-2), ("0000" + i).slice(-4), b);
+    if (A)
+      return Q("CubismFramework.startUp() is already done."), A;
+    if (B = v, B != null && Live2DCubismCore.Logging.csmSetLogFunction(B.logFunction), A = !0, A) {
+      const P = Live2DCubismCore.Version.csmGetVersion(), a = (P & 4278190080) >> 24, e = (P & 16711680) >> 16, b = P & 65535, i = P;
+      Q("Live2D Cubism Core version: {0}.{1}.{2} ({3})", ("00" + a).slice(-2), ("00" + e).slice(-2), ("0000" + b).slice(-4), i);
     }
-    return f("CubismFramework.startUp() is complete."), l;
+    return Q("CubismFramework.startUp() is complete."), A;
   }
   /**
    * StartUp()で初期化したCubismFrameworkの各パラメータをクリアします。
    * Dispose()したCubismFrameworkを再利用する際に利用してください。
    */
   static cleanUp() {
-    l = !1, q = !1, B = null, vv = null;
+    A = !1, q = !1, B = null, vv = null;
   }
   /**
    * Cubism Framework内のリソースを初期化してモデルを表示可能な状態にします。<br>
@@ -2388,15 +2388,15 @@ class hv {
    *    それ以外はすべて1024*1024*16 byteに丸めます。
    */
   static initialize(v = 0) {
-    if (Av(l), !l) {
-      j("CubismFramework is not started.");
+    if (gv(A), !A) {
+      z("CubismFramework is not started.");
       return;
     }
     if (q) {
-      j("CubismFramework.initialize() skipped, already initialized.");
+      z("CubismFramework.initialize() skipped, already initialized.");
       return;
     }
-    z.staticInitializeNotForClientCall(), vv = new A9(), Live2DCubismCore.Memory.initializeAmountOfMemory(v), q = !0, f("CubismFramework.initialize() is complete.");
+    d.staticInitializeNotForClientCall(), vv = new g9(), Live2DCubismCore.Memory.initializeAmountOfMemory(v), q = !0, Q("CubismFramework.initialize() is complete.");
   }
   /**
    * Cubism Framework内の全てのリソースを解放します。
@@ -2404,22 +2404,22 @@ class hv {
    *      外部で適切に破棄する必要があります。
    */
   static dispose() {
-    if (Av(l), !l) {
-      j("CubismFramework is not started.");
+    if (gv(A), !A) {
+      z("CubismFramework is not started.");
       return;
     }
     if (!q) {
-      j("CubismFramework.dispose() skipped, not initialized.");
+      z("CubismFramework.dispose() skipped, not initialized.");
       return;
     }
-    z.staticReleaseNotForClientCall(), vv.release(), vv = null, f9.staticRelease(), q = !1, f("CubismFramework.dispose() is complete.");
+    d.staticReleaseNotForClientCall(), vv.release(), vv = null, Q9.staticRelease(), q = !1, Q("CubismFramework.dispose() is complete.");
   }
   /**
    * Cubism FrameworkのAPIを使用する準備が完了したかどうか
    * @return APIを使用する準備が完了していればtrueが返ります。
    */
   static isStarted() {
-    return l;
+    return A;
   }
   /**
    * Cubism Frameworkのリソース初期化がすでに行われているかどうか
@@ -2464,27 +2464,27 @@ var E;
 })(E || (E = {}));
 var Bv;
 (function(r) {
-  r.Constant = E9, r.csmDelete = U9, r.CubismFramework = hv;
+  r.Constant = E9, r.csmDelete = U9, r.CubismFramework = Jv;
 })(Bv || (Bv = {}));
 const G9 = (r, v, P) => {
-  z9.print(r, "[CSM]" + v, P);
+  d9.print(r, "[CSM]" + v, P);
 }, tv = (r, v, P) => {
   G9(r, v + `
 `, P);
-}, Av = (r) => {
+}, gv = (r) => {
   console.assert(r);
 };
-let Iv, f, j, D;
-Iv = (r, ...v) => {
+let kv, Q, z, l;
+kv = (r, ...v) => {
   tv(E.LogLevel_Debug, "[D]" + r, v);
-}, f = (r, ...v) => {
+}, Q = (r, ...v) => {
   tv(E.LogLevel_Info, "[I]" + r, v);
-}, j = (r, ...v) => {
+}, z = (r, ...v) => {
   tv(E.LogLevel_Warning, "[W]" + r, v);
-}, D = (r, ...v) => {
+}, l = (r, ...v) => {
   tv(E.LogLevel_Error, "[E]" + r, v);
 };
-class z9 {
+class d9 {
   /**
    * ログを出力する。第一引数にログレベルを設定する。
    * CubismFramework.initialize()時にオプションで設定されたログ出力レベルを下回る場合はログに出さない。
@@ -2493,14 +2493,14 @@ class z9 {
    * @param format 書式付き文字列
    * @param args 可変長引数
    */
-  static print(v, P, e) {
-    if (v < hv.getLoggingLevel())
+  static print(v, P, a) {
+    if (v < Jv.getLoggingLevel())
       return;
-    const a = hv.coreLogFunction;
-    if (!a)
+    const e = Jv.coreLogFunction;
+    if (!e)
       return;
-    const i = P.replace(/\{(\d+)\}/g, (b, n) => e[n]);
-    a(i);
+    const b = P.replace(/\{(\d+)\}/g, (i, n) => a[n]);
+    e(b);
   }
   /**
    * データから指定した長さだけダンプ出力する。
@@ -2510,10 +2510,10 @@ class z9 {
    * @param data ダンプするデータ
    * @param length ダンプする長さ
    */
-  static dumpBytes(v, P, e) {
-    for (let a = 0; a < e; a++)
-      a % 16 == 0 && a > 0 ? this.print(v, `
-`) : a % 8 == 0 && a > 0 && this.print(v, "  "), this.print(v, "{0} ", [P[a] & 255]);
+  static dumpBytes(v, P, a) {
+    for (let e = 0; e < a; e++)
+      e % 16 == 0 && e > 0 ? this.print(v, `
+`) : e % 8 == 0 && e > 0 && this.print(v, "  "), this.print(v, "{0} ", [P[e] & 255]);
     this.print(v, `
 `);
   }
@@ -2525,9 +2525,9 @@ class z9 {
 }
 var Kv;
 (function(r) {
-  r.CubismDebug = z9;
+  r.CubismDebug = d9;
 })(Kv || (Kv = {}));
-class w {
+class S {
   /**
    * コンストラクタ
    */
@@ -2541,7 +2541,7 @@ class w {
    * @return 加算結果 ベクトル値
    */
   add(v) {
-    const P = new w(0, 0);
+    const P = new S(0, 0);
     return P.x = this.x + v.x, P.y = this.y + v.y, P;
   }
   /**
@@ -2551,7 +2551,7 @@ class w {
    * @return 減算結果 ベクトル値
    */
   substract(v) {
-    const P = new w(0, 0);
+    const P = new S(0, 0);
     return P.x = this.x - v.x, P.y = this.y - v.y, P;
   }
   /**
@@ -2561,7 +2561,7 @@ class w {
    * @return 乗算結果 ベクトル値
    */
   multiply(v) {
-    const P = new w(0, 0);
+    const P = new S(0, 0);
     return P.x = this.x * v.x, P.y = this.y * v.y, P;
   }
   /**
@@ -2571,7 +2571,7 @@ class w {
    * @return 乗算結果 ベクトル値
    */
   multiplyByScaler(v) {
-    return this.multiply(new w(v, v));
+    return this.multiply(new S(v, v));
   }
   /**
    * ベクトルの除算
@@ -2580,7 +2580,7 @@ class w {
    * @return 除算結果 ベクトル値
    */
   division(v) {
-    const P = new w(0, 0);
+    const P = new S(0, 0);
     return P.x = this.x / v.x, P.y = this.y / v.y, P;
   }
   /**
@@ -2590,7 +2590,7 @@ class w {
    * @return 除算結果 ベクトル値
    */
   divisionByScalar(v) {
-    return this.division(new w(v, v));
+    return this.division(new S(v, v));
   }
   /**
    * ベクトルの長さを取得する
@@ -2652,7 +2652,7 @@ class w {
 }
 var Rv;
 (function(r) {
-  r.CubismVector2 = w;
+  r.CubismVector2 = S;
 })(Rv || (Rv = {}));
 class x {
   /**
@@ -2663,8 +2663,8 @@ class x {
    * @param max   範囲の最大値
    * @return 最小値と最大値の範囲に収めた値
    */
-  static range(v, P, e) {
-    return v < P ? v = P : v > e && (v = e), v;
+  static range(v, P, a) {
+    return v < P ? v = P : v > a && (v = a), v;
   }
   /**
    * サイン関数の値を求める
@@ -2710,10 +2710,10 @@ class x {
     if (v === 0)
       return v;
     let P = v;
-    const e = P < 0;
-    e && (P = -P);
-    let a;
-    return P === 1 / 0 ? a = 1 / 0 : (a = Math.exp(Math.log(P) / 3), a = (P / (a * a) + 2 * a) / 3), e ? -a : a;
+    const a = P < 0;
+    a && (P = -P);
+    let e;
+    return P === 1 / 0 ? e = 1 / 0 : (e = Math.exp(Math.log(P) / 3), e = (P / (e * e) + 2 * e) / 3), a ? -e : e;
   }
   /**
    * イージング処理されたサインを求める
@@ -2771,13 +2771,13 @@ class x {
    * @return ラジアン値から求めた方向ベクトル
    */
   static directionToRadian(v, P) {
-    const e = Math.atan2(P.y, P.x), a = Math.atan2(v.y, v.x);
-    let i = e - a;
-    for (; i < -Math.PI; )
-      i += Math.PI * 2;
-    for (; i > Math.PI; )
-      i -= Math.PI * 2;
-    return i;
+    const a = Math.atan2(P.y, P.x), e = Math.atan2(v.y, v.x);
+    let b = a - e;
+    for (; b < -Math.PI; )
+      b += Math.PI * 2;
+    for (; b > Math.PI; )
+      b -= Math.PI * 2;
+    return b;
   }
   /**
    * ２つのベクトルから角度値を求める
@@ -2787,9 +2787,9 @@ class x {
    * @return 角度値から求めた方向ベクトル
    */
   static directionToDegrees(v, P) {
-    const e = this.directionToRadian(v, P);
-    let a = this.radianToDegrees(e);
-    return P.x - v.x > 0 && (a = -a), a;
+    const a = this.directionToRadian(v, P);
+    let e = this.radianToDegrees(a);
+    return P.x - v.x > 0 && (e = -e), e;
   }
   /**
    * ラジアン値を方向ベクトルに変換する。
@@ -2798,7 +2798,7 @@ class x {
    * @return ラジアン値から変換した方向ベクトル
    */
   static radianToDirection(v) {
-    const P = new w();
+    const P = new S();
     return P.x = this.sin(v), P.y = this.cos(v), P;
   }
   /**
@@ -2810,8 +2810,8 @@ class x {
    * @param   c -> 定数項の値
    * @return  二次方程式の解
    */
-  static quadraticEquation(v, P, e) {
-    return this.abs(v) < x.Epsilon ? this.abs(P) < x.Epsilon ? -e : -e / P : -(P + this.sqrt(P * P - 4 * v * e)) / (2 * v);
+  static quadraticEquation(v, P, a) {
+    return this.abs(v) < x.Epsilon ? this.abs(P) < x.Epsilon ? -a : -a / P : -(P + this.sqrt(P * P - 4 * v * a)) / (2 * v);
   }
   /**
    * カルダノの公式によってベジェのt値に該当する３次方程式の解を求める。
@@ -2825,31 +2825,31 @@ class x {
    * @param   d -> 定数項の値
    * @return  0.0～1.0の間にある解
    */
-  static cardanoAlgorithmForBezier(v, P, e, a) {
+  static cardanoAlgorithmForBezier(v, P, a, e) {
     if (this.sqrt(v) < x.Epsilon)
-      return this.range(this.quadraticEquation(P, e, a), 0, 1);
-    const i = P / v, b = e / v, n = a / v, c = (3 * b - i * i) / 3, g = c / 3, s = (2 * i * i * i - 9 * i * b + 27 * n) / 27, A = s / 2, L = A * A + g * g * g, M = 0.5, T = M + 0.01;
-    if (L < 0) {
-      const S = -c / 3, iv = S * S * S, bv = this.sqrt(iv), m9 = -s / (2 * bv), w9 = this.range(m9, -1, 1), Qv = Math.acos(w9), jv = 2 * this.cbrt(bv), Nv = jv * this.cos(Qv / 3) - i / 3;
-      if (this.abs(Nv - M) < T)
-        return this.range(Nv, 0, 1);
-      const Mv = jv * this.cos((Qv + 2 * Math.PI) / 3) - i / 3;
-      if (this.abs(Mv - M) < T)
+      return this.range(this.quadraticEquation(P, a, e), 0, 1);
+    const b = P / v, i = a / v, n = e / v, c = (3 * i - b * b) / 3, s = c / 3, o = (2 * b * b * b - 9 * b * i + 27 * n) / 27, g = o / 2, h = g * g + s * s * s, M = 0.5, D = M + 0.01;
+    if (h < 0) {
+      const C = -c / 3, bv = C * C * C, iv = this.sqrt(bv), w9 = -o / (2 * iv), S9 = this.range(w9, -1, 1), jv = Math.acos(S9), zv = 2 * this.cbrt(iv), Iv = zv * this.cos(jv / 3) - b / 3;
+      if (this.abs(Iv - M) < D)
+        return this.range(Iv, 0, 1);
+      const Mv = zv * this.cos((jv + 2 * Math.PI) / 3) - b / 3;
+      if (this.abs(Mv - M) < D)
         return this.range(Mv, 0, 1);
-      const y9 = jv * this.cos((Qv + 4 * Math.PI) / 3) - i / 3;
-      return this.range(y9, 0, 1);
+      const N9 = zv * this.cos((jv + 4 * Math.PI) / 3) - b / 3;
+      return this.range(N9, 0, 1);
     }
-    if (L == 0) {
-      let S;
-      A < 0 ? S = this.cbrt(-A) : S = -this.cbrt(A);
-      const iv = 2 * S - i / 3;
-      if (this.abs(iv - M) < T)
-        return this.range(iv, 0, 1);
-      const bv = -S - i / 3;
-      return this.range(bv, 0, 1);
+    if (h == 0) {
+      let C;
+      g < 0 ? C = this.cbrt(-g) : C = -this.cbrt(g);
+      const bv = 2 * C - b / 3;
+      if (this.abs(bv - M) < D)
+        return this.range(bv, 0, 1);
+      const iv = -C - b / 3;
+      return this.range(iv, 0, 1);
     }
-    const h = this.sqrt(L), rv = this.cbrt(h - A), fv = this.cbrt(h + A), C9 = rv - fv - i / 3;
-    return this.range(C9, 0, 1);
+    const J = this.sqrt(h), rv = this.cbrt(J - g), Qv = this.cbrt(J + g), y9 = rv - Qv - b / 3;
+    return this.range(y9, 0, 1);
   }
   /**
    * 浮動小数点の余りを求める。
@@ -2861,9 +2861,9 @@ class x {
   static mod(v, P) {
     if (!isFinite(v) || P === 0 || isNaN(v) || isNaN(P))
       return console.warn(`divided: ${v}, divisor: ${P} mod() returns 'NaN'.`), NaN;
-    const e = Math.abs(v), a = Math.abs(P);
-    let i = e - Math.floor(e / a) * a;
-    return i *= Math.sign(v), i;
+    const a = Math.abs(v), e = Math.abs(P);
+    let b = a - Math.floor(a / e) * e;
+    return b *= Math.sign(v), b;
   }
   /**
    * コンストラクタ
@@ -2876,9 +2876,9 @@ var Vv;
 (function(r) {
   r.CubismMath = x;
 })(Vv || (Vv = {}));
-const K = Live2DCubismMotionSyncCore.ToPointer, kv = 6;
-class d9 {
-  constructor(v, P, e, a, i) {
+const K = Live2DCubismMotionSyncCore.ToPointer, mv = 6;
+class T9 {
+  constructor(v, P, a, e, b) {
     t(this, "_audioParameterId");
     t(this, "_modelParameterIds");
     t(this, "_modelParameterValues");
@@ -2886,33 +2886,33 @@ class d9 {
     t(this, "_enabled");
     t(this, "_nativeArray");
     t(this, "_nativeArrayPtr");
-    v.getLength() == 0 && D("The audio parameter ID is null."), P.getSize() == 0 && D(
+    v.getLength() == 0 && l("The audio parameter ID is null."), P.getSize() == 0 && l(
       "The array length of IDs differs from the array length of parameter values. Please make them the same"
-    ), e.getSize() == 0 && D(
+    ), a.getSize() == 0 && l(
       "The model parameter ID array or the model parameter value array length is 0."
-    ), 0.1 <= a && a <= 10 || D(
+    ), 0.1 <= e && e <= 10 || l(
       "The value of scale is incorrect. The value is limited to between 0.1 and 10.0."
-    ), this._audioParameterId = v, this._modelParameterIds = P, this._modelParameterValues = e, this._scale = a, this._enabled = Number(i);
+    ), this._audioParameterId = v, this._modelParameterIds = P, this._modelParameterValues = a, this._scale = e, this._enabled = Number(b);
   }
   toNativeArray(v) {
     if (!v && this._nativeArray)
       return this._nativeArray;
-    this._nativeArray && this.releaseNativeArray(), this._nativeArray = new Float32Array(kv), this._nativeArrayPtr = K.Malloc(
+    this._nativeArray && this.releaseNativeArray(), this._nativeArray = new Float32Array(mv), this._nativeArrayPtr = K.Malloc(
       this._nativeArray.length * this._nativeArray.BYTES_PER_ELEMENT
     );
-    const P = new Array(), e = new Array();
-    for (let a = 0; a < this._modelParameterIds.getSize(); a++)
+    const P = new Array(), a = new Array();
+    for (let e = 0; e < this._modelParameterIds.getSize(); e++)
       P.push(
-        this._modelParameterIds.at(a).s
-      ), e.push(
-        this._modelParameterValues.at(a)
+        this._modelParameterIds.at(e).s
+      ), a.push(
+        this._modelParameterValues.at(e)
       );
     return this._nativeArray = K.ConvertMappingInfoCriToFloat32Array(
       this._nativeArray,
       this._nativeArrayPtr,
       this._audioParameterId.s,
       P,
-      e,
+      a,
       this._modelParameterIds.getSize(),
       this._scale,
       this._enabled
@@ -2942,10 +2942,10 @@ class d9 {
 }
 var Zv;
 ((r) => {
-  r.CubismMotionSyncEngineMappingInfo = d9;
+  r.CubismMotionSyncEngineMappingInfo = T9;
 })(Zv || (Zv = {}));
-const zv = Live2DCubismMotionSyncCore.ToPointer;
-var y = /* @__PURE__ */ ((r) => (r[r.EngineType_Cri = 0] = "EngineType_Cri", r[r.EngineType_Unknown = 1] = "EngineType_Unknown", r))(y || {});
+const dv = Live2DCubismMotionSyncCore.ToPointer;
+var N = /* @__PURE__ */ ((r) => (r[r.EngineType_Cri = 0] = "EngineType_Cri", r[r.EngineType_Unknown = 1] = "EngineType_Unknown", r))(N || {});
 class x9 {
   /**
    * @deprecated 非推奨になりました。代わりにCubismMath.fmodを使用してください。
@@ -2960,7 +2960,7 @@ class x9 {
     return Number((v - Math.floor(v / P) * P).toPrecision(8));
   }
 }
-class T9 {
+class D9 {
   constructor() {
     t(this, "_infoBufferList");
     t(this, "_mappingInfoListFirstPtr");
@@ -2970,28 +2970,28 @@ class T9 {
     this.deleteMappingInfoList();
   }
   setJObject(v) {
-    this.deleteMappingInfoList(), this._infoBufferList = new o(), this.ConvertObjectToNative(v);
+    this.deleteMappingInfoList(), this._infoBufferList = new u(), this.ConvertObjectToNative(v);
   }
   ConvertObjectToNative(v) {
     const P = v.getSize();
-    for (let a = 0; a < P; a++)
-      this._infoBufferList.pushBack(v.at(a).toNativeArray(!0));
-    let e = zv.Malloc(
+    for (let e = 0; e < P; e++)
+      this._infoBufferList.pushBack(v.at(e).toNativeArray(!0));
+    let a = dv.Malloc(
       this._infoBufferList.at(0).length * P * this._infoBufferList.at(0).BYTES_PER_ELEMENT
     );
-    this._mappingInfoListFirstPtr = e;
-    for (let a = 0; a < P; a++) {
-      for (let i = 0; i < kv; i++)
-        i == 4 ? zv.AddValuePtrFloat(
-          e,
-          i * Float32Array.BYTES_PER_ELEMENT,
-          this._infoBufferList.at(a)[i]
-        ) : zv.AddValuePtrInt32(
-          e,
-          i * Float32Array.BYTES_PER_ELEMENT,
-          this._infoBufferList.at(a)[i]
+    this._mappingInfoListFirstPtr = a;
+    for (let e = 0; e < P; e++) {
+      for (let b = 0; b < mv; b++)
+        b == 4 ? dv.AddValuePtrFloat(
+          a,
+          b * Float32Array.BYTES_PER_ELEMENT,
+          this._infoBufferList.at(e)[b]
+        ) : dv.AddValuePtrInt32(
+          a,
+          b * Float32Array.BYTES_PER_ELEMENT,
+          this._infoBufferList.at(e)[b]
         );
-      e += kv * Float32Array.BYTES_PER_ELEMENT;
+      a += mv * Float32Array.BYTES_PER_ELEMENT;
     }
   }
   deleteMappingInfoList() {
@@ -3001,12 +3001,12 @@ class T9 {
     return this._mappingInfoListFirstPtr;
   }
 }
-class D9 {
-  constructor(v, P, e) {
+class l9 {
+  constructor(v, P, a) {
     t(this, "_context");
     t(this, "_mapper");
     t(this, "_cubismParameterCount");
-    this._context = v, this._mapper = P, this._cubismParameterCount = e;
+    this._context = v, this._mapper = P, this._cubismParameterCount = a;
   }
   release() {
     var v, P;
@@ -3024,10 +3024,10 @@ class D9 {
 }
 var Fv;
 ((r) => {
-  r.MotionSyncUtil = x9, r.MotionSyncContext = D9, r.MappingInfoListMapper = T9;
+  r.MotionSyncUtil = x9, r.MotionSyncContext = l9, r.MappingInfoListMapper = D9;
 })(Fv || (Fv = {}));
-const q9 = "Version", dv = "Meta", B9 = "SettingCount", Xv = "Dictionary", R = "Id", Tv = "Name", u = "Settings", K9 = "AnalysisType", R9 = "UseCase", W = "CubismParameters", Hv = "Min", _v = "Max", V9 = "Damper", Z9 = "Smooth", O = "AudioParameters", F9 = "Scale", X9 = "Enabled", nv = "Mappings", H9 = "Type", $v = "Targets", _9 = "Value", Dv = "PostProcessing", $9 = "BlendRatio", vP = "Smoothing", PP = "SampleRate";
-class l9 {
+const q9 = "Version", Tv = "Meta", B9 = "SettingCount", Xv = "Dictionary", R = "Id", Dv = "Name", f = "Settings", K9 = "AnalysisType", R9 = "UseCase", p = "CubismParameters", Hv = "Min", _v = "Max", V9 = "Damper", Z9 = "Smooth", O = "AudioParameters", F9 = "Scale", X9 = "Enabled", nv = "Mappings", H9 = "Type", $v = "Targets", _9 = "Value", lv = "PostProcessing", $9 = "BlendRatio", vP = "Smoothing", PP = "SampleRate";
+class A9 {
   /**
    * コンストラクタ
    * @param buffer motionsync3.jsonが読み込まれているバッファ
@@ -3057,7 +3057,7 @@ class l9 {
    */
   getMeta() {
     let v = null;
-    v = new aP(), v.settingCount = this.getSettingCount(), v.dictionary = new o();
+    v = new eP(), v.settingCount = this.getSettingCount(), v.dictionary = new u();
     for (let P = 0; P < v.settingCount; P++)
       v.dictionary.pushBack(this.getMetaDictionaryItem(P));
     return v;
@@ -3068,15 +3068,15 @@ class l9 {
    * @return モーションシンク設定リストのアイテム
    */
   getMetaDictionaryItem(v) {
-    const P = new eP();
-    return P.id = new Q(this.getIdFromMeta(v)), P.name = new Q(this.getName(v)), P;
+    const P = new aP();
+    return P.id = new j(this.getIdFromMeta(v)), P.name = new j(this.getName(v)), P;
   }
   /**
    * モーションシンク設定の数を取得する
    * @return モーションシンク設定の数
    */
   getSettingCount() {
-    return this._json.getRoot().getValueByString(dv).getValueByString(B9).toInt();
+    return this._json.getRoot().getValueByString(Tv).getValueByString(B9).toInt();
   }
   /**
    * Metaからモーションシンク設定のIdを取得する
@@ -3084,7 +3084,7 @@ class l9 {
    * @return モーションシンク設定のId
    */
   getIdFromMeta(v) {
-    return this._json.getRoot().getValueByString(dv).getValueByString(Xv).getValueByIndex(v).getValueByString(R).getString();
+    return this._json.getRoot().getValueByString(Tv).getValueByString(Xv).getValueByIndex(v).getValueByString(R).getString();
   }
   /**
    * モーションシンク設定の名前を取得する
@@ -3092,7 +3092,7 @@ class l9 {
    * @return モーションシンク設定の名前
    */
   getName(v) {
-    return this._json.getRoot().getValueByString(dv).getValueByString(Xv).getValueByIndex(v).getValueByString(Tv).getString();
+    return this._json.getRoot().getValueByString(Tv).getValueByString(Xv).getValueByIndex(v).getValueByString(Dv).getString();
   }
   // --- Settings ---
   /**
@@ -3102,38 +3102,38 @@ class l9 {
    */
   getSetting(v) {
     const P = new nP();
-    switch (P.id = new Q(this.getIdFromSettings(v)), this.getAnalysisType(v)) {
+    switch (P.id = new j(this.getIdFromSettings(v)), this.getAnalysisType(v)) {
       case "CRI":
-        P.analysisType = y.EngineType_Cri;
+        P.analysisType = N.EngineType_Cri;
         break;
       default:
-        j("Unknown Settings.AnalysisType."), P.analysisType = y.EngineType_Unknown;
+        z("Unknown Settings.AnalysisType."), P.analysisType = N.EngineType_Unknown;
         break;
     }
     switch (this.getUseCase(v)) {
       case "Mouth":
-        P.useCase = Cv.UseCase_Mouth;
+        P.useCase = yv.UseCase_Mouth;
         break;
       default:
-        j("Unknown Settings.UseCase."), P.useCase = Cv.UseCase_Unknown;
+        z("Unknown Settings.UseCase."), P.useCase = yv.UseCase_Unknown;
         break;
     }
-    const i = this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(W).getSize();
-    P.cubismParameterList = new o();
-    for (let n = 0; n < i; n++)
+    const b = this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(p).getSize();
+    P.cubismParameterList = new u();
+    for (let n = 0; n < b; n++)
       P.cubismParameterList.pushBack(
         this.getCubismParametarsElement(v, n)
       );
-    const b = this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(O).getSize();
-    P.audioParameterList = new o();
-    for (let n = 0; n < b; n++)
+    const i = this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(O).getSize();
+    P.audioParameterList = new u();
+    for (let n = 0; n < i; n++)
       P.audioParameterList.pushBack(
         this.getAudioParametersElement(v, n)
       );
-    P.mappingList = new o();
-    for (let n = 0; n < b; n++)
+    P.mappingList = new u();
+    for (let n = 0; n < i; n++)
       P.mappingList.pushBack(
-        this.getMappingsElement(v, n, i)
+        this.getMappingsElement(v, n, b)
       );
     return P.blendRatio = this.getBlendRatio(v), P.smoothing = this.getSmoothingFromPostProcessing(v), P.sampleRate = this.getSampleRate(v), P;
   }
@@ -3143,7 +3143,7 @@ class l9 {
    * @return モーションシンク設定のId
    */
   getIdFromSettings(v) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(R).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(R).getString();
   }
   /**
    * モーションシンク設定の音声解析タイプを取得する
@@ -3151,7 +3151,7 @@ class l9 {
    * @return 音声解析タイプ
    */
   getAnalysisType(v) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(K9).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(K9).getString();
   }
   /**
    * モーションシンク設定のユースケースを取得する
@@ -3159,7 +3159,7 @@ class l9 {
    * @return ユースケース
    */
   getUseCase(v) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(R9).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(R9).getString();
   }
   // --- CubismParametars ---
   /**
@@ -3169,24 +3169,24 @@ class l9 {
    * @return CubismParametarアイテム
    */
   getCubismParametarsElement(v, P) {
-    const e = new rP();
-    return e.name = new Q(
+    const a = new rP();
+    return a.name = new j(
       this.getNameFromCubismParameters(v, P)
-    ), e.id = new Q(
+    ), a.id = new j(
       this.getIdFromCubismParameters(v, P)
-    ), e.min = this.getMinFromCubismParameters(
+    ), a.min = this.getMinFromCubismParameters(
       v,
       P
-    ), e.max = this.getMaxFromCubismParameters(
+    ), a.max = this.getMaxFromCubismParameters(
       v,
       P
-    ), e.damper = this.getDamperFromCubismParameters(
+    ), a.damper = this.getDamperFromCubismParameters(
       v,
       P
-    ), e.smooth = this.getSmoothFromCubismParameters(
+    ), a.smooth = this.getSmoothFromCubismParameters(
       v,
       P
-    ), e;
+    ), a;
   }
   /**
    * CubismParametarsに登録されているCubismParametarの名称を取得する
@@ -3195,7 +3195,7 @@ class l9 {
    * @return CubismParametarの名称
    */
   getNameFromCubismParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(W).getValueByIndex(P).getValueByString(Tv).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(p).getValueByIndex(P).getValueByString(Dv).getString();
   }
   /**
    * CubismParametarsに登録されているCubismParametarのIdを取得する
@@ -3204,7 +3204,7 @@ class l9 {
    * @return CubismParametarのId
    */
   getIdFromCubismParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(W).getValueByIndex(P).getValueByString(R).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(p).getValueByIndex(P).getValueByString(R).getString();
   }
   /**
    * CubismParametarsに登録されているCubismParametarの最小値を取得する
@@ -3213,7 +3213,7 @@ class l9 {
    * @return CubismParametarの最小値
    */
   getMinFromCubismParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(W).getValueByIndex(P).getValueByString(Hv).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(p).getValueByIndex(P).getValueByString(Hv).toFloat();
   }
   /**
    * CubismParametarsに登録されているCubismParametarの最大値を取得する
@@ -3222,7 +3222,7 @@ class l9 {
    * @return CubismParametarの最大値
    */
   getMaxFromCubismParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(W).getValueByIndex(P).getValueByString(_v).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(p).getValueByIndex(P).getValueByString(_v).toFloat();
   }
   /**
    * CubismParametarsに登録されているCubismParametarの減衰値を取得する
@@ -3231,7 +3231,7 @@ class l9 {
    * @return CubismParametarの減衰値
    */
   getDamperFromCubismParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(W).getValueByIndex(P).getValueByString(V9).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(p).getValueByIndex(P).getValueByString(V9).toFloat();
   }
   /**
    * CubismParametarsに登録されているCubismParametarのスムージング値を取得する
@@ -3240,7 +3240,7 @@ class l9 {
    * @return CubismParametarのスムージング値
    */
   getSmoothFromCubismParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(W).getValueByIndex(P).getValueByString(Z9).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(p).getValueByIndex(P).getValueByString(Z9).toFloat();
   }
   // --- AudioParameters ---
   /**
@@ -3250,24 +3250,24 @@ class l9 {
    * @return 音声の要素
    */
   getAudioParametersElement(v, P) {
-    const e = new iP();
-    return e.name = new Q(
+    const a = new bP();
+    return a.name = new j(
       this.getNameFromAudioParameters(v, P)
-    ), e.id = new Q(
+    ), a.id = new j(
       this.getIdFromAudioParameters(v, P)
-    ), e.min = this.getMinFromAudioParameters(
+    ), a.min = this.getMinFromAudioParameters(
       v,
       P
-    ), e.max = this.getMaxFromAudioParameters(
+    ), a.max = this.getMaxFromAudioParameters(
       v,
       P
-    ), e.scale = this.getScaleFromAudioParameters(
+    ), a.scale = this.getScaleFromAudioParameters(
       v,
       P
-    ), e.enabled = this.getEnabledFromAudioParameters(
+    ), a.enabled = this.getEnabledFromAudioParameters(
       v,
       P
-    ), e;
+    ), a;
   }
   /**
    * AudioParametersに登録されている音声の要素の名称を取得する
@@ -3276,7 +3276,7 @@ class l9 {
    * @return 音声の要素の名称
    */
   getNameFromAudioParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(Tv).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(Dv).getString();
   }
   /**
    * AudioParametersに登録されている音声の要素のIdを取得する
@@ -3285,7 +3285,7 @@ class l9 {
    * @return 音声の要素のId
    */
   getIdFromAudioParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(R).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(R).getString();
   }
   /**
    * AudioParametersに登録されている音声の要素の最小値を取得する
@@ -3294,7 +3294,7 @@ class l9 {
    * @return 音声の要素の最小値
    */
   getMinFromAudioParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(Hv).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(Hv).toFloat();
   }
   /**
    * AudioParametersに登録されている音声の要素の最大値を取得する
@@ -3303,7 +3303,7 @@ class l9 {
    * @return 音声の要素の最大値
    */
   getMaxFromAudioParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(_v).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(_v).toFloat();
   }
   /**
    * AudioParametersに登録されている音声の要素のスケール値を取得する
@@ -3312,7 +3312,7 @@ class l9 {
    * @return 音声の要素のスケール値
    */
   getScaleFromAudioParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(F9).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(F9).toFloat();
   }
   /**
    * AudioParametersに登録されている音声の要素の有効フラグを取得する
@@ -3321,7 +3321,7 @@ class l9 {
    * @return 音声の要素の有効フラグ
    */
   getEnabledFromAudioParameters(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(X9).toBoolean();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(O).getValueByIndex(P).getValueByString(X9).toBoolean();
   }
   // --- Mappings ---
   /**
@@ -3330,24 +3330,24 @@ class l9 {
    * @param elementIndex Mappingsから取得したい要素のインデックス
    * @return マッピングデータ
    */
-  getMappingsElement(v, P, e) {
-    const a = new tP();
+  getMappingsElement(v, P, a) {
+    const e = new tP();
     switch (this.getMappingType(v, P)) {
       case "Shape":
-        a.type = mv.MappingType_Shape;
+        e.type = wv.MappingType_Shape;
         break;
       default:
-        j("Unknown Mappings.Type."), a.type = mv.MappingType_Unknown;
+        z("Unknown Mappings.Type."), e.type = wv.MappingType_Unknown;
         break;
     }
-    a.audioId = new Q(
+    e.audioId = new j(
       this.getAudioParamIdFromMappings(v, P)
-    ), a.targetList = new o();
-    for (let b = 0; b < e; b++)
-      a.targetList.pushBack(
-        this.getMappingTargetsElement(v, P, b)
+    ), e.targetList = new u();
+    for (let i = 0; i < a; i++)
+      e.targetList.pushBack(
+        this.getMappingTargetsElement(v, P, i)
       );
-    return a;
+    return e;
   }
   /**
    * Mappingsに登録されているTargetsの要素を取得する
@@ -3356,15 +3356,15 @@ class l9 {
    * @param TargetsIndex Targetsから取得したい要素のインデックス
    * @return Targetsの要素
    */
-  getMappingTargetsElement(v, P, e) {
-    const a = new bP();
-    return a.id = new Q(
-      this.getCubismIdFromMappingTarget(v, P, e)
-    ), a.value = this.getValueFromMappingTarget(
+  getMappingTargetsElement(v, P, a) {
+    const e = new iP();
+    return e.id = new j(
+      this.getCubismIdFromMappingTarget(v, P, a)
+    ), e.value = this.getValueFromMappingTarget(
       v,
       P,
-      e
-    ), a;
+      a
+    ), e;
   }
   /**
    * マッピングのタイプを取得する
@@ -3373,7 +3373,7 @@ class l9 {
    * @return マッピングのタイプ
    */
   getMappingType(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString(H9).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString(H9).getString();
   }
   /**
    * Mappingsに登録されている音声の要素のIdを取得する
@@ -3382,7 +3382,7 @@ class l9 {
    * @return 音声の要素のId
    */
   getAudioParamIdFromMappings(v, P) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString(R).getString();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString(R).getString();
   }
   /**
    * Targetsに登録されているCubismParameterのIdを取得する
@@ -3391,8 +3391,8 @@ class l9 {
    * @param TargetsIndex Targetsから取得したい要素のインデックス
    * @return CubismParameterのId
    */
-  getCubismIdFromMappingTarget(v, P, e) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString($v).getValueByIndex(e).getValueByString(R).getString();
+  getCubismIdFromMappingTarget(v, P, a) {
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString($v).getValueByIndex(a).getValueByString(R).getString();
   }
   /**
    * Targetsに登録されているCubismParameterの値を取得する
@@ -3401,8 +3401,8 @@ class l9 {
    * @param TargetsIndex Targetsから取得したい要素のインデックス
    * @return CubismParameterの値
    */
-  getValueFromMappingTarget(v, P, e) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString($v).getValueByIndex(e).getValueByString(_9).toFloat();
+  getValueFromMappingTarget(v, P, a) {
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(nv).getValueByIndex(P).getValueByString($v).getValueByIndex(a).getValueByString(_9).toFloat();
   }
   // --- PostProcessing ---
   /**
@@ -3411,7 +3411,7 @@ class l9 {
    * @return ブレンド率
    */
   getBlendRatio(v) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(Dv).getValueByString($9).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(lv).getValueByString($9).toFloat();
   }
   /**
    * スムージング値を取得する
@@ -3419,7 +3419,7 @@ class l9 {
    * @return スムージング値
    */
   getSmoothingFromPostProcessing(v) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(Dv).getValueByString(vP).toInt();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(lv).getValueByString(vP).toInt();
   }
   /**
    * 設定フレームレートを取得する
@@ -3427,15 +3427,15 @@ class l9 {
    * @return 設定フレームレート
    */
   getSampleRate(v) {
-    return this._json.getRoot().getValueByString(u).getValueByIndex(v).getValueByString(Dv).getValueByString(PP).toFloat();
+    return this._json.getRoot().getValueByString(f).getValueByIndex(v).getValueByString(lv).getValueByString(PP).toFloat();
   }
   // motionsync3.jsonのデータ
 }
 var v9;
 ((r) => {
-  r.CubismMotionSyncDataJson = l9;
+  r.CubismMotionSyncDataJson = A9;
 })(v9 || (v9 = {}));
-class ev {
+class av {
   /**
    * コンストラクタ
    */
@@ -3452,9 +3452,9 @@ class ev {
    * @param size      バッファのサイズ
    * @return 作成されたインスタンス
    */
-  static create(v, P, e) {
-    const a = new ev();
-    return a.parse(v, P, e), a;
+  static create(v, P, a) {
+    const e = new av();
+    return e.parse(v, P, a), e;
   }
   /**
    * インスタンスを破棄する
@@ -3469,38 +3469,38 @@ class ev {
    * @param motionSyncJson  motionsync3.jsonが読み込まれているバッファ
    * @param size        バッファのサイズ
    */
-  parse(v, P, e) {
-    let a = new l9(
+  parse(v, P, a) {
+    let e = new A9(
       P,
-      e
+      a
     );
-    if (a._json == null || v == null) {
-      j("Failed to parse .motionsync3.json.");
+    if (e._json == null || v == null) {
+      z("Failed to parse .motionsync3.json.");
       return;
     }
-    this._version = a.getVersion(), this._meta = a.getMeta(), this._settings = new o();
-    for (let i = 0; i < this._meta.settingCount; i++)
-      this._settings.pushBack(a.getSetting(i));
+    this._version = e.getVersion(), this._meta = e.getMeta(), this._settings = new u();
+    for (let b = 0; b < this._meta.settingCount; b++)
+      this._settings.pushBack(e.getSetting(b));
     this._settingCount = this._settings.getSize();
-    for (let i = 0; i < this._settings.getSize(); i++) {
-      const b = this._settings.at(i).cubismParameterList, n = b.getSize();
+    for (let b = 0; b < this._settings.getSize(); b++) {
+      const i = this._settings.at(b).cubismParameterList, n = i.getSize();
       for (let c = 0; c < n; c++) {
-        let g = n;
+        let s = n;
         console.log(v);
-        for (let s = 0; s < v.getParameterCount(); s++)
+        for (let o = 0; o < v.getParameterCount(); o++)
           if (
             // model
             //   .getParameterId(modelParameterIndex)
             //   .isEqual(cubismParameterList.at(cubismParameterIndex).id)
-            v._parameterIds[s] === b.at(c).id.s
+            v._parameterIds[o] === i.at(c).id.s
           ) {
-            g = s;
+            s = o;
             break;
           }
-        b.at(c).parameterIndex = g;
+        i.at(c).parameterIndex = s;
       }
     }
-    a.release(), a = void 0, a = null;
+    e.release(), e = void 0, e = null;
   }
   /**
    * デストラクタ相当の処理
@@ -3523,39 +3523,39 @@ class ev {
   getMappingInfoList(v) {
     if (this._settings.getSize() <= v)
       return null;
-    const P = new o(), e = this.getSetting(v);
-    for (let a = 0; a < e.audioParameterList.getSize(); a++) {
-      const i = e.audioParameterList.at(a).id, b = new o(), n = new o();
-      for (let s = 0; s < e.audioParameterList.getSize(); s++)
-        if (i.isEqual(e.mappingList.at(s).audioId.s)) {
-          for (let A = 0; A < e.cubismParameterList.getSize(); A++) {
-            const L = e.mappingList.at(s).targetList.at(A);
-            b.pushBack(L.id), n.pushBack(L.value);
+    const P = new u(), a = this.getSetting(v);
+    for (let e = 0; e < a.audioParameterList.getSize(); e++) {
+      const b = a.audioParameterList.at(e).id, i = new u(), n = new u();
+      for (let o = 0; o < a.audioParameterList.getSize(); o++)
+        if (b.isEqual(a.mappingList.at(o).audioId.s)) {
+          for (let g = 0; g < a.cubismParameterList.getSize(); g++) {
+            const h = a.mappingList.at(o).targetList.at(g);
+            i.pushBack(h.id), n.pushBack(h.value);
           }
           break;
         }
-      const c = e.audioParameterList.at(a).scale, g = e.audioParameterList.at(a).enabled;
+      const c = a.audioParameterList.at(e).scale, s = a.audioParameterList.at(e).enabled;
       P.pushBack(
-        new d9(
-          i,
+        new T9(
           b,
+          i,
           n,
           c,
-          g
+          s
         )
       );
     }
     return P;
   }
 }
-var Cv = /* @__PURE__ */ ((r) => (r[r.UseCase_Mouth = 0] = "UseCase_Mouth", r[r.UseCase_Unknown = 1] = "UseCase_Unknown", r))(Cv || {}), mv = /* @__PURE__ */ ((r) => (r[r.MappingType_Shape = 0] = "MappingType_Shape", r[r.MappingType_Unknown = 1] = "MappingType_Unknown", r))(mv || {});
-class eP {
+var yv = /* @__PURE__ */ ((r) => (r[r.UseCase_Mouth = 0] = "UseCase_Mouth", r[r.UseCase_Unknown = 1] = "UseCase_Unknown", r))(yv || {}), wv = /* @__PURE__ */ ((r) => (r[r.MappingType_Shape = 0] = "MappingType_Shape", r[r.MappingType_Unknown = 1] = "MappingType_Unknown", r))(wv || {});
+class aP {
   constructor() {
     t(this, "id");
     t(this, "name");
   }
 }
-class aP {
+class eP {
   constructor() {
     t(this, "settingCount");
     t(this, "dictionary");
@@ -3572,7 +3572,7 @@ class rP {
     t(this, "parameterIndex");
   }
 }
-class iP {
+class bP {
   constructor() {
     t(this, "name");
     t(this, "id");
@@ -3582,7 +3582,7 @@ class iP {
     t(this, "enabled");
   }
 }
-class bP {
+class iP {
   constructor() {
     t(this, "id");
     t(this, "value");
@@ -3610,10 +3610,10 @@ class nP {
 }
 var P9;
 ((r) => {
-  r.CubismMotionSyncData = ev;
+  r.CubismMotionSyncData = av;
 })(P9 || (P9 = {}));
 const V = Live2DCubismMotionSyncCore.ToPointer;
-class wv {
+class Sv {
   constructor(v) {
     t(this, "_values");
     t(this, "_valuesCount");
@@ -3671,22 +3671,22 @@ class wv {
     V.Free(this._resultArray[0]), V.Free(this._resultArrayPtr), this._resultArrayPtr = 0;
   }
 }
-var e9;
+var a9;
 ((r) => {
-  r.CubismMotionSyncEngineAnalysisResult = wv;
-})(e9 || (e9 = {}));
-class J9 {
-  constructor(v, P, e) {
+  r.CubismMotionSyncEngineAnalysisResult = Sv;
+})(a9 || (a9 = {}));
+class L9 {
+  constructor(v, P, a) {
     t(this, "_engine");
     t(this, "_contextHandle");
     t(this, "_mappingInfoArray");
-    this._engine = v, this._contextHandle = P, this._mappingInfoArray = e;
+    this._engine = v, this._contextHandle = P, this._mappingInfoArray = a;
   }
   /**
    * createAnalysisResult
    */
   createAnalysisResult() {
-    return this.isClosed() || this._mappingInfoArray.getSize() < 1 ? new wv(0) : new wv(
+    return this.isClosed() || this._mappingInfoArray.getSize() < 1 ? new Sv(0) : new Sv(
       this._mappingInfoArray.at(0).getModelParameterValues().getSize()
     );
   }
@@ -3713,12 +3713,12 @@ class J9 {
     return !((v = this.getEngine()) != null && v.getEngineHandle()) || !((P = this.getContextHandle()) != null && P.getContext()) ? 0 : this.getEngine().getEngineHandle().getRequireSampleCount(this.getContextHandle().getContext());
   }
 }
-var a9;
+var e9;
 ((r) => {
-  r.ICubismMotionSyncProcessor = J9;
-})(a9 || (a9 = {}));
-const _ = Live2DCubismMotionSyncCore.ToPointer, cP = 2, gP = 3;
-class Sv {
+  r.ICubismMotionSyncProcessor = L9;
+})(e9 || (e9 = {}));
+const _ = Live2DCubismMotionSyncCore.ToPointer, cP = 2, sP = 3;
+class Cv {
   constructor(v = 0, P = 0) {
     t(this, "SampleRate");
     t(this, "BitDepth");
@@ -3746,18 +3746,18 @@ class Sv {
     _.Free(this._nativeArrayPtr), this._nativeArrayPtr = 0;
   }
 }
-class sP {
-  constructor(v = 0, P = 0, e = 0) {
+class oP {
+  constructor(v = 0, P = 0, a = 0) {
     t(this, "BlendRatio");
     t(this, "Smoothing");
     t(this, "AudioLevelEffectRatio");
     // Unused
     t(this, "_nativeArray");
     t(this, "_nativeArrayPtr");
-    this.BlendRatio = v, this.Smoothing = P, this.AudioLevelEffectRatio = e;
+    this.BlendRatio = v, this.Smoothing = P, this.AudioLevelEffectRatio = a;
   }
   toNativeArray(v) {
-    return !v && this._nativeArray ? this._nativeArray : (this._nativeArray && this.releaseNativeArray(), this._nativeArray = new Float32Array(gP), this._nativeArrayPtr = _.Malloc(
+    return !v && this._nativeArray ? this._nativeArray : (this._nativeArray && this.releaseNativeArray(), this._nativeArray = new Float32Array(sP), this._nativeArrayPtr = _.Malloc(
       this._nativeArray.length * this._nativeArray.BYTES_PER_ELEMENT
     ), this._nativeArray = _.ConvertAnalysisConfigToFloat32Array(
       this._nativeArray,
@@ -3776,17 +3776,17 @@ class sP {
 }
 var r9;
 ((r) => {
-  r.MotionSyncContextConfig_CRI = Sv;
+  r.MotionSyncContextConfig_CRI = Cv;
 })(r9 || (r9 = {}));
-const I = Live2DCubismMotionSyncCore.ToPointer;
-class L9 extends J9 {
-  constructor(P, e, a, i, b) {
-    super(P, e, a);
+const k = Live2DCubismMotionSyncCore.ToPointer;
+class h9 extends L9 {
+  constructor(P, a, e, b, i) {
+    super(P, a, e);
     t(this, "_sampleRate");
     t(this, "_bitDepth");
     t(this, "_analysisConfigNativePtr");
     t(this, "_analysisResultNativePtr");
-    this._sampleRate = i, this._bitDepth = b;
+    this._sampleRate = b, this._bitDepth = i;
   }
   getSampleRate() {
     return this._sampleRate;
@@ -3794,91 +3794,91 @@ class L9 extends J9 {
   getBitDepth() {
     return this._bitDepth;
   }
-  Analyze(P, e, a, i, b, n) {
+  Analyze(P, a, e, b, i, n) {
     const c = P.getSize();
     if (c < this.getEngine().getEngineHandle().getRequireSampleCount(this.getContextHandle().getContext()))
-      return D(
+      return l(
         "The argument is invalid. Please check that the samples is the correct value."
       ), null;
-    if (!(0 <= e && e < P.getSize()))
-      return D(
+    if (!(0 <= a && a < P.getSize()))
+      return l(
         "The value of beginIndex is incorrect. It should be less than the length of samples."
       ), null;
-    if (!(0 <= a && a <= 1))
-      return D(
+    if (!(0 <= e && e <= 1))
+      return l(
         "The value of blend ratio is incorrect. The value is limited to between 0.0 and 1.0."
       ), null;
-    if (!(1 <= i && i <= 100))
-      return D(
+    if (!(1 <= b && b <= 100))
+      return l(
         "The value of smoothing is incorrect. The value is limited to between 1 and 100."
       ), null;
-    if (!(0 <= b && b <= 1))
-      return D(
+    if (!(0 <= i && i <= 1))
+      return l(
         "The value of audio level effect ratio is incorrect. The value is limited to between 0.0 and 1.0."
       ), null;
     if (!n)
-      return D("The result instance is null."), null;
-    const s = new sP(
-      a,
-      i,
-      b
+      return l("The result instance is null."), null;
+    const o = new oP(
+      e,
+      b,
+      i
     ).toNativeArray(!1);
-    (!this._analysisConfigNativePtr || this._analysisConfigNativePtr == 0) && (this._analysisConfigNativePtr = I.Malloc(
-      s.length
-    )), I.AddValuePtrFloat(
+    (!this._analysisConfigNativePtr || this._analysisConfigNativePtr == 0) && (this._analysisConfigNativePtr = k.Malloc(
+      o.length
+    )), k.AddValuePtrFloat(
       this._analysisConfigNativePtr,
       0,
-      s[0]
-    ), I.AddValuePtrInt32(
+      o[0]
+    ), k.AddValuePtrInt32(
       this._analysisConfigNativePtr,
       4,
-      s[1]
-    ), I.AddValuePtrFloat(
+      o[1]
+    ), k.AddValuePtrFloat(
       this._analysisConfigNativePtr,
       8,
-      s[2]
+      o[2]
     );
-    const A = n.toNativeArray(!1);
-    return (!this._analysisResultNativePtr || this._analysisResultNativePtr == 0) && (this._analysisResultNativePtr = I.Malloc(
-      A.length * A.BYTES_PER_ELEMENT
-    )), I.AddValuePtrInt32(
+    const g = n.toNativeArray(!1);
+    return (!this._analysisResultNativePtr || this._analysisResultNativePtr == 0) && (this._analysisResultNativePtr = k.Malloc(
+      g.length * g.BYTES_PER_ELEMENT
+    )), k.AddValuePtrInt32(
       this._analysisResultNativePtr,
       0,
-      A[0]
-    ), I.AddValuePtrInt32(
+      g[0]
+    ), k.AddValuePtrInt32(
       this._analysisResultNativePtr,
       4,
-      A[1]
-    ), I.AddValuePtrInt32(
+      g[1]
+    ), k.AddValuePtrInt32(
       this._analysisResultNativePtr,
       8,
-      A[2]
+      g[2]
     ), this.getEngine().getEngineHandle().analyze(
       this.getContextHandle().getContext(),
       P._ptr,
-      e,
-      c - e,
+      a,
+      c - a,
       this._analysisResultNativePtr,
       this._analysisConfigNativePtr
-    ) ? (n.ConvertNativeAnalysisResult(this._analysisResultNativePtr), n) : (D("Failed to analyze."), null);
+    ) ? (n.ConvertNativeAnalysisResult(this._analysisResultNativePtr), n) : (l("Failed to analyze."), null);
   }
   release() {
-    I.Free(this._analysisConfigNativePtr), this._analysisConfigNativePtr = 0, I.Free(this._analysisResultNativePtr), this._analysisResultNativePtr = 0;
+    k.Free(this._analysisConfigNativePtr), this._analysisConfigNativePtr = 0, k.Free(this._analysisResultNativePtr), this._analysisResultNativePtr = 0;
   }
 }
-var i9;
+var b9;
 ((r) => {
-  r.CubismMotionSyncProcessorCRI = L9;
-})(i9 || (i9 = {}));
-const b9 = 32;
-class h9 {
-  constructor(v, P, e, a) {
+  r.CubismMotionSyncProcessorCRI = h9;
+})(b9 || (b9 = {}));
+const i9 = 32;
+class J9 {
+  constructor(v, P, a, e) {
     t(this, "_processors");
     t(this, "_engineHandle");
     t(this, "_type");
     t(this, "_name");
     t(this, "_version");
-    this._engineHandle = v, this._type = P, this._name = e, this._version = a;
+    this._engineHandle = v, this._type = P, this._name = a, this._version = e;
   }
   getType() {
     return this._type;
@@ -3910,7 +3910,7 @@ class h9 {
           this.releaseAllProcessor();
         else
           return;
-      this.getEngineHandle().disposeEngine(), this._engineHandle = void 0, this._engineHandle = null, av.deleteAssociation(this);
+      this.getEngineHandle().disposeEngine(), this._engineHandle = void 0, this._engineHandle = null, ev.deleteAssociation(this);
     }
   }
   DeleteAssociation(v) {
@@ -3923,56 +3923,56 @@ class h9 {
 }
 var t9;
 ((r) => {
-  r.ICubismMotionSyncEngine = h9;
+  r.ICubismMotionSyncEngine = J9;
 })(t9 || (t9 = {}));
-const oP = 16e3, uP = 128e3;
-class AP extends h9 {
-  constructor(P, e, a, i) {
-    super(P, e, a, i);
+const uP = 16e3, fP = 128e3;
+class gP extends J9 {
+  constructor(P, a, e, b) {
+    super(P, a, e, b);
     // @ts-ignore
     t(this, "_processors");
-    this._processors = new o();
+    this._processors = new u();
   }
-  CreateProcessor(P, e, a) {
+  CreateProcessor(P, a, e) {
     if (this.isClosed())
-      return j(
+      return z(
         "[CubismMotionSyncEngineCri.CreateProcessor] Cubism MotionSync Engine is not started.'"
       ), null;
-    if (e.getSize() < 1)
-      return j(
+    if (a.getSize() < 1)
+      return z(
         "[CubismMotionSyncEngineCri.CreateProcessor] mappingInfoList size is invalid.'"
       ), null;
-    if (!(oP <= a && a <= uP))
-      return j(
+    if (!(uP <= e && e <= fP))
+      return z(
         "[CubismMotionSyncEngineCri.CreateProcessor] sampleRate is invalid.'"
       ), null;
-    const i = new Sv(a, b9), b = new T9();
-    b.setJObject(e);
+    const b = new Cv(e, i9), i = new D9();
+    i.setJObject(a);
     const n = this.getEngineHandle().createContext(
       this.getType(),
+      b,
       i,
-      b,
-      e.getSize()
-    ), c = new D9(
+      a.getSize()
+    ), c = new l9(
       n,
-      b,
+      i,
       P
-    ), g = new L9(
+    ), s = new h9(
       this,
       c,
-      e,
       a,
-      b9
+      e,
+      i9
     );
-    return this._processors.pushBack(g), g;
+    return this._processors.pushBack(s), s;
   }
 }
 var n9;
 ((r) => {
-  r.MotionSyncContextConfig_CRI = Sv;
+  r.MotionSyncContextConfig_CRI = Cv;
 })(n9 || (n9 = {}));
 const c9 = Live2DCubismMotionSyncCore.ToPointer;
-class I9 {
+class k9 {
   constructor() {
     t(this, "_isEngineInitialized");
     t(this, "_analyzeSamplesPtr");
@@ -3981,84 +3981,84 @@ class I9 {
     return Live2DCubismMotionSyncCore.CubismMotionSyncEngine.csmMotionSyncGetEngineVersion();
   }
   getEngineName() {
-    return new Q(
+    return new j(
       Live2DCubismMotionSyncCore.CubismMotionSyncEngine.csmMotionSyncGetEngineName()
     );
   }
   initializeEngine(v) {
-    return this.isInitialized() ? (f("Cubism MotionSync Core already initialized."), !0) : (this._isEngineInitialized = !1, Live2DCubismMotionSyncCore.CubismMotionSyncEngine.csmMotionSyncInitializeEngine(
+    return this.isInitialized() ? (Q("Cubism MotionSync Core already initialized."), !0) : (this._isEngineInitialized = !1, Live2DCubismMotionSyncCore.CubismMotionSyncEngine.csmMotionSyncInitializeEngine(
       v
-    ) == Live2DCubismMotionSyncCore.csmMotionSyncFalse ? (j("Cubism MotionSync Core Initializing failed."), !1) : (this._isEngineInitialized = !0, !0));
+    ) == Live2DCubismMotionSyncCore.csmMotionSyncFalse ? (z("Cubism MotionSync Core Initializing failed."), !1) : (this._isEngineInitialized = !0, !0));
   }
   disposeEngine() {
     if (!this.isInitialized()) {
-      f("Cubism MotionSync Core initialized yet.");
+      Q("Cubism MotionSync Core initialized yet.");
       return;
     }
     Live2DCubismMotionSyncCore.CubismMotionSyncEngine.csmMotionSyncDisposeEngine(), this._isEngineInitialized = !1;
   }
-  createContext(v, P, e, a) {
+  createContext(v, P, a, e) {
     if (!this.isInitialized())
-      return f("Cubism MotionSync Core initialized yet."), null;
-    const i = new Live2DCubismMotionSyncCore.Context();
-    let b;
+      return Q("Cubism MotionSync Core initialized yet."), null;
+    const b = new Live2DCubismMotionSyncCore.Context();
+    let i;
     switch (v) {
-      case y.EngineType_Cri:
+      case N.EngineType_Cri:
         {
           const n = P;
-          n == null || n.toNativeArray(!0), b = n == null ? void 0 : n.getNativePtr();
+          n == null || n.toNativeArray(!0), i = n == null ? void 0 : n.getNativePtr();
         }
         break;
       default:
         return null;
     }
-    return i.csmMotionSyncCreate(
-      b,
-      e.getMappingInfoListPtr(),
-      a
-    ), i;
+    return b.csmMotionSyncCreate(
+      i,
+      a.getMappingInfoListPtr(),
+      e
+    ), b;
   }
   clearContext(v) {
     if (!this.isInitialized()) {
-      f("Cubism MotionSync Core initialized yet.");
+      Q("Cubism MotionSync Core initialized yet.");
       return;
     }
     v == null || v.csmMotionSyncClear();
   }
   deleteContext(v) {
     if (!this.isInitialized()) {
-      f("Cubism MotionSync Core initialized yet.");
+      Q("Cubism MotionSync Core initialized yet.");
       return;
     }
     v == null || v.csmMotionSyncDelete();
   }
   getRequireSampleCount(v) {
-    return this.isInitialized() ? v == null ? (f("context is null."), 0) : v.csmMotionSyncGetRequireSampleCount() : (f("Cubism MotionSync Core initialized yet."), 0);
+    return this.isInitialized() ? v == null ? (Q("context is null."), 0) : v.csmMotionSyncGetRequireSampleCount() : (Q("Cubism MotionSync Core initialized yet."), 0);
   }
-  analyze(v, P, e, a, i, b) {
+  analyze(v, P, a, e, b, i) {
     if (!this.isInitialized())
-      return f("Cubism MotionSync Core initialized yet."), !1;
+      return Q("Cubism MotionSync Core initialized yet."), !1;
     if (v == null)
-      return f("context is null."), !1;
-    const n = new Array(a);
-    for (let g = 0; g < a; g++)
-      n[g] = P[g + e];
+      return Q("context is null."), !1;
+    const n = new Array(e);
+    for (let s = 0; s < e; s++)
+      n[s] = P[s + a];
     return c9.Free(this._analyzeSamplesPtr), this._analyzeSamplesPtr = c9.ConvertNumberArrayToFloatArrayPtr(n), v.csmMotionSyncAnalyze(
       this._analyzeSamplesPtr,
-      a,
-      i,
-      b
+      e,
+      b,
+      i
     ) == Live2DCubismMotionSyncCore.csmMotionSyncTrue;
   }
   isInitialized() {
     return this._isEngineInitialized;
   }
 }
-var g9;
+var s9;
 ((r) => {
-  r.CubismMotionSyncEngineLib = I9;
-})(g9 || (g9 = {}));
-class k9 {
+  r.CubismMotionSyncEngineLib = k9;
+})(s9 || (s9 = {}));
+class m9 {
   constructor(v) {
     t(this, "_versionNumber");
     t(this, "_major");
@@ -4079,36 +4079,36 @@ class k9 {
     return this._major + "." + this._minor + "." + this._patch + "(" + this._versionNumber + ")";
   }
 }
-var s9;
+var o9;
 ((r) => {
-  r.CubismMotionSyncEngineVersion = k9;
-})(s9 || (s9 = {}));
-class av {
+  r.CubismMotionSyncEngineVersion = m9;
+})(o9 || (o9 = {}));
+class ev {
   static initializeEngine(v) {
-    let P = new I9();
-    const e = P.getEngineName(), a = this.ToEngineType(e), i = P.getEngineVersion(), b = new k9(i);
-    if (this._engineMap || (this._engineMap = new N()), this._engineMap.isExist(a) || (f(e.s + " " + b.toString()), !P.initializeEngine(v)))
+    let P = new k9();
+    const a = P.getEngineName(), e = this.ToEngineType(a), b = P.getEngineVersion(), i = new m9(b);
+    if (this._engineMap || (this._engineMap = new I()), this._engineMap.isExist(e) || (Q(a.s + " " + i.toString()), !P.initializeEngine(v)))
       return P = void 0, P = null, null;
     let c = null;
-    switch (a) {
-      case y.EngineType_Cri:
-        c = new AP(
+    switch (e) {
+      case N.EngineType_Cri:
+        c = new gP(
           P,
-          a,
           e,
-          b
+          a,
+          i
         );
         break;
       default:
         return P.disposeEngine(), P = void 0, P = null, null;
     }
-    return this._engineMap.appendKey(a), this._engineMap.setValue(a, c), c;
+    return this._engineMap.appendKey(e), this._engineMap.setValue(e, c), c;
   }
   static getEngine(v) {
     return this._engineMap && this._engineMap.isExist(v) ? this._engineMap.getValue(v) : null;
   }
   static getEngines() {
-    const v = new o();
+    const v = new u();
     for (let P = this._engineMap.begin(); P != this._engineMap.end(); P.increment())
       v.pushBack(P.ptr().second);
     return v;
@@ -4126,8 +4126,8 @@ class av {
     this._engineMap.clear();
   }
   static ToEngineType(v) {
-    let P = y.EngineType_Unknown;
-    return v.s == "Live2DCubismMotionSyncEngine_CRI" && (P = y.EngineType_Cri), P;
+    let P = N.EngineType_Unknown;
+    return v.s == "Live2DCubismMotionSyncEngine_CRI" && (P = N.EngineType_Cri), P;
   }
   static deleteAssociation(v) {
     for (let P = this._engineMap.begin(); P != this._engineMap.end(); P.increment())
@@ -4137,26 +4137,26 @@ class av {
       }
   }
 }
-t(av, "_engineMap");
-var o9;
+t(ev, "_engineMap");
+var u9;
 ((r) => {
-  r.CubismMotionSyncEngineController = av;
-})(o9 || (o9 = {}));
-let k = !1, Z = !1, p = null, m = null;
-const fP = 2;
-class d {
-  constructor(v, P, e) {
+  r.CubismMotionSyncEngineController = ev;
+})(u9 || (u9 = {}));
+let m = !1, Z = !1, W = null, w = null;
+const QP = 2;
+class T {
+  constructor(v, P, a) {
     t(this, "_processorInfoList");
     t(this, "_data");
-    this._data = P, this._processorInfoList = new o();
-    for (let a = 0; a < (e == null ? void 0 : e.getSize()); a++)
+    this._data = P, this._processorInfoList = new u();
+    for (let e = 0; e < (a == null ? void 0 : a.getSize()); e++)
       this._processorInfoList.pushBack(
-        new zP(
-          e.at(a),
+        new dP(
+          a.at(e),
           v,
-          P.getSetting(a)
+          P.getSetting(e)
         )
-      ), this._processorInfoList.at(a).init(P.getSetting(a));
+      ), this._processorInfoList.at(e).init(P.getSetting(e));
   }
   /**
    * Cubism MotionSync FrameworkのAPIを使用可能にする。
@@ -4168,33 +4168,33 @@ class d {
    * @return   準備処理が完了したらtrueが返ります。
    */
   static startUp(v = null) {
-    return k ? (f("CubismMotionSyncFramework.startUp() is already done."), k) : (p = v, p != null && Live2DCubismMotionSyncCore.Logging.csmMotionSyncSetLogFunction(
-      p.logFunction
-    ), k = !0, f("CubismMotionSyncFramework.startUp() is complete."), k);
+    return m ? (Q("CubismMotionSyncFramework.startUp() is already done."), m) : (W = v, W != null && Live2DCubismMotionSyncCore.Logging.csmMotionSyncSetLogFunction(
+      W.logFunction
+    ), m = !0, Q("CubismMotionSyncFramework.startUp() is complete."), m);
   }
   /**
    * StartUp()で初期化したCubism MotionSync Frameworkの各パラメータをクリアします。
    * Dispose()したCubism MotionSync Frameworkを再利用する際に利用してください。
    */
   static cleanUp() {
-    k = !1, Z = !1, p = null;
+    m = !1, Z = !1, W = null;
   }
   /**
    * Cubism MotionSync Framework内のリソースを初期化してモデルを表示可能な状態にします。
    *     再度Initialize()するには先にDispose()を実行する必要があります。
    */
   static initialize() {
-    if (Av(k), !k) {
-      j("CubismMotionSyncFramework is not started.");
+    if (gv(m), !m) {
+      z("CubismMotionSyncFramework is not started.");
       return;
     }
     if (Z) {
-      j(
+      z(
         "CubismMotionSyncFramework.initialize() skipped, already initialized."
       );
       return;
     }
-    Z = !0, f("CubismMotionSyncFramework.initialize() is complete.");
+    Z = !0, Q("CubismMotionSyncFramework.initialize() is complete.");
   }
   /**
    * Cubism MotionSync Framework内の全てのリソースを解放します。
@@ -4202,24 +4202,24 @@ class d {
    *      外部で適切に破棄する必要があります。
    */
   static dispose() {
-    if (Av(k), !k) {
-      j("CubismMotionSyncFramework is not started.");
+    if (gv(m), !m) {
+      z("CubismMotionSyncFramework is not started.");
       return;
     }
     if (!Z) {
-      j(
+      z(
         "CubismMotionSyncFramework.dispose() skipped, not initialized."
       );
       return;
     }
-    Z = !1, f("CubismMotionSyncFramework.dispose() is complete.");
+    Z = !1, Q("CubismMotionSyncFramework.dispose() is complete.");
   }
   /**
    * Cubism MotionSync FrameworkのAPIを使用する準備が完了したかどうか
    * @return APIを使用する準備が完了していればtrueが返ります。
    */
   static isStarted() {
-    return k;
+    return m;
   }
   /**
    * Cubism MotionSync Frameworkのリソース初期化がすでに行われているかどうか
@@ -4228,152 +4228,152 @@ class d {
   static isInitialized() {
     return Z;
   }
-  static create(v, P, e, a) {
-    if (!d.isInitialized())
+  static create(v, P, a, e) {
+    if (!T.isInitialized())
       return;
-    const i = ev.create(
+    const b = av.create(
       v,
       P,
-      e
+      a
     );
-    if (!i)
+    if (!b)
       return null;
-    const b = new o();
-    for (let n = 0; n < i.getSettingCount(); n++) {
+    const i = new u();
+    for (let n = 0; n < b.getSettingCount(); n++) {
       let c = null;
-      const g = i.getSetting(n).analysisType;
-      switch (g) {
-        case y.EngineType_Cri:
+      const s = b.getSetting(n).analysisType;
+      switch (s) {
+        case N.EngineType_Cri:
           c = this.InitializeEngineCri(
-            g,
-            i,
+            s,
+            b,
             n,
-            a
+            e
           );
           break;
         default:
-          j(
+          z(
             "[CubismMotionSync.Create] Index{0}: Can not create processor because `AnalysisType` is unknown.",
             n
           );
           break;
       }
-      c != null && b.pushBack(c);
+      c != null && i.pushBack(c);
     }
-    return new d(v, i, b);
+    return new T(v, b, i);
   }
-  static InitializeEngineCri(v, P, e, a) {
-    let i = av.getEngine(v);
-    p.engineConfig != null && (m = new jP(), m.engineConfigBuffer = new Int32Array(
-      fP
-    ), m.engineConfigPtr = Live2DCubismMotionSyncCore.ToPointer.Malloc(
-      m.engineConfigBuffer.length * m.engineConfigBuffer.BYTES_PER_ELEMENT
+  static InitializeEngineCri(v, P, a, e) {
+    let b = ev.getEngine(v);
+    W.engineConfig != null && (w = new zP(), w.engineConfigBuffer = new Int32Array(
+      QP
+    ), w.engineConfigPtr = Live2DCubismMotionSyncCore.ToPointer.Malloc(
+      w.engineConfigBuffer.length * w.engineConfigBuffer.BYTES_PER_ELEMENT
     ), Live2DCubismMotionSyncCore.ToPointer.ConvertEngineConfigCriToInt32Array(
-      m.engineConfigBuffer,
-      m.engineConfigPtr,
-      p.engineConfig.Allocator,
-      p.engineConfig.Deallocator
+      w.engineConfigBuffer,
+      w.engineConfigPtr,
+      W.engineConfig.Allocator,
+      W.engineConfig.Deallocator
     ));
-    const b = m != null ? m.engineConfigPtr : 0;
-    i || (i = av.initializeEngine(b));
+    const i = w != null ? w.engineConfigPtr : 0;
+    b || (b = ev.initializeEngine(i));
     let n = null;
-    return i && (n = i.CreateProcessor(
-      P.getSetting(e).cubismParameterList.getSize(),
-      P.getMappingInfoList(e),
-      a
+    return b && (n = b.CreateProcessor(
+      P.getSetting(a).cubismParameterList.getSize(),
+      P.getMappingInfoList(a),
+      e
     )), n;
   }
   static delete(v) {
-    d.isInitialized();
+    T.isInitialized();
   }
-  setSoundBuffer(v, P, e) {
-    d.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._sampleBuffer = P, this._processorInfoList.at(v)._sampleBufferIndex = e);
+  setSoundBuffer(v, P, a) {
+    T.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._sampleBuffer = P, this._processorInfoList.at(v)._sampleBufferIndex = a);
   }
   release() {
     var v;
-    if (d.isInitialized()) {
-      ev.delete(this._data);
+    if (T.isInitialized()) {
+      av.delete(this._data);
       for (let P = 0; P < this._processorInfoList.getSize(); P++)
         (v = this._processorInfoList.at(P)._processor) == null || v.Close();
     }
   }
   updateParameters(v, P) {
-    if (d.isInitialized()) {
+    if (T.isInitialized()) {
       P < 0 && (P = 0);
-      for (let e = 0; e < this._processorInfoList.getSize(); e++) {
-        this._processorInfoList.at(e)._currentRemainTime += P;
-        const i = 1 / this._processorInfoList.at(e)._sampleRate;
-        if (this._processorInfoList.at(e)._lastTotalProcessedCount = 0, this._processorInfoList.at(e)._currentRemainTime < i) {
-          for (let b = 0; b < this._data.getSetting(e).cubismParameterList.getSize(); b++)
+      for (let a = 0; a < this._processorInfoList.getSize(); a++) {
+        this._processorInfoList.at(a)._currentRemainTime += P;
+        const b = 1 / this._processorInfoList.at(a)._sampleRate;
+        if (this._processorInfoList.at(a)._lastTotalProcessedCount = 0, this._processorInfoList.at(a)._currentRemainTime < b) {
+          for (let i = 0; i < this._data.getSetting(a).cubismParameterList.getSize(); i++)
             isNaN(
-              this._processorInfoList.at(e)._analysisResult.getValues()[b]
+              this._processorInfoList.at(a)._analysisResult.getValues()[i]
             ) || v.setParameterValueByIndex(
-              this._data.getSetting(e).cubismParameterList.at(b).parameterIndex,
-              this._processorInfoList.at(e)._lastDampedList.at(b)
+              this._data.getSetting(a).cubismParameterList.at(i).parameterIndex,
+              this._processorInfoList.at(a)._lastDampedList.at(i)
             );
           continue;
         }
-        this.analyze(v, e), this._processorInfoList.at(e)._currentRemainTime = x.mod(
-          this._processorInfoList.at(e)._currentRemainTime,
-          i
+        this.analyze(v, a), this._processorInfoList.at(a)._currentRemainTime = x.mod(
+          this._processorInfoList.at(a)._currentRemainTime,
+          b
         );
-        for (let b = 0; b < this._data.getSetting(e).cubismParameterList.getSize(); b++)
+        for (let i = 0; i < this._data.getSetting(a).cubismParameterList.getSize(); i++)
           isNaN(
-            this._processorInfoList.at(e)._analysisResult.getValues()[b]
+            this._processorInfoList.at(a)._analysisResult.getValues()[i]
           ) || v.setParameterValueByIndex(
-            this._data.getSetting(e).cubismParameterList.at(b).parameterIndex,
-            this._processorInfoList.at(e)._lastDampedList.at(b)
+            this._data.getSetting(a).cubismParameterList.at(i).parameterIndex,
+            this._processorInfoList.at(a)._lastDampedList.at(i)
           );
       }
     }
   }
   analyze(v, P) {
-    if (!d.isInitialized())
+    if (!T.isInitialized())
       return;
-    const e = this._processorInfoList.at(P)._processor, a = this._processorInfoList.at(P)._sampleBuffer;
-    let i = this._processorInfoList.at(P)._sampleBufferIndex;
-    if (e == null || this._processorInfoList.at(P)._sampleBuffer == null)
+    const a = this._processorInfoList.at(P)._processor, e = this._processorInfoList.at(P)._sampleBuffer;
+    let b = this._processorInfoList.at(P)._sampleBufferIndex;
+    if (a == null || this._processorInfoList.at(P)._sampleBuffer == null)
       return;
-    let b = null;
-    const n = this._processorInfoList.at(P)._blendRatio, c = this._processorInfoList.at(P)._smoothing, g = this._processorInfoList.at(P)._audioLevelEffectRatio, s = a.getSize();
-    let A = e.getRequireSampleCount();
-    for (let L = 0; L < s && !(s == 0 || s <= i || s - i < e.getRequireSampleCount()); L += A) {
-      switch (e.getType()) {
-        case y.EngineType_Cri:
-          b = e.Analyze(
-            a,
-            i,
+    let i = null;
+    const n = this._processorInfoList.at(P)._blendRatio, c = this._processorInfoList.at(P)._smoothing, s = this._processorInfoList.at(P)._audioLevelEffectRatio, o = e.getSize();
+    let g = a.getRequireSampleCount();
+    for (let h = 0; h < o && !(o == 0 || o <= b || o - b < a.getRequireSampleCount()); h += g) {
+      switch (a.getType()) {
+        case N.EngineType_Cri:
+          i = a.Analyze(
+            e,
+            b,
             n,
             c,
-            g,
+            s,
             this._processorInfoList.at(P)._analysisResult
           );
           break;
       }
-      if (!b)
+      if (!i)
         break;
-      const M = b.getProcessedSampleCount();
-      i += M, this._processorInfoList.at(P)._lastTotalProcessedCount += M;
-      for (let T = 0; T < this._data.getSetting(P).cubismParameterList.getSize(); T++) {
-        let h = b.getValues()[T];
-        if (isNaN(h))
+      const M = i.getProcessedSampleCount();
+      b += M, this._processorInfoList.at(P)._lastTotalProcessedCount += M;
+      for (let D = 0; D < this._data.getSetting(P).cubismParameterList.getSize(); D++) {
+        let J = i.getValues()[D];
+        if (isNaN(J))
           continue;
-        const rv = this._data.getSetting(P).cubismParameterList.at(T).smooth, fv = this._data.getSetting(P).cubismParameterList.at(T).damper;
-        h = ((100 - rv) * h + this._processorInfoList.at(P)._lastSmoothedList.at(T) * rv) / 100, this._processorInfoList.at(P)._lastSmoothedList.set(T, h), Math.abs(
-          h - this._processorInfoList.at(P)._lastDampedList.at(T)
-        ) < fv && (h = this._processorInfoList.at(P)._lastDampedList.at(T)), this._processorInfoList.at(P)._lastDampedList.set(T, h);
+        const rv = this._data.getSetting(P).cubismParameterList.at(D).smooth, Qv = this._data.getSetting(P).cubismParameterList.at(D).damper;
+        J = ((100 - rv) * J + this._processorInfoList.at(P)._lastSmoothedList.at(D) * rv) / 100, this._processorInfoList.at(P)._lastSmoothedList.set(D, J), Math.abs(
+          J - this._processorInfoList.at(P)._lastDampedList.at(D)
+        ) < Qv && (J = this._processorInfoList.at(P)._lastDampedList.at(D)), this._processorInfoList.at(P)._lastDampedList.set(D, J);
       }
-      A = e.getRequireSampleCount();
+      g = a.getRequireSampleCount();
     }
   }
   setBlendRatio(v, P) {
-    d.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._blendRatio = P);
+    T.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._blendRatio = P);
   }
   SetSmoothing(v, P) {
-    d.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._smoothing = P);
+    T.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._smoothing = P);
   }
   SetSampleRate(v, P) {
-    d.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._sampleRate = P);
+    T.isInitialized() && v < this._processorInfoList.getSize() && (this._processorInfoList.at(v)._sampleRate = P);
   }
   getData() {
     return this._data;
@@ -4382,7 +4382,7 @@ class d {
     return this._processorInfoList.at(v)._lastTotalProcessedCount;
   }
 }
-class QP {
+class jP {
   constructor() {
     t(this, "engineConfig");
     t(this, "logFunction");
@@ -4391,14 +4391,14 @@ class QP {
   }
   // ログ出力レベルの設定
 }
-class jP {
+class zP {
   constructor() {
     t(this, "engineConfigBuffer");
     t(this, "engineConfigPtr");
   }
 }
-class zP {
-  constructor(v, P, e) {
+class dP {
+  constructor(v, P, a) {
     t(this, "_processor");
     t(this, "_blendRatio");
     t(this, "_smoothing");
@@ -4413,29 +4413,335 @@ class zP {
     t(this, "_lastSmoothedList");
     t(this, "_lastDampedList");
     t(this, "_lastTotalProcessedCount");
-    this._processor = v, this._blendRatio = 0, this._smoothing = 1, this._sampleRate = 30, this._audioLevelEffectRatio = 0, this._sampleBuffer = null, this._sampleBufferIndex = 0, this._model = P, this._currentRemainTime = 0, this._lastTotalProcessedCount = 0, this.init(e), this._analysisResult = this._processor.createAnalysisResult();
+    this._processor = v, this._blendRatio = 0, this._smoothing = 1, this._sampleRate = 30, this._audioLevelEffectRatio = 0, this._sampleBuffer = null, this._sampleBufferIndex = 0, this._model = P, this._currentRemainTime = 0, this._lastTotalProcessedCount = 0, this.init(a), this._analysisResult = this._processor.createAnalysisResult();
   }
   init(v) {
-    this._currentRemainTime = 0, this._lastSmoothedList = new o(), this._lastDampedList = new o();
+    this._currentRemainTime = 0, this._lastSmoothedList = new u(), this._lastDampedList = new u();
     for (let P = 0; P < v.cubismParameterList.getSize(); P++) {
-      const e = this._model.getParameterValueByIndex(
+      const a = this._model.getParameterValueByIndex(
         v.cubismParameterList.at(P).parameterIndex
       );
-      this._lastSmoothedList.pushBack(e), this._lastDampedList.pushBack(e);
+      this._lastSmoothedList.pushBack(a), this._lastDampedList.pushBack(a);
     }
     this._blendRatio = v.blendRatio, this._smoothing = v.smoothing, this._sampleRate = v.sampleRate, this._lastTotalProcessedCount = 0;
   }
 }
-var u9;
+var f9;
 ((r) => {
-  r.CubismMotionSync = d;
-})(u9 || (u9 = {}));
-let gv;
-function dP() {
+  r.CubismMotionSync = T;
+})(f9 || (f9 = {}));
+const TP = `{
+  "Version": 1,
+  "Meta": {
+    "SettingCount": 1,
+    "Dictionary": [
+      {
+        "Id": "MotionSyncSetting3",
+        "Name": "Vowels_CRI"
+      }
+    ]
+  },
+  "Settings": [
+    {
+      "Id": "MotionSyncSetting3",
+      "AnalysisType": "CRI",
+      "UseCase": "Mouth",
+      "CubismParameters": [
+        {
+          "Name": "Mouth_Open",
+          "Id": "ParamMouthOpenY",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Damper": 0.0,
+          "Smooth": 25
+        },
+        {
+          "Name": "A",
+          "Id": "ParamA",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Damper": 0.0,
+          "Smooth": 25
+        },
+        {
+          "Name": "I",
+          "Id": "ParamI",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Damper": 0.0,
+          "Smooth": 25
+        },
+        {
+          "Name": "U",
+          "Id": "ParamU",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Damper": 0.0,
+          "Smooth": 25
+        },
+        {
+          "Name": "E",
+          "Id": "ParamE",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Damper": 0.0,
+          "Smooth": 25
+        },
+        {
+          "Name": "O",
+          "Id": "ParamO",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Damper": 0.0,
+          "Smooth": 25
+        }
+      ],
+      "AudioParameters": [
+        {
+          "Name": "Silence",
+          "Id": "Silence",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Scale": 1.0,
+          "Enabled": true
+        },
+        {
+          "Name": "A",
+          "Id": "A",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Scale": 0.30000001192092896,
+          "Enabled": true
+        },
+        {
+          "Name": "I",
+          "Id": "I",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Scale": 1.0,
+          "Enabled": true
+        },
+        {
+          "Name": "U",
+          "Id": "U",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Scale": 1.5,
+          "Enabled": true
+        },
+        {
+          "Name": "E",
+          "Id": "E",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Scale": 6.0,
+          "Enabled": true
+        },
+        {
+          "Name": "O",
+          "Id": "O",
+          "Min": 0.0,
+          "Max": 1.0,
+          "Scale": 8.0,
+          "Enabled": true
+        }
+      ],
+      "Mappings": [
+        {
+          "Type": "Shape",
+          "Id": "Silence",
+          "Targets": [
+            {
+              "Id": "ParamMouthOpenY",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamA",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamI",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamU",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamE",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamO",
+              "Value": 0.0
+            }
+          ]
+        },
+        {
+          "Type": "Shape",
+          "Id": "A",
+          "Targets": [
+            {
+              "Id": "ParamMouthOpenY",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamA",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamI",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamU",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamE",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamO",
+              "Value": 0.0
+            }
+          ]
+        },
+        {
+          "Type": "Shape",
+          "Id": "I",
+          "Targets": [
+            {
+              "Id": "ParamMouthOpenY",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamA",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamI",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamU",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamE",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamO",
+              "Value": 0.0
+            }
+          ]
+        },
+        {
+          "Type": "Shape",
+          "Id": "U",
+          "Targets": [
+            {
+              "Id": "ParamMouthOpenY",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamA",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamI",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamU",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamE",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamO",
+              "Value": 0.0
+            }
+          ]
+        },
+        {
+          "Type": "Shape",
+          "Id": "E",
+          "Targets": [
+            {
+              "Id": "ParamMouthOpenY",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamA",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamI",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamU",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamE",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamO",
+              "Value": 0.0
+            }
+          ]
+        },
+        {
+          "Type": "Shape",
+          "Id": "O",
+          "Targets": [
+            {
+              "Id": "ParamMouthOpenY",
+              "Value": 1.0
+            },
+            {
+              "Id": "ParamA",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamI",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamU",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamE",
+              "Value": 0.0
+            },
+            {
+              "Id": "ParamO",
+              "Value": 1.0
+            }
+          ]
+        }
+      ],
+      "PostProcessing": {
+        "BlendRatio": 1,
+        "Smoothing": 90,
+        "SampleRate": 60.0
+      }
+    }
+  ]
+}`;
+let sv;
+function DP() {
   const r = ["click", "keydown", "touchstart", "mousedown", "pointerdown"];
-  gv = new AudioContext();
+  sv = new AudioContext();
   const v = () => {
-    gv.state === "suspended" && gv.resume().then(() => {
+    sv.state === "suspended" && sv.resume().then(() => {
       console.log("Audio context resumed");
     });
   };
@@ -4443,12 +4749,12 @@ function dP() {
     window.addEventListener(P, v, { capture: !0 });
   });
 }
-function TP() {
-  return gv;
+function lP() {
+  return sv;
 }
-dP();
-const lv = 48e3;
-class JP {
+DP();
+const Av = 48e3;
+class hP {
   constructor(v) {
     t(this, "audioBuffer", null);
     t(this, "audioSource", null);
@@ -4458,15 +4764,15 @@ class JP {
     t(this, "_motionSync", null);
     t(this, "_internalModel");
     t(this, "_model");
-    t(this, "soundBuffer", new o());
-    this._internalModel = v, this._model = v.coreModel, d.startUp(new QP()), d.initialize();
+    t(this, "soundBuffer", new u());
+    this._internalModel = v, this._model = v.coreModel, T.startUp(new jP()), T.initialize();
   }
   get audioContext() {
-    return TP();
+    return lP();
   }
   async loadAudio(v) {
-    const e = await (await fetch(v)).arrayBuffer();
-    this.reset(), this.audioBuffer = await this.audioContext.decodeAudioData(e);
+    const a = await (await fetch(v)).arrayBuffer();
+    this.reset(), this.audioBuffer = await this.audioContext.decodeAudioData(a);
   }
   async loadAudioBuffer(v) {
     this.reset(), this.audioBuffer = v;
@@ -4478,23 +4784,23 @@ class JP {
       if (!v) return;
       const P = v.cubismParameterList;
       if (!P) return;
-      const e = P._ptr.map(
-        (a) => a.parameterIndex
+      const a = P._ptr.map(
+        (e) => e.parameterIndex
       );
-      for (const a of e)
-        this._model.setParameterValueByIndex(a, 0);
+      for (const e of a)
+        this._model.setParameterValueByIndex(e, 0);
     } catch (v) {
       console.error(v);
     }
   }
   reset() {
-    this.resetMouthStatus(), this.audioSource && (this.audioSource.stop(), this.audioSource.disconnect(), this.audioSource = null), this.audioContextPreviousTime = 0, this.previousSamplePosition = 0, this.audioElapsedTime = 0, this.soundBuffer.clear(), this.soundBuffer = new o();
+    this.resetMouthStatus(), this.audioSource && (this.audioSource.stop(), this.audioSource.disconnect(), this.audioSource = null), this.audioContextPreviousTime = 0, this.previousSamplePosition = 0, this.audioElapsedTime = 0, this.soundBuffer.clear(), this.soundBuffer = new u();
   }
   async play(v) {
-    return new Promise(async (P, e) => {
+    return new Promise(async (P, a) => {
       typeof v == "string" ? await this.loadAudio(v) : await this.loadAudioBuffer(v), this.audioBuffer ? (this.audioSource = this.audioContext.createBufferSource(), this.audioSource.buffer = this.audioBuffer, this.audioSource.connect(this.audioContext.destination), this.audioSource.start(0), this.audioSource.onended = () => {
         P();
-      }, this.audioContextPreviousTime = this.audioContext.currentTime) : e(new Error("audioBuffer is null"));
+      }, this.audioContextPreviousTime = this.audioContext.currentTime) : a(new Error("audioBuffer is null"));
     });
   }
   updateMotionSync() {
@@ -4504,24 +4810,24 @@ class JP {
     v <= this.audioContextPreviousTime && (this.audioContextPreviousTime = v);
     const P = v - this.audioContextPreviousTime;
     this.audioElapsedTime += P;
-    const e = Math.floor(
+    const a = Math.floor(
       this.audioElapsedTime * this.audioBuffer.sampleRate
     );
     if (this.previousSamplePosition <= this.audioBuffer.length) {
-      const a = this.audioBuffer.getChannelData(0).slice(this.previousSamplePosition, e);
-      for (let b = 0; b < a.length; b++)
-        this.soundBuffer.pushBack(a[b]);
+      const e = this.audioBuffer.getChannelData(0).slice(this.previousSamplePosition, a);
+      for (let i = 0; i < e.length; i++)
+        this.soundBuffer.pushBack(e[i]);
       if (!this._motionSync) return;
       this._motionSync.setSoundBuffer(0, this.soundBuffer, 0), this._motionSync.updateParameters(this._model, P);
-      const i = this._motionSync.getLastTotalProcessedCount(0);
-      this.removeProcessedData(i), this.audioContextPreviousTime = v, this.previousSamplePosition = e;
+      const b = this._motionSync.getLastTotalProcessedCount(0);
+      this.removeProcessedData(b), this.audioContextPreviousTime = v, this.previousSamplePosition = a;
     }
   }
   modelUpdateWithMotionSync() {
     if (!this._motionSync) return;
-    const P = this._internalModel, e = P.motionManager.update;
-    P.motionManager.update = (...a) => {
-      e.apply(this._internalModel.motionManager, a), this.updateMotionSync();
+    const P = this._internalModel, a = P.motionManager.update;
+    P.motionManager.update = (...e) => {
+      a.apply(this._internalModel.motionManager, e), this.updateMotionSync();
     };
   }
   removeProcessedData(v) {
@@ -4529,33 +4835,33 @@ class JP {
     if (v < P.getSize())
       return !(P != null && P.begin()) || (P == null ? void 0 : P._size) <= v || (P._ptr.splice(0, v), P._size -= v), P;
   }
-  loadMotionSync(v, P = lv) {
+  loadMotionSync(v, P = Av) {
     if (v == null || v.byteLength == 0) {
       console.warn("Failed to loadMotionSync().");
       return;
     }
-    this._motionSync = d.create(
+    this._motionSync = T.create(
       this._model,
       v,
       v.byteLength,
       P
     ), this.modelUpdateWithMotionSync();
   }
-  async loadDefaultMotionSync(v = lv) {
-    const P = new URL("data:application/json;base64,ewogICJWZXJzaW9uIjogMSwKICAiTWV0YSI6IHsKICAgICJTZXR0aW5nQ291bnQiOiAxLAogICAgIkRpY3Rpb25hcnkiOiBbCiAgICAgIHsKICAgICAgICAiSWQiOiAiTW90aW9uU3luY1NldHRpbmczIiwKICAgICAgICAiTmFtZSI6ICJWb3dlbHNfQ1JJIgogICAgICB9CiAgICBdCiAgfSwKICAiU2V0dGluZ3MiOiBbCiAgICB7CiAgICAgICJJZCI6ICJNb3Rpb25TeW5jU2V0dGluZzMiLAogICAgICAiQW5hbHlzaXNUeXBlIjogIkNSSSIsCiAgICAgICJVc2VDYXNlIjogIk1vdXRoIiwKICAgICAgIkN1YmlzbVBhcmFtZXRlcnMiOiBbCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiTW91dGhfT3BlbiIsCiAgICAgICAgICAiSWQiOiAiUGFyYW1Nb3V0aE9wZW5ZIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIkRhbXBlciI6IDAuMCwKICAgICAgICAgICJTbW9vdGgiOiAyNQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiQSIsCiAgICAgICAgICAiSWQiOiAiUGFyYW1BIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIkRhbXBlciI6IDAuMCwKICAgICAgICAgICJTbW9vdGgiOiAyNQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiSSIsCiAgICAgICAgICAiSWQiOiAiUGFyYW1JIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIkRhbXBlciI6IDAuMCwKICAgICAgICAgICJTbW9vdGgiOiAyNQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiVSIsCiAgICAgICAgICAiSWQiOiAiUGFyYW1VIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIkRhbXBlciI6IDAuMCwKICAgICAgICAgICJTbW9vdGgiOiAyNQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiRSIsCiAgICAgICAgICAiSWQiOiAiUGFyYW1FIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIkRhbXBlciI6IDAuMCwKICAgICAgICAgICJTbW9vdGgiOiAyNQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiTyIsCiAgICAgICAgICAiSWQiOiAiUGFyYW1PIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIkRhbXBlciI6IDAuMCwKICAgICAgICAgICJTbW9vdGgiOiAyNQogICAgICAgIH0KICAgICAgXSwKICAgICAgIkF1ZGlvUGFyYW1ldGVycyI6IFsKICAgICAgICB7CiAgICAgICAgICAiTmFtZSI6ICJTaWxlbmNlIiwKICAgICAgICAgICJJZCI6ICJTaWxlbmNlIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIlNjYWxlIjogMS4wLAogICAgICAgICAgIkVuYWJsZWQiOiB0cnVlCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiTmFtZSI6ICJBIiwKICAgICAgICAgICJJZCI6ICJBIiwKICAgICAgICAgICJNaW4iOiAwLjAsCiAgICAgICAgICAiTWF4IjogMS4wLAogICAgICAgICAgIlNjYWxlIjogMC4zMDAwMDAwMTE5MjA5Mjg5NiwKICAgICAgICAgICJFbmFibGVkIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiSSIsCiAgICAgICAgICAiSWQiOiAiSSIsCiAgICAgICAgICAiTWluIjogMC4wLAogICAgICAgICAgIk1heCI6IDEuMCwKICAgICAgICAgICJTY2FsZSI6IDEuMCwKICAgICAgICAgICJFbmFibGVkIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiVSIsCiAgICAgICAgICAiSWQiOiAiVSIsCiAgICAgICAgICAiTWluIjogMC4wLAogICAgICAgICAgIk1heCI6IDEuMCwKICAgICAgICAgICJTY2FsZSI6IDEuNSwKICAgICAgICAgICJFbmFibGVkIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiRSIsCiAgICAgICAgICAiSWQiOiAiRSIsCiAgICAgICAgICAiTWluIjogMC4wLAogICAgICAgICAgIk1heCI6IDEuMCwKICAgICAgICAgICJTY2FsZSI6IDYuMCwKICAgICAgICAgICJFbmFibGVkIjogdHJ1ZQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIk5hbWUiOiAiTyIsCiAgICAgICAgICAiSWQiOiAiTyIsCiAgICAgICAgICAiTWluIjogMC4wLAogICAgICAgICAgIk1heCI6IDEuMCwKICAgICAgICAgICJTY2FsZSI6IDguMCwKICAgICAgICAgICJFbmFibGVkIjogdHJ1ZQogICAgICAgIH0KICAgICAgXSwKICAgICAgIk1hcHBpbmdzIjogWwogICAgICAgIHsKICAgICAgICAgICJUeXBlIjogIlNoYXBlIiwKICAgICAgICAgICJJZCI6ICJTaWxlbmNlIiwKICAgICAgICAgICJUYXJnZXRzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtTW91dGhPcGVuWSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMC4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1BIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbUkiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtVSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMC4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1FIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbU8iLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiVHlwZSI6ICJTaGFwZSIsCiAgICAgICAgICAiSWQiOiAiQSIsCiAgICAgICAgICAiVGFyZ2V0cyI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbU1vdXRoT3BlblkiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDEuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtQSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMS4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1JIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbVUiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtRSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMC4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1PIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfQogICAgICAgICAgXQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIlR5cGUiOiAiU2hhcGUiLAogICAgICAgICAgIklkIjogIkkiLAogICAgICAgICAgIlRhcmdldHMiOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1Nb3V0aE9wZW5ZIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAxLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbUEiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtSSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMS4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1VIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbUUiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtTyIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMC4wCiAgICAgICAgICAgIH0KICAgICAgICAgIF0KICAgICAgICB9LAogICAgICAgIHsKICAgICAgICAgICJUeXBlIjogIlNoYXBlIiwKICAgICAgICAgICJJZCI6ICJVIiwKICAgICAgICAgICJUYXJnZXRzIjogWwogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtTW91dGhPcGVuWSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMS4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1BIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbUkiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtVSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMS4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1FIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbU8iLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9CiAgICAgICAgICBdCiAgICAgICAgfSwKICAgICAgICB7CiAgICAgICAgICAiVHlwZSI6ICJTaGFwZSIsCiAgICAgICAgICAiSWQiOiAiRSIsCiAgICAgICAgICAiVGFyZ2V0cyI6IFsKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbU1vdXRoT3BlblkiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDEuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtQSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMC4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1JIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbVUiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtRSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMS4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1PIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfQogICAgICAgICAgXQogICAgICAgIH0sCiAgICAgICAgewogICAgICAgICAgIlR5cGUiOiAiU2hhcGUiLAogICAgICAgICAgIklkIjogIk8iLAogICAgICAgICAgIlRhcmdldHMiOiBbCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1Nb3V0aE9wZW5ZIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAxLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbUEiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtSSIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMC4wCiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIHsKICAgICAgICAgICAgICAiSWQiOiAiUGFyYW1VIiwKICAgICAgICAgICAgICAiVmFsdWUiOiAwLjAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgewogICAgICAgICAgICAgICJJZCI6ICJQYXJhbUUiLAogICAgICAgICAgICAgICJWYWx1ZSI6IDAuMAogICAgICAgICAgICB9LAogICAgICAgICAgICB7CiAgICAgICAgICAgICAgIklkIjogIlBhcmFtTyIsCiAgICAgICAgICAgICAgIlZhbHVlIjogMS4wCiAgICAgICAgICAgIH0KICAgICAgICAgIF0KICAgICAgICB9CiAgICAgIF0sCiAgICAgICJQb3N0UHJvY2Vzc2luZyI6IHsKICAgICAgICAiQmxlbmRSYXRpbyI6IDEsCiAgICAgICAgIlNtb290aGluZyI6IDkwLAogICAgICAgICJTYW1wbGVSYXRlIjogNjAuMAogICAgICB9CiAgICB9CiAgXQp9", import.meta.url), a = await (await fetch(P)).arrayBuffer();
+  async loadDefaultMotionSync(v = Av) {
+    const a = await new Blob([TP], { type: "application/json" }).arrayBuffer();
     this.loadMotionSync(a, v);
   }
-  async loadMotionSyncFromUrl(v, P = lv) {
+  async loadMotionSyncFromUrl(v, P = Av) {
     try {
-      const a = await (await fetch(v)).arrayBuffer();
-      this.loadMotionSync(a, P);
+      const e = await (await fetch(v)).arrayBuffer();
+      this.loadMotionSync(e, P);
     } catch {
       console.warn("Failed to loadMotionSync(). Use default fallback."), await this.loadDefaultMotionSync(P);
     }
   }
 }
 export {
-  JP as MotionSync,
-  TP as getAudioContext,
-  dP as initAudioContext
+  hP as MotionSync,
+  lP as getAudioContext,
+  DP as initAudioContext
 };
