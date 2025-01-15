@@ -26,6 +26,7 @@
     "dist"
   ],
   "scripts": {
+    "dev": "cd examples && npm run dev",
     "build": "vite build",
     "predeploy": "cd examples && npm run build",
     "deploy": "gh-pages -d examples/dist"

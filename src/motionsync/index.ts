@@ -36,7 +36,6 @@ export class MotionSync {
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
     this.reset();
-
     this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
   }
 
@@ -122,7 +121,6 @@ export class MotionSync {
         .getChannelData(0)
         .slice(this.previousSamplePosition, currentSamplePosition);
 
-      // 假设 soundBuffer 和 motionSync 是已经定义好的对象
       for (let index = 0; index < currentAudioSamples.length; index++) {
         this.soundBuffer.pushBack(currentAudioSamples[index]);
       }
@@ -151,15 +149,12 @@ export class MotionSync {
   }
 
   private removeProcessedData(size: number) {
-    // 假设 soundBuffer 有一个 remove 方法来移除处理过的数据
-
     const buffer = this.soundBuffer;
     if (size < buffer.getSize()) {
       if (!buffer?.begin() || buffer?._size <= size) {
-        return buffer; // 削除範囲外
+        return buffer;
       }
 
-      // 削除
       buffer._ptr.splice(0, size);
       buffer._size -= size;
       return buffer;
