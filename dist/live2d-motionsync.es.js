@@ -3486,7 +3486,6 @@ class av {
       const i = this._settings.at(b).cubismParameterList, n = i.getSize();
       for (let c = 0; c < n; c++) {
         let s = n;
-        console.log(v);
         for (let o = 0; o < v.getParameterCount(); o++)
           if (
             // model

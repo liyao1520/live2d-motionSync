@@ -3,6 +3,13 @@ import dts from "vite-plugin-dts";
 
 export default defineConfig({
   build: {
+    // console
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
     lib: {
       entry: "./src/index.ts",
       name: "Live2dLipSync",

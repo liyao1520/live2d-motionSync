@@ -12,8 +12,8 @@ importers:
         specifier: ^5.23.0
         version: 5.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       live2d-motionsync:
-        specifier: 0.0.1-beta-2
-        version: 0.0.1-beta-2
+        specifier: 0.0.3
+        version: 0.0.3
       pixi-live2d-display:
         specifier: ^0.4.0
         version: 0.4.0(76g3zz2nt7dtjnktvdvk76m2oe)
@@ -1474,8 +1474,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  live2d-motionsync@0.0.1-beta-2:
-    resolution: {integrity: sha512-R/PrTFo39o9Ji3LvDSzBuJWlqUL5PMz634eVVaFs9srJRMy9RRSD+24YxBTCcIJfsEXVHjsNX/WaEm7gJF7N6A==}
+  live2d-motionsync@0.0.3:
+    resolution: {integrity: sha512-ssqeDbnk4xLnj1dL6zwuc28CCsvhG9ZUh9lz2t7SR4yVJXh6JRSi1O3yKmQNpeUcxrNLYDJ2j7moy6aso0hFkw==}
 
   locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==}
@@ -3660,7 +3660,7 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  live2d-motionsync@0.0.1-beta-2: {}
+  live2d-motionsync@0.0.3: {}
 
   locate-path@5.0.0:
     dependencies:
