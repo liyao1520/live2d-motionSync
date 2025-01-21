@@ -29,16 +29,16 @@ export class MotionSync {
       });
   }
   public updateMotionSync(): void {
-    // 現在フレームの時間を秒単位で取得
-    // NOTE: ブラウザやブラウザ側の設定により、performance.now() の精度が異なる可能性に注意
-    const currentAudioTime = performance.now() / 1000.0; // convert to seconds.
+    // 获取当前帧的时间（以秒为单位）
+    // 注意：根据浏览器和浏览器设置的不同，performance.now() 的精度可能会有所不同
+    const currentAudioTime = performance.now() / 1000.0; // 转换为秒
 
-    // サウンドバッファの設定
+    // 设置声音缓冲区
     const buffer = LAppInputDevice.getInstance().pop();
 
     if (!buffer) return;
     this._motionSync.setSoundBuffer(0, buffer, 0);
-    console.log(buffer);
+
     this._motionSync.updateParameters(this._model, currentAudioTime);
   }
   private modelUpdateWithMotionSync() {
@@ -86,9 +86,9 @@ export class MotionSync {
 export let s_instance: LAppInputDevice = null;
 export let connected: boolean = false;
 /**
- * AudioWorklet からデータを保持しておくためのバッファクラス
+ * 用于保存 AudioWorklet 数据的缓冲区类
  *
- * LAppInputDevice 内部でのみ使用
+ * 仅在 LAppInputDevice 内部使用
  */
 class AudioBuffer {
   private _buffer: Float32Array;
@@ -138,10 +138,10 @@ class AudioBuffer {
 
 export class LAppInputDevice {
   /**
-   * クラスのインスタンス（シングルトン）を返す。
-   * インスタンスが生成されていない場合は内部でインスタンスを生成する。
+   * 返回类的实例（单例模式）
+   * 如果实例尚未创建，则在内部创建实例
    *
-   * @return クラスのインスタンス
+   * @return 类的实例
    */
   public static getInstance(): LAppInputDevice {
     if (s_instance == null) {
@@ -158,8 +158,7 @@ export class LAppInputDevice {
   public async initialize(): Promise<boolean> {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const audios = devices.filter(
-      (value, _index, _array) =>
-        value.kind === "audioinput" && value.deviceId === "default"
+      (value, _index, _array) => value.kind === "audioinput"
     );
 
     if (audios.length == 0) {
@@ -171,6 +170,7 @@ export class LAppInputDevice {
     };
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     const tracks = stream.getAudioTracks();
+
     if (tracks.length == 0) {
       return false;
     }
@@ -245,7 +245,7 @@ export class LAppInputDevice {
 }
 
 /**
- * WorkletProcessorモジュール用の型定義
+ * WorkletProcessor模块的类型定义
  */
 export interface LAppResponseObject {
   eventType: string;

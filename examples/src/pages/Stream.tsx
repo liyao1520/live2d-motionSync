@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 import { Live2DModel } from "pixi-live2d-display";
 import { useEffect, useRef, useState } from "react";
 import { MotionSync } from "../../../src/motionsync/stream";
-import { Button, Card, Input, Select, Space, Spin } from "antd";
+import { Spin } from "antd";
 import { modelMap } from "../models";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -10,23 +10,18 @@ import { modelMap } from "../models";
 
 export default function App() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [text, setText] = useState("");
+
   const motionSync = useRef<MotionSync>();
-  const modelName =
-    new URLSearchParams(window.location.search).get("model") ||
-    "kei_vowels_pro";
+
   const [loading, setLoading] = useState(false);
 
-  const play = async () => {
-    if (!motionSync.current) return;
-    motionSync.current.start();
-  };
   useEffect(() => {
     let app: PIXI.Application;
     let model: Live2DModel;
     const loadModel = async () => {
       if (!canvasRef.current) return;
       setLoading(true);
+      const modelName = "kei_vowels_pro";
       const modelUrl = modelMap[modelName];
       app = new PIXI.Application({
         view: canvasRef.current,
@@ -53,13 +48,14 @@ export default function App() {
         modelUrl.replace(/.model(.)?.json/, ".motionsync3.json")
       );
       setLoading(false);
+      motionSync.current.start();
     };
     loadModel();
     return () => {
       app?.destroy();
       model?.destroy();
     };
-  }, [modelName]);
+  }, []);
 
   return (
     <div className="size-full flex">
@@ -70,47 +66,6 @@ export default function App() {
             <Spin />
           </div>
         )}
-      </div>
-      <div className="flex-1 flex flex-col gap-2 justify-center">
-        <Card title="config" className="max-w-[600px]">
-          <div className="flex flex-col gap-2">
-            <div>select model:</div>
-            <Select
-              className="w-full"
-              value={modelName}
-              onChange={(value) => {
-                window.location.href = `/live2d-motionSync/?model=${value}`;
-              }}
-              options={Object.keys(modelMap).map((modelName) => ({
-                label: modelName,
-                value: modelName,
-              }))}
-            />
-            <div>default text:</div>
-            <Space>
-              <Button
-                type="primary"
-                onClick={async () => {
-                  // motionSync.current?.playStream();
-                }}
-              >
-                Play
-              </Button>
-              <Button danger>Stop</Button>
-            </Space>
-            <div>input text:</div>
-            <Space>
-              <Input
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-                placeholder="input text"
-              />
-              <Button type="primary" onClick={play}>
-                Play
-              </Button>
-            </Space>
-          </div>
-        </Card>
       </div>
     </div>
   );
