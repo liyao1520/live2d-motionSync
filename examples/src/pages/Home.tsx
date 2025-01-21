@@ -3,8 +3,8 @@ import { Live2DModel } from "pixi-live2d-display";
 import { useEffect, useRef, useState } from "react";
 import { MotionSync } from "live2d-motionsync";
 import { Button, Card, Input, Select, Space, Spin } from "antd";
-import { modelMap } from "./models";
-import { tts } from "./tts";
+import { modelMap } from "../models";
+import { tts } from "../tts";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).PIXI = PIXI;
 async function arrayBufferToAudioBuffer(arrayBuffer: ArrayBuffer) {
