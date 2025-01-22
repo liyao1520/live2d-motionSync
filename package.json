@@ -1,6 +1,6 @@
 {
   "name": "live2d-motionsync",
-  "version": "0.0.3",
+  "version": "0.0.4-beta-2",
   "type": "module",
   "private": false,
   "license": "MIT",
@@ -16,12 +16,17 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/live2d-motionsync.d.ts",
-      "require": "./dist/live2d-motionsync.cjs.js",
-      "import": "./dist/live2d-motionsync.es.js"
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs.js",
+      "import": "./dist/index.es.js"
+    },
+    "./stream": {
+      "types": "./dist/stream.d.ts",
+      "require": "./dist/stream.cjs.js",
+      "import": "./dist/stream.es.js"
     }
   },
-  "types": "./dist/live2d-motionsync.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],

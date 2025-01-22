@@ -11,10 +11,12 @@ export default defineConfig({
       },
     },
     lib: {
-      entry: "./src/index.ts",
+      entry: ["./src/index.ts", "./src/stream.ts"],
       name: "Live2dLipSync",
       formats: ["es", "cjs"],
-      fileName: (format) => `live2d-motionsync.${format}.js`,
+      fileName: (format, entryName) => {
+        return `${entryName}.${format}.js`;
+      },
     },
   },
   plugins: [dts({ rollupTypes: true })],

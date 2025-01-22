@@ -89,7 +89,9 @@ export default function App() {
               className="w-full"
               value={modelName}
               onChange={(value) => {
-                window.location.href = `/live2d-motionSync/?model=${value}`;
+                window.location.href = `${
+                  import.meta.env.BASE_URL
+                }/?model=${value}`;
               }}
               options={Object.keys(modelMap).map((modelName) => ({
                 label: modelName,

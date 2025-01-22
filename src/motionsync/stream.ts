@@ -7,34 +7,110 @@ import {
 import fallbackMotionsync3 from "../assets/fallback.motionsync3.json?raw";
 import lappaudioworkletprocessorRaw from "../assets/lappaudioworkletprocessor.js?raw";
 const SamplesPerSec = 48000;
+
 export class MotionSync {
   private _motionSync: CubismMotionSync | null = null;
   private _internalModel: any;
   private _model: any;
+
+  private _context: AudioContext | null = null;
+
+  private _source: MediaStreamAudioSourceNode | null = null;
+
+  private _buffer: AudioBuffer | null = null;
   constructor(internalModel: any) {
     this._internalModel = internalModel;
     this._model = internalModel.coreModel;
     CubismMotionSync.startUp(new MotionSyncOption());
     CubismMotionSync.initialize();
   }
-  public start() {
-    LAppInputDevice.getInstance()
-      .initialize()
-      .then(() => {
-        LAppInputDevice.getInstance()
-          .connect()
-          .then(() => {
-            console.log("MotionSync Framework start.");
-          });
-      });
+  public async play(mediaStream: MediaStream) {
+    const tracks = mediaStream.getAudioTracks();
+    if (tracks.length == 0) {
+      CubismLogError("没有找到音频轨道.");
+      return;
+    }
+    const sampleRate: number = 48000;
+    const frameRate: number = 30; // 最低限期待的刷新率
+    const amount: number = 2; // 2帧分
+    this._buffer = new AudioBuffer(
+      Math.trunc((sampleRate / frameRate) * amount)
+    );
+    this._context = new AudioContext({ sampleRate: sampleRate });
+    this._source = this._context.createMediaStreamSource(
+      new MediaStream([tracks[0]])
+    );
+    const url = URL.createObjectURL(
+      new Blob([lappaudioworkletprocessorRaw], {
+        type: "application/javascript",
+      })
+    );
+
+    await this._context.audioWorklet.addModule(url);
+    const audioWorkletNode = new AudioWorkletNode(
+      this._context,
+      "lappaudioworkletprocessor"
+    );
+
+    this._source.connect(audioWorkletNode);
+    audioWorkletNode.port.onmessage = this.onMessage.bind(this);
+    // this._connected = true;
   }
+  public async reset() {
+    this.resetMouthStatus();
+    if (this._source) {
+      this._source.disconnect();
+      this._source = null;
+    }
+    if (this._context) {
+      this._context.close();
+      this._context = null;
+    }
+  }
+  private resetMouthStatus() {
+    try {
+      if (!this._motionSync) return;
+      const setting = this._motionSync.getData().getSetting(0);
+      if (!setting) return;
+      const cubismParameterList = setting.cubismParameterList;
+      if (!cubismParameterList) return;
+      const mouthIndex = cubismParameterList._ptr.map(
+        (item) => item.parameterIndex
+      );
+      for (const index of mouthIndex) {
+        this._model.setParameterValueByIndex(index, 0);
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  public pop(): csmVector<number> | undefined {
+    if (!this._buffer) {
+      return undefined;
+    }
+    const buffer = this._buffer.toVector();
+    this._buffer.clear();
+    return buffer;
+  }
+  private onMessage(e: MessageEvent<any>) {
+    // 元がany型なので定義に入れる。
+    const data: LAppResponseObject = e.data;
+
+    // WorkletProcessorモジュールからデータを取得
+    if (data.eventType === "data" && data.audioBuffer) {
+      for (let i = 0; i < data.audioBuffer.length; i++) {
+        this._buffer.addLast(data.audioBuffer[i]);
+      }
+    }
+  }
+
   public updateMotionSync(): void {
     // 获取当前帧的时间（以秒为单位）
     // 注意：根据浏览器和浏览器设置的不同，performance.now() 的精度可能会有所不同
     const currentAudioTime = performance.now() / 1000.0; // 转换为秒
 
     // 设置声音缓冲区
-    const buffer = LAppInputDevice.getInstance().pop();
+    const buffer = this.pop();
 
     if (!buffer) return;
     this._motionSync.setSoundBuffer(0, buffer, 0);
@@ -83,8 +159,6 @@ export class MotionSync {
     }
   }
 }
-export let s_instance: LAppInputDevice = null;
-export let connected: boolean = false;
 /**
  * 用于保存 AudioWorklet 数据的缓冲区类
  *
@@ -134,114 +208,6 @@ class AudioBuffer {
     this._size = 0;
     this._head = 0;
   }
-}
-
-export class LAppInputDevice {
-  /**
-   * 返回类的实例（单例模式）
-   * 如果实例尚未创建，则在内部创建实例
-   *
-   * @return 类的实例
-   */
-  public static getInstance(): LAppInputDevice {
-    if (s_instance == null) {
-      s_instance = new LAppInputDevice();
-    }
-
-    return s_instance;
-  }
-
-  private _source: MediaStreamAudioSourceNode;
-  private _context: AudioContext;
-  private _buffer: AudioBuffer;
-
-  public async initialize(): Promise<boolean> {
-    const devices = await navigator.mediaDevices.enumerateDevices();
-    const audios = devices.filter(
-      (value, _index, _array) => value.kind === "audioinput"
-    );
-
-    if (audios.length == 0) {
-      CubismLogError("No audio input devices found.");
-      return false;
-    }
-    const constraints: MediaStreamConstraints = {
-      audio: { deviceId: audios[0].deviceId },
-    };
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    const tracks = stream.getAudioTracks();
-
-    if (tracks.length == 0) {
-      return false;
-    }
-    const sampleRate = tracks[0].getSettings().sampleRate;
-    // 多少余裕を持たせ(30fps)2フレーム分程度でバッファを作成
-    // NOTE: `requestAnimationFrame()` がコールバックを呼ぶ仕様上の間隔はディスプレイリフレッシュレート依存のため
-    // 本来はこのリフレッシュレートに沿ったfps値を設定すべきであるが、これを取得するAPIが存在しないため。
-    // リフレッシュレートが30Hzを下回ることは基本的にはない想定で30としています。
-    const frameRate: number = 30; // 最低限期待されるリフレッシュレート
-    const amount: number = 2; // 2フレーム分
-    this._buffer = new AudioBuffer(
-      Math.trunc((sampleRate / frameRate) * amount)
-    );
-    this._context = new AudioContext({ sampleRate: sampleRate });
-    this._source = this._context.createMediaStreamSource(
-      new MediaStream([tracks[0]])
-    );
-
-    return true;
-  }
-
-  public async connect(): Promise<void> {
-    if (connected) {
-      return;
-    }
-    const url = URL.createObjectURL(
-      new Blob([lappaudioworkletprocessorRaw], {
-        type: "application/javascript",
-      })
-    );
-
-    await this._context.audioWorklet.addModule(url);
-    const audioWorkletNode = new AudioWorkletNode(
-      this._context,
-      "lappaudioworkletprocessor"
-    );
-
-    this._source.connect(audioWorkletNode);
-    audioWorkletNode.port.onmessage = this.onMessage.bind(this);
-    connected = true;
-  }
-
-  public pop(): csmVector<number> | undefined {
-    if (!this._buffer) {
-      return undefined;
-    }
-    const buffer = this._buffer.toVector();
-    this._buffer.clear();
-    return buffer;
-  }
-
-  private onMessage(e: MessageEvent<any>) {
-    // 元がany型なので定義に入れる。
-    const data: LAppResponseObject = e.data;
-
-    // WorkletProcessorモジュールからデータを取得
-    if (data.eventType === "data" && data.audioBuffer) {
-      for (let i = 0; i < data.audioBuffer.length; i++) {
-        this._buffer.addLast(data.audioBuffer[i]);
-      }
-    }
-  }
-
-  public update(): void {
-    throw new Error("Method not implemented.");
-  }
-  public release(): void {
-    throw new Error("Method not implemented.");
-  }
-
-  public constructor() {}
 }
 
 /**

@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 import { Live2DModel } from "pixi-live2d-display";
 import { useEffect, useRef, useState } from "react";
 import { MotionSync } from "../../../src/motionsync/stream";
-import { Spin } from "antd";
+import { Button, Spin } from "antd";
 import { modelMap } from "../models";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,7 +48,7 @@ export default function App() {
         modelUrl.replace(/.model(.)?.json/, ".motionsync3.json")
       );
       setLoading(false);
-      motionSync.current.start();
+      play();
     };
     loadModel();
     return () => {
@@ -56,6 +56,20 @@ export default function App() {
       model?.destroy();
     };
   }, []);
+  const mediaStreamRef = useRef<MediaStream>();
+  const play = async () => {
+    if (!motionSync.current) return;
+    mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+    });
+    motionSync.current.play(mediaStreamRef.current);
+  };
+
+  const stop = () => {
+    if (!motionSync.current) return;
+    motionSync.current.stop();
+    mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+  };
 
   return (
     <div className="size-full flex">
@@ -66,6 +80,10 @@ export default function App() {
             <Spin />
           </div>
         )}
+      </div>
+      <div className="flex-1 flex items-center justify-center">
+        <Button onClick={play}>play</Button>
+        <Button onClick={stop}>stop</Button>
       </div>
     </div>
   );
