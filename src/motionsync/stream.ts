@@ -25,6 +25,9 @@ export class MotionSync {
     CubismMotionSync.initialize();
   }
   public async play(mediaStream: MediaStream) {
+    if (this._source || this._context) {
+      this.reset();
+    }
     const tracks = mediaStream.getAudioTracks();
     if (tracks.length == 0) {
       CubismLogError("没有找到音频轨道.");
@@ -47,6 +50,7 @@ export class MotionSync {
     );
 
     await this._context.audioWorklet.addModule(url);
+
     const audioWorkletNode = new AudioWorkletNode(
       this._context,
       "lappaudioworkletprocessor"
@@ -54,10 +58,8 @@ export class MotionSync {
 
     this._source.connect(audioWorkletNode);
     audioWorkletNode.port.onmessage = this.onMessage.bind(this);
-    // this._connected = true;
   }
   public async reset() {
-    this.resetMouthStatus();
     if (this._source) {
       this._source.disconnect();
       this._source = null;
@@ -66,6 +68,8 @@ export class MotionSync {
       this._context.close();
       this._context = null;
     }
+    this._buffer = null;
+    this.resetMouthStatus();
   }
   private resetMouthStatus() {
     try {
@@ -84,7 +88,7 @@ export class MotionSync {
       console.error(e);
     }
   }
-  public pop(): csmVector<number> | undefined {
+  private pop(): csmVector<number> | undefined {
     if (!this._buffer) {
       return undefined;
     }
@@ -93,10 +97,11 @@ export class MotionSync {
     return buffer;
   }
   private onMessage(e: MessageEvent<any>) {
-    // 元がany型なので定義に入れる。
-    const data: LAppResponseObject = e.data;
+    const data: {
+      eventType: string;
+      audioBuffer: Float32Array;
+    } = e.data;
 
-    // WorkletProcessorモジュールからデータを取得
     if (data.eventType === "data" && data.audioBuffer) {
       for (let i = 0; i < data.audioBuffer.length; i++) {
         this._buffer.addLast(data.audioBuffer[i]);
@@ -208,12 +213,4 @@ class AudioBuffer {
     this._size = 0;
     this._head = 0;
   }
-}
-
-/**
- * WorkletProcessor模块的类型定义
- */
-export interface LAppResponseObject {
-  eventType: string;
-  audioBuffer: Float32Array;
 }

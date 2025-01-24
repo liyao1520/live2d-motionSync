@@ -67,7 +67,7 @@ export default function App() {
 
   const stop = () => {
     if (!motionSync.current) return;
-    motionSync.current.stop();
+    motionSync.current.reset();
     mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
   };
 
