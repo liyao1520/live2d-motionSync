@@ -57,18 +57,21 @@ export default function App() {
     };
   }, []);
   const mediaStreamRef = useRef<MediaStream>();
+  const [isPlaying, setIsPlaying] = useState(false);
   const play = async () => {
     if (!motionSync.current) return;
     mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({
       audio: true,
     });
     motionSync.current.play(mediaStreamRef.current);
+    setIsPlaying(true);
   };
 
   const stop = () => {
     if (!motionSync.current) return;
     motionSync.current.reset();
     mediaStreamRef.current?.getTracks().forEach((track) => track.stop());
+    setIsPlaying(false);
   };
 
   return (
@@ -82,11 +85,18 @@ export default function App() {
         )}
       </div>
       <div className="flex-1 flex items-center justify-center gap-[20px]">
-        <Button type="primary" onClick={play}>
-          play
-        </Button>
-        <Button type="primary" onClick={stop}>
-          reset
+        <Button
+          type="primary"
+          danger={isPlaying}
+          onClick={() => {
+            if (isPlaying) {
+              stop();
+            } else {
+              play();
+            }
+          }}
+        >
+          {isPlaying ? "reset" : "play"}
         </Button>
       </div>
     </div>
