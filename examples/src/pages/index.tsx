@@ -9,7 +9,16 @@ export default function Index() {
           audio demo
         </Button>
 
-        <Button type="link" href={import.meta.env.BASE_URL + "/stream"}>
+        <Button
+          type="link"
+          onClick={() => {
+            console.log(import.meta.env.BASE_URL + "/#stream");
+            location.href = import.meta.env.BASE_URL + "/#stream";
+            setTimeout(() => {
+              location.reload();
+            }, 15);
+          }}
+        >
           audio stream demo
         </Button>
       </div>

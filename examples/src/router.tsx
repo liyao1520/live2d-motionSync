@@ -1,28 +1,23 @@
-import { createBrowserRouter } from "react-router";
+import { createHashRouter } from "react-router";
 import Audio from "./pages/Audio";
 import Stream from "./pages/Stream";
 import Index from "./pages";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      Component: Index,
-      children: [
-        {
-          path: "/",
-          element: <Audio />,
-        },
-        {
-          path: "/stream",
-          element: <Stream />,
-        },
-      ],
-    },
-  ],
+const router = createHashRouter([
   {
-    basename: import.meta.env.BASE_URL,
-  }
-);
+    path: "/",
+    Component: Index,
+    children: [
+      {
+        path: "/",
+        element: <Audio />,
+      },
+      {
+        path: "/stream",
+        element: <Stream />,
+      },
+    ],
+  },
+]);
 
 export default router;
