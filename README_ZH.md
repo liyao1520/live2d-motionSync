@@ -24,8 +24,16 @@ npm install live2d-motionsync
 
 ## 使用
 
+普通音频
+
 ```ts
 import { MotionSync } from "live2d-motionsync";
+```
+
+媒体流
+
+```ts
+import { MotionSync } from "live2d-motionsync/stream";
 ```
 
 提前安装 `pixi-live2d-display`
@@ -156,5 +164,25 @@ window.PIXI = PIXI;
 - **描述:**
 
   - 该方法从指定的 URL 获取运动同步数据并初始化 `CubismMotionSync` 实例。如果获取失败，则回退到加载默认的运动同步数据。
+
+## MotionSync Stream
+
+```ts
+import { MotionSync } from "live2d-motionsync/stream";
+
+const motionSync = new MotionSync(model.internalModel);
+motionSync.loadMotionSyncFromUrl("kei_vowels_pro.motionsync3.json");
+const mediaStream = await navigator.mediaDevices.getUserMedia({
+  audio: true,
+});
+motionSync.play(mediaStream);
+
+function stop() {
+  motionSync.reset();
+  mediaStream.getTracks().forEach((track) => track.stop());
+}
+
+// stop()
+```
 
 - [pixi-live2d-display](https://github.com/pixijs/pixi-live2d-display)

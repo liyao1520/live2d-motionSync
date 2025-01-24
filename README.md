@@ -26,6 +26,18 @@ npm install live2d-motionsync
 
 ## Usage
 
+audio
+
+```ts
+import { MotionSync } from "live2d-motionsync";
+```
+
+media stream
+
+```ts
+import { MotionSync } from "live2d-motionsync/stream";
+```
+
 Install `pixi-live2d-display`
 
 ```bash
@@ -154,5 +166,25 @@ Load motion sync data from URL.
 - **Description:**
 
   - This method fetches the motion sync data from the specified URL and initializes the `CubismMotionSync` instance. If the fetch fails, it falls back to loading the default motion sync data.
+
+## MotionSync Stream
+
+```ts
+import { MotionSync } from "live2d-motionsync/stream";
+
+const motionSync = new MotionSync(model.internalModel);
+motionSync.loadMotionSyncFromUrl("kei_vowels_pro.motionsync3.json");
+const mediaStream = await navigator.mediaDevices.getUserMedia({
+  audio: true,
+});
+motionSync.play(mediaStream);
+
+function stop() {
+  motionSync.reset();
+  mediaStream.getTracks().forEach((track) => track.stop());
+}
+
+// stop()
+```
 
 - [pixi-live2d-display](https://github.com/pixijs/pixi-live2d-display)
