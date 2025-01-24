@@ -1,6 +1,6 @@
 {
   "name": "live2d-motionsync",
-  "version": "0.0.4-beta-2",
+  "version": "0.0.4",
   "type": "module",
   "private": false,
   "license": "MIT",

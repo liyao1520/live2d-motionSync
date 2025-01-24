@@ -1,16 +1,23 @@
 import { createBrowserRouter } from "react-router";
-import Home from "./pages/Home";
+import Audio from "./pages/Audio";
 import Stream from "./pages/Stream";
+import Index from "./pages";
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/stream",
-      element: <Stream />,
+      Component: Index,
+      children: [
+        {
+          path: "/",
+          element: <Audio />,
+        },
+        {
+          path: "/stream",
+          element: <Stream />,
+        },
+      ],
     },
   ],
   {

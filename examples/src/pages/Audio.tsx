@@ -16,7 +16,7 @@ async function arrayBufferToAudioBuffer(arrayBuffer: ArrayBuffer) {
 
   return audioBuffer;
 }
-export default function App() {
+export default function Audio() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [text, setText] = useState("");
   const motionSync = useRef<MotionSync>();
@@ -109,7 +109,7 @@ export default function App() {
                 Play
               </Button>
               <Button danger onClick={() => motionSync.current?.reset()}>
-                Stop
+                Reset
               </Button>
             </Space>
             <div>input text:</div>

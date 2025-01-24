@@ -81,9 +81,13 @@ export default function App() {
           </div>
         )}
       </div>
-      <div className="flex-1 flex items-center justify-center">
-        <Button onClick={play}>play</Button>
-        <Button onClick={stop}>stop</Button>
+      <div className="flex-1 flex items-center justify-center gap-[20px]">
+        <Button type="primary" onClick={play}>
+          play
+        </Button>
+        <Button type="primary" onClick={stop}>
+          reset
+        </Button>
       </div>
     </div>
   );
