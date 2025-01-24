@@ -1,0 +1,290 @@
+{
+  "SwitchMode": 0,
+  "RemoveAllExpKeys": [
+    0,
+    0,
+    0
+  ],
+  "MotionShortcutKeyDatas": {
+    "motions/sleep.motion3.json": {
+      "MotionName": "motions/sleep.motion3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "PlayMaxTime": 0.0,
+      "Mode": 1,
+      "Keys": [
+        306,
+        91,
+        0
+      ],
+      "FadeDuration": 0.5
+    },
+    "motions/wakeup.motion3.json": {
+      "MotionName": "motions/wakeup.motion3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "PlayMaxTime": 0.0,
+      "Mode": 0,
+      "Keys": [
+        306,
+        93,
+        0
+      ],
+      "FadeDuration": 0.5
+    }
+  },
+  "ExpShortcutKeyDatas": {
+    "expressions/amazed.exp3.json": {
+      "ExpName": "expressions/amazed.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        308,
+        49,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/angry.exp3.json": {
+      "ExpName": "expressions/angry.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        308,
+        50,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/cat.exp3.json": {
+      "ExpName": "expressions/cat.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        306,
+        51,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/cry.exp3.json": {
+      "ExpName": "expressions/cry.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        308,
+        51,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/despair.exp3.json": {
+      "ExpName": "expressions/despair.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        308,
+        52,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/love.exp3.json": {
+      "ExpName": "expressions/love.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        308,
+        53,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/shy.exp3.json": {
+      "ExpName": "expressions/shy.exp3.json",
+      "IsEnable": false,
+      "IsGlobal": false,
+      "Keys": [
+        308,
+        50,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/why.exp3.json": {
+      "ExpName": "expressions/why.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        306,
+        49,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "expressions/wish.exp3.json": {
+      "ExpName": "expressions/wish.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        306,
+        50,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/gress.exp3.json": {
+      "ExpName": "switch/gress.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        0,
+        0,
+        0
+      ],
+      "Mode": 1,
+      "FadeDuration": 0.5
+    },
+    "switch/opposite_switch.exp3.json": {
+      "ExpName": "switch/opposite_switch.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        306,
+        48,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_backhair.exp3.json": {
+      "ExpName": "switch/show_backhair.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        306,
+        56,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_bell.exp3.json": {
+      "ExpName": "switch/show_bell.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        49,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_collar.exp3.json": {
+      "ExpName": "switch/show_collar.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        50,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_jacket.exp3.json": {
+      "ExpName": "switch/show_jacket.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        51,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_shoes.exp3.json": {
+      "ExpName": "switch/show_shoes.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        55,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_skirt.exp3.json": {
+      "ExpName": "switch/show_skirt.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        52,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_sleeve.exp3.json": {
+      "ExpName": "switch/show_sleeve.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        53,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_socks.exp3.json": {
+      "ExpName": "switch/show_socks.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        54,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/show_undercoat.exp3.json": {
+      "ExpName": "switch/show_undercoat.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        304,
+        56,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    },
+    "switch/tail_up.exp3.json": {
+      "ExpName": "switch/tail_up.exp3.json",
+      "IsEnable": true,
+      "IsGlobal": true,
+      "Keys": [
+        306,
+        57,
+        0
+      ],
+      "Mode": 0,
+      "FadeDuration": 0.5
+    }
+  }
+}

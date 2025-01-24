@@ -1,0 +1,963 @@
+{
+  "SceneId": 0,
+  "FigmaId": "ca538bd8-2878-47aa-9b24-82c59f1fe800",
+  "FigmaName": "fuko.model3",
+  "Moc3JosnFilePath": "E:\\Nestle\\Live2D\\output\\fuko\\fuko.model3.json",
+  "FolderRootPath": "E:/Nestle/Live2D/output/fuko",
+  "Visible": true,
+  "OrderSorting": 0,
+  "Position": {
+    "X": 0.0,
+    "Y": 0.0,
+    "Z": 0.0
+  },
+  "Rotation": {
+    "X": 0.0,
+    "Y": 0.0,
+    "Z": 0.0
+  },
+  "Scale": {
+    "X": 1.0,
+    "Y": 1.0,
+    "Z": 1.0
+  },
+  "RoleMotionExpression": {
+    "AnimationSwitchMode": 0,
+    "Motions": [],
+    "Expresses": [
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 0,
+        "ExpressionName": "angry",
+        "Path": "angry",
+        "ShortcutKey": [
+          308,
+          49,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 1,
+        "ExpressionName": "cry",
+        "Path": "cry",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 2,
+        "ExpressionName": "despair",
+        "Path": "despair",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 3,
+        "ExpressionName": "love",
+        "Path": "love",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 4,
+        "ExpressionName": "normal",
+        "Path": "normal",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 5,
+        "ExpressionName": "shy",
+        "Path": "shy",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 6,
+        "ExpressionName": "why",
+        "Path": "why",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 7,
+        "ExpressionName": "wish",
+        "Path": "wish",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 8,
+        "ExpressionName": "wink_left",
+        "Path": "wink_left",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 9,
+        "ExpressionName": "wink_right",
+        "Path": "wink_right",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 10,
+        "ExpressionName": "amazed",
+        "Path": "amazed",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 11,
+        "ExpressionName": "tail_up",
+        "Path": "tail_up",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 12,
+        "ExpressionName": "show_jacket",
+        "Path": "show_jacket",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 13,
+        "ExpressionName": "show_skirt",
+        "Path": "show_skirt",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 14,
+        "ExpressionName": "show_sleeve",
+        "Path": "show_sleeve",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 15,
+        "ExpressionName": "show_undercoat",
+        "Path": "show_undercoat",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 16,
+        "ExpressionName": "show_socks",
+        "Path": "show_socks",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 17,
+        "ExpressionName": "show_shoes",
+        "Path": "show_shoes",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 18,
+        "ExpressionName": "show_bell",
+        "Path": "show_bell",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 19,
+        "ExpressionName": "show_collar",
+        "Path": "show_collar",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 20,
+        "ExpressionName": "show_backhair",
+        "Path": "show_backhair",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      },
+      {
+        "Enable": true,
+        "IsGlobal": true,
+        "Group": "Expression",
+        "Index": 21,
+        "ExpressionName": "opposite_switch",
+        "Path": "opposite_switch",
+        "ShortcutKey": [
+          0,
+          0,
+          0
+        ],
+        "StartupMode": 0,
+        "PlayDuration": 0.5
+      }
+    ]
+  },
+  "CommonFaceTrackerSettingData": {
+    "IsAutoBlink": false,
+    "IsSyncEyes": true,
+    "IsSyncBrows": true,
+    "IsReturnDefaultLostTracker": true,
+    "IsAutoBreath": true
+  },
+  "SenseTimeFaceTrackerSettingLocalData": {
+    "Basics_EyesSetting": {
+      "Low": 0.0,
+      "High": 1.0,
+      "Smooth": 1.0
+    },
+    "Basics_MouthSetting": {
+      "Smooth": 1.0
+    },
+    "Basics_MotionSetting": {
+      "Smooth": 1.0
+    }
+  },
+  "SenseTimeFaceTrackerSettingWithModelData": {
+    "Map": {
+      "FaceAngleX": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 3,
+            "CubismParameter": "ParamAngleX",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -30.0,
+            "ParameterMax": 30.0,
+            "Smooth": 0.15,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 3,
+            "CubismParameter": "ParamBodyAngleX",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -10.0,
+            "ParameterMax": 10.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "FaceAngleY": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 4,
+            "CubismParameter": "ParamAngleY",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -30.0,
+            "ParameterMax": 30.0,
+            "Smooth": 0.15,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 4,
+            "CubismParameter": "ParamBodyAngleY",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -10.0,
+            "ParameterMax": 10.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "FaceAngleZ": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 5,
+            "CubismParameter": "ParamAngleZ",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -30.0,
+            "ParameterMax": 30.0,
+            "Smooth": 0.3,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 5,
+            "CubismParameter": "ParamBodyAngleZ",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -10.0,
+            "ParameterMax": 10.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "MouthSmile": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 6,
+            "CubismParameter": "ParamMouthForm",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 6,
+            "CubismParameter": "ParamEyeLSmile",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 6,
+            "CubismParameter": "ParamEyeRSmile",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "MouthOpen": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 8,
+            "CubismParameter": "ParamMouthOpenY",
+            "FaceTrackerDataMin": 0.15,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.05,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "BrowLeftY": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 9,
+            "CubismParameter": "ParamBrowLY",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "BrowRightY": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 10,
+            "CubismParameter": "ParamBrowRY",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "BrowAngle": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 11,
+            "CubismParameter": "ParamBrowLAngle",
+            "FaceTrackerDataMin": -0.5,
+            "FaceTrackerDataMax": 0.5,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 11,
+            "CubismParameter": "ParamBrowRAngle",
+            "FaceTrackerDataMin": -0.5,
+            "FaceTrackerDataMax": 0.5,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "EyeOpenLeft": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 13,
+            "CubismParameter": "ParamEyeLOpen",
+            "FaceTrackerDataMin": 0.2,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.5,
+            "Smooth": 0.05,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "EyeOpenRight": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 14,
+            "CubismParameter": "ParamEyeROpen",
+            "FaceTrackerDataMin": 0.2,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.5,
+            "Smooth": 0.05,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      }
+    }
+  },
+  "ARKitFaceTrackerSettingWithModelData": {
+    "Map": {
+      "FacePositionX": {
+        "OnUse": true,
+        "FaceTrackerParameters": []
+      },
+      "FacePositionY": {
+        "OnUse": true,
+        "FaceTrackerParameters": []
+      },
+      "FacePositionZ": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 2,
+            "CubismParameter": "ParamBodyUpper",
+            "FaceTrackerDataMin": -10.0,
+            "FaceTrackerDataMax": 10.0,
+            "ParameterMin": -10.0,
+            "ParameterMax": 10.0,
+            "Smooth": 0.8,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "FaceAngleX": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 3,
+            "CubismParameter": "ParamAngleX",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -30.0,
+            "ParameterMax": 30.0,
+            "Smooth": 0.15,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 3,
+            "CubismParameter": "ParamBodyAngleX",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -10.0,
+            "ParameterMax": 10.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "FaceAngleY": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 4,
+            "CubismParameter": "ParamAngleY",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -30.0,
+            "ParameterMax": 30.0,
+            "Smooth": 0.15,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 4,
+            "CubismParameter": "ParamBodyAngleY",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -10.0,
+            "ParameterMax": 10.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "FaceAngleZ": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 5,
+            "CubismParameter": "ParamAngleZ",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -30.0,
+            "ParameterMax": 30.0,
+            "Smooth": 0.3,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 5,
+            "CubismParameter": "ParamBodyAngleZ",
+            "FaceTrackerDataMin": -30.0,
+            "FaceTrackerDataMax": 30.0,
+            "ParameterMin": -10.0,
+            "ParameterMax": 10.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "MouthSmile": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 6,
+            "CubismParameter": "ParamMouthForm",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 6,
+            "CubismParameter": "ParamEyeLSmile",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 6,
+            "CubismParameter": "ParamEyeRSmile",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.2,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "MouthShrink": {
+        "OnUse": true,
+        "FaceTrackerParameters": []
+      },
+      "MouthOpen": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 8,
+            "CubismParameter": "ParamMouthOpenY",
+            "FaceTrackerDataMin": 0.0,
+            "FaceTrackerDataMax": 0.6,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.05,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "BrowLeftY": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 9,
+            "CubismParameter": "ParamBrowLY",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "BrowRightY": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 10,
+            "CubismParameter": "ParamBrowRY",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "BrowAngle": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 11,
+            "CubismParameter": "ParamBrowLAngle",
+            "FaceTrackerDataMin": -0.7,
+            "FaceTrackerDataMax": 0.7,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          },
+          {
+            "FaceTrackerDataName": 11,
+            "CubismParameter": "ParamBrowRAngle",
+            "FaceTrackerDataMin": -0.7,
+            "FaceTrackerDataMax": 0.7,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "TongueOut": {
+        "OnUse": true,
+        "FaceTrackerParameters": []
+      },
+      "EyeOpenLeft": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 13,
+            "CubismParameter": "ParamEyeLOpen",
+            "FaceTrackerDataMin": 0.2,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.5,
+            "Smooth": 0.05,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "EyeOpenRight": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 14,
+            "CubismParameter": "ParamEyeROpen",
+            "FaceTrackerDataMin": 0.2,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.5,
+            "Smooth": 0.05,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "EyeBallLeftX": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 15,
+            "CubismParameter": "ParamEyeBallX",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "EyeBallLeftY": {
+        "OnUse": true,
+        "FaceTrackerParameters": [
+          {
+            "FaceTrackerDataName": 16,
+            "CubismParameter": "ParamEyeBallY",
+            "FaceTrackerDataMin": -1.0,
+            "FaceTrackerDataMax": 1.0,
+            "ParameterMin": -1.0,
+            "ParameterMax": 1.0,
+            "Smooth": 0.1,
+            "FlipHorizontal": false,
+            "OnUse": true
+          }
+        ]
+      },
+      "EyeBallRightX": {
+        "OnUse": true,
+        "FaceTrackerParameters": []
+      },
+      "EyeBallRightY": {
+        "OnUse": true,
+        "FaceTrackerParameters": []
+      }
+    }
+  },
+  "RoleModelSetting": {
+    "IsPhysicalOpen": true,
+    "PhysicalImpactValue": 1.0
+  },
+  "RoleRigidSetting": {
+    "RigidHardnessValue": 0.5,
+    "IsRigidEffect": true,
+    "IsCannotRigid": false,
+    "RigidSize": {
+      "X": 1.0,
+      "Y": 2.0,
+      "Z": 0.002
+    },
+    "RigidOffset": {
+      "X": 0.0,
+      "Y": 0.0,
+      "Z": 0.0
+    },
+    "RigidScale": {
+      "X": 1.0,
+      "Y": 1.0,
+      "Z": 1.0
+    }
+  },
+  "BiliHarmonicMotionMap": {
+    "OnUse": true,
+    "HarmonicMotionConfigMap": [
+      {
+        "DisplayName": "",
+        "MotionData": {
+          "OnUse": true,
+          "CycleTime": 3.0
+        },
+        "List": [
+          {
+            "CubismParameter": "ParamBreath",
+            "DataMin": -1.0,
+            "DataMax": 1.0,
+            "ParameterMin": 0.0,
+            "ParameterMax": 1.0,
+            "OnUse": true
+          }
+        ]
+      }
+    ]
+  },
+  "CanEdit": false,
+  "PartConfigs": {
+    "Configs": {},
+    "Parts": {}
+  }
+}
