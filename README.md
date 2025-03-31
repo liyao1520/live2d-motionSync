@@ -74,7 +74,7 @@ window.PIXI = PIXI;
     console.log("play end");
   });
   // stop audio
-  // motionSync.stop();
+  // motionSync.reset();
 
   app.stage.addChild(model);
 

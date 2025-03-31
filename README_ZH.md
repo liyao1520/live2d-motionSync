@@ -72,7 +72,7 @@ window.PIXI = PIXI;
     console.log("播放完毕");
   });
   // 停止音频
-  // motionSync.stop();
+  // motionSync.reset();
 
   app.stage.addChild(model);
 
