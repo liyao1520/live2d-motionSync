@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import { Live2DModel } from "pixi-live2d-display";
 import { useEffect, useRef, useState } from "react";
-import { MotionSync } from "live2d-motionsync";
+import { MotionSync } from "../../../dist/index.es.js";
 import { Button, Card, Input, Select, Space, Spin } from "antd";
 import { modelMap } from "../models";
 import { tts } from "../tts";

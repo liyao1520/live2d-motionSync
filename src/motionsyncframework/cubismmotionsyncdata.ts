@@ -5,13 +5,13 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { csmString } from "../framework/type/csmstring";
-import { csmVector } from "../framework/type/csmvector";
-import { CubismLogWarning } from "../framework/utils/cubismdebug";
-import { CubismModel } from "../framework/model/cubismmodel";
-import { EngineType } from "./cubismmotionsyncutil";
-import { CubismMotionSyncDataJson } from "./cubismmotionsyncdatajson";
-import { CubismMotionSyncEngineMappingInfo } from "./cubismmotionsyncenginemappinginfo";
+import { csmString } from '../framework/type/csmstring';
+import { csmVector } from '../framework/type/csmvector';
+import { CubismLogWarning } from '../framework/utils/cubismdebug';
+import { CubismModel } from '../framework/model/cubismmodel';
+import { EngineType } from './cubismmotionsyncutil';
+import { CubismMotionSyncDataJson } from './cubismmotionsyncdatajson';
+import { CubismMotionSyncEngineMappingInfo } from './cubismmotionsyncenginemappinginfo';
 
 export class CubismMotionSyncData {
   /**
@@ -55,7 +55,7 @@ export class CubismMotionSyncData {
     );
 
     if (json._json == null || model == null) {
-      CubismLogWarning("Failed to parse .motionsync3.json.");
+      CubismLogWarning('Failed to parse .motionsync3.json.');
       return;
     }
 
@@ -70,7 +70,6 @@ export class CubismMotionSyncData {
 
     for (let index = 0; index < this._settings.getSize(); index++) {
       const cubismParameterList = this._settings.at(index).cubismParameterList;
-
       const parameterCount = cubismParameterList.getSize();
 
       for (
@@ -78,26 +77,36 @@ export class CubismMotionSyncData {
         cubismParameterIndex < parameterCount;
         cubismParameterIndex++
       ) {
-        let partIndex: number = parameterCount;
+        let parameterIndex: number = -1;
+
         for (
           let modelParameterIndex = 0;
           modelParameterIndex < model.getParameterCount();
           modelParameterIndex++
         ) {
-          // mock
           if (
             // model
             //   .getParameterId(modelParameterIndex)
             //   .isEqual(cubismParameterList.at(cubismParameterIndex).id)
 
+            // fix 
             model._parameterIds[modelParameterIndex] ===
             cubismParameterList.at(cubismParameterIndex).id.s
           ) {
-            partIndex = modelParameterIndex;
+            parameterIndex = modelParameterIndex;
             break;
           }
         }
-        cubismParameterList.at(cubismParameterIndex).parameterIndex = partIndex;
+        cubismParameterList.at(cubismParameterIndex).parameterIndex =
+          parameterIndex;
+
+        if (parameterIndex < 0) {
+          CubismLogWarning(
+            `Failed to find parameter index for ${
+              cubismParameterList.at(cubismParameterIndex).id.s
+            }`
+          );
+        }
       }
     }
 
@@ -217,7 +226,7 @@ export class CubismMotionSyncData {
  */
 export enum CubismMotionSyncDataUseCase {
   UseCase_Mouth = 0,
-  UseCase_Unknown,
+  UseCase_Unknown
 }
 
 /**
@@ -225,7 +234,7 @@ export enum CubismMotionSyncDataUseCase {
  */
 export enum CubismMotionSyncDataMappingType {
   MappingType_Shape = 0,
-  MappingType_Unknown,
+  MappingType_Unknown
 }
 
 /**
@@ -299,8 +308,7 @@ export class CubismMotionSyncDataSetting {
 }
 
 // Namespace definition for compatibility.
-import * as $ from "./cubismmotionsyncdata";
-
+import * as $ from './cubismmotionsyncdata';
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Live2DCubismMotionSyncFramework {
   export const CubismMotionSyncData = $.CubismMotionSyncData;

@@ -5,26 +5,26 @@
  * that can be found at https://www.live2d.com/eula/live2d-open-software-license-agreement_en.html.
  */
 
-import { LogLevel } from "../framework/live2dcubismframework";
-import { CubismModel } from "../framework/model/cubismmodel";
-import { csmVector } from "../framework/type/csmvector";
+import { LogLevel } from '../framework/live2dcubismframework';
+import { CubismModel } from '../framework/model/cubismmodel';
+import { csmVector } from '../framework/type/csmvector';
 import {
   CSM_ASSERT,
   CubismLogInfo,
-  CubismLogWarning,
-} from "../framework/utils/cubismdebug";
-import { CubismMath } from "../framework/math/cubismmath";
+  CubismLogWarning
+} from '../framework/utils/cubismdebug';
+import { CubismMath } from '../framework/math/cubismmath';
 import {
   CubismMotionSyncData,
-  CubismMotionSyncDataSetting,
-} from "./cubismmotionsyncdata";
-import { CubismMotionSyncEngineAnalysisResult } from "./cubismmotionsyncengineanalysisresult";
-import { CubismMotionSyncEngineController } from "./cubismmotionsyncenginecontroller";
-import { CubismMotionSyncEngineCri } from "./cubismmotionsyncenginecri";
-import { CubismMotionSyncProcessorCRI } from "./cubismmotionsyncprocessorcri";
-import { EngineType } from "./cubismmotionsyncutil";
-import { ICubismMotionSyncEngine } from "./icubismmotionsyncengine";
-import { ICubismMotionSyncProcessor } from "./icubismmotionsyncprocessor";
+  CubismMotionSyncDataSetting
+} from './cubismmotionsyncdata';
+import { CubismMotionSyncEngineAnalysisResult } from './cubismmotionsyncengineanalysisresult';
+import { CubismMotionSyncEngineController } from './cubismmotionsyncenginecontroller';
+import { CubismMotionSyncEngineCri } from './cubismmotionsyncenginecri';
+import { CubismMotionSyncProcessorCRI } from './cubismmotionsyncprocessorcri';
+import { EngineType } from './cubismmotionsyncutil';
+import { ICubismMotionSyncEngine } from './icubismmotionsyncengine';
+import { ICubismMotionSyncProcessor } from './icubismmotionsyncprocessor';
 
 // ファイルスコープの変数を初期化
 
@@ -46,7 +46,7 @@ export class CubismMotionSync {
    */
   public static startUp(option: MotionSyncOption = null): boolean {
     if (s_isStarted) {
-      CubismLogInfo("CubismMotionSyncFramework.startUp() is already done.");
+      CubismLogInfo('CubismMotionSyncFramework.startUp() is already done.');
       return s_isStarted;
     }
 
@@ -60,7 +60,7 @@ export class CubismMotionSync {
 
     s_isStarted = true;
 
-    CubismLogInfo("CubismMotionSyncFramework.startUp() is complete.");
+    CubismLogInfo('CubismMotionSyncFramework.startUp() is complete.');
 
     return s_isStarted;
   }
@@ -82,7 +82,7 @@ export class CubismMotionSync {
   public static initialize(): void {
     CSM_ASSERT(s_isStarted);
     if (!s_isStarted) {
-      CubismLogWarning("CubismMotionSyncFramework is not started.");
+      CubismLogWarning('CubismMotionSyncFramework is not started.');
       return;
     }
 
@@ -91,14 +91,14 @@ export class CubismMotionSync {
     // 再度Initialize()するには先にDispose()を実行する必要がある。
     if (s_isInitialized) {
       CubismLogWarning(
-        "CubismMotionSyncFramework.initialize() skipped, already initialized."
+        'CubismMotionSyncFramework.initialize() skipped, already initialized.'
       );
       return;
     }
 
     s_isInitialized = true;
 
-    CubismLogInfo("CubismMotionSyncFramework.initialize() is complete.");
+    CubismLogInfo('CubismMotionSyncFramework.initialize() is complete.');
   }
 
   /**
@@ -109,7 +109,7 @@ export class CubismMotionSync {
   public static dispose(): void {
     CSM_ASSERT(s_isStarted);
     if (!s_isStarted) {
-      CubismLogWarning("CubismMotionSyncFramework is not started.");
+      CubismLogWarning('CubismMotionSyncFramework is not started.');
       return;
     }
 
@@ -118,14 +118,14 @@ export class CubismMotionSync {
     if (!s_isInitialized) {
       // false...リソース未確保の場合
       CubismLogWarning(
-        "CubismMotionSyncFramework.dispose() skipped, not initialized."
+        'CubismMotionSyncFramework.dispose() skipped, not initialized.'
       );
       return;
     }
 
     s_isInitialized = false;
 
-    CubismLogInfo("CubismMotionSyncFramework.dispose() is complete.");
+    CubismLogInfo('CubismMotionSyncFramework.dispose() is complete.');
   }
 
   /**
@@ -181,7 +181,7 @@ export class CubismMotionSync {
           break;
         default:
           CubismLogWarning(
-            "[CubismMotionSync.Create] Index{0}: Can not create processor because `AnalysisType` is unknown.",
+            '[CubismMotionSync.Create] Index{0}: Can not create processor because `AnalysisType` is unknown.',
             index
           );
           break;
@@ -212,7 +212,7 @@ export class CubismMotionSync {
       s_engineConfigCriData.engineConfigPtr =
         Live2DCubismMotionSyncCore.ToPointer.Malloc(
           s_engineConfigCriData.engineConfigBuffer.length *
-          s_engineConfigCriData.engineConfigBuffer.BYTES_PER_ELEMENT
+            s_engineConfigCriData.engineConfigBuffer.BYTES_PER_ELEMENT
         );
       Live2DCubismMotionSyncCore.ToPointer.ConvertEngineConfigCriToInt32Array(
         s_engineConfigCriData.engineConfigBuffer,
@@ -311,7 +311,10 @@ export class CubismMotionSync {
               this._processorInfoList
                 .at(processIndex)
                 ._analysisResult.getValues()[targetIndex]
-            )
+            ) ||
+            this._data
+              .getSetting(processIndex)
+              .cubismParameterList.at(targetIndex).parameterIndex < 0
           ) {
             continue;
           }
@@ -349,7 +352,10 @@ export class CubismMotionSync {
             this._processorInfoList
               .at(processIndex)
               ._analysisResult.getValues()[targetIndex]
-          )
+          ) ||
+          this._data
+            .getSetting(processIndex)
+            .cubismParameterList.at(targetIndex).parameterIndex < 0
         ) {
           continue;
         }
@@ -456,7 +462,7 @@ export class CubismMotionSync {
             this._processorInfoList
               .at(processIndex)
               ._lastSmoothedList.at(targetIndex) *
-            smooth) /
+              smooth) /
           100.0;
         this._processorInfoList
           .at(processIndex)
@@ -466,9 +472,9 @@ export class CubismMotionSync {
         if (
           Math.abs(
             cacheValue -
-            this._processorInfoList
-              .at(processIndex)
-              ._lastDampedList.at(targetIndex)
+              this._processorInfoList
+                .at(processIndex)
+                ._lastDampedList.at(targetIndex)
           ) < damper
         ) {
           cacheValue = this._processorInfoList
@@ -585,9 +591,16 @@ export class CubismProcessorInfo {
       index < setting.cubismParameterList.getSize();
       index++
     ) {
-      const parameterValue: number = this._model.getParameterValueByIndex(
-        setting.cubismParameterList.at(index).parameterIndex
-      );
+      let parameterValue: number = 0;
+
+      // パラメータが存在する場合は値を取得
+      // HACK: Listのインデックスを合わせるため、continueしない。
+      if (setting.cubismParameterList.at(index).parameterIndex >= 0) {
+        parameterValue = this._model.getParameterValueByIndex(
+          setting.cubismParameterList.at(index).parameterIndex
+        );
+      }
+
       this._lastSmoothedList.pushBack(parameterValue);
       this._lastDampedList.pushBack(parameterValue);
     }
@@ -615,9 +628,8 @@ export class CubismProcessorInfo {
 }
 
 // Namespace definition for compatibility.
-import * as $ from "./live2dcubismmotionsync";
-import { MotionSyncEngineConfig_CRI as MotionSyncEngineConfigCri } from "./motionsyncconfig_cri";
-
+import * as $ from './live2dcubismmotionsync';
+import { MotionSyncEngineConfig_CRI as MotionSyncEngineConfigCri } from './motionsyncconfig_cri';
 // eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace Live2DCubismMotionSyncFramework {
   export const CubismMotionSync = $.CubismMotionSync;
