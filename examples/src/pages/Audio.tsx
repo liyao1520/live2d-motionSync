@@ -1,7 +1,7 @@
 import * as PIXI from "pixi.js";
 import { Live2DModel } from "pixi-live2d-display";
 import { useEffect, useRef, useState } from "react";
-import { MotionSync } from "../../../dist/index.es.js";
+import { MotionSync } from "live2d-motionsync";
 import { Button, Card, Input, Select, Space, Spin } from "antd";
 import { modelMap } from "../models";
 import { tts } from "../tts";
@@ -114,7 +114,9 @@ export default function Audio() {
             </Space>
             <div>input text:</div>
             <Space>
-              <Input
+              <Input.TextArea
+                className="w-[450px]"
+                rows={4}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="input text"
