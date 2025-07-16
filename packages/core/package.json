@@ -1,0 +1,13 @@
+{
+  "name": "@live2d-motionsync/core",
+  "version": "1.0.0",
+  "description": "live2d-motionsync core",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.0"
+}

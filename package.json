@@ -1,46 +1,25 @@
 {
-  "name": "live2d-motionsync",
-  "version": "0.0.4",
-  "type": "module",
-  "private": false,
-  "license": "MIT",
-  "description": "Live2D Motionsync, a lip-sync library for Live2D models.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/liyao1520/live2d-motionSync.git"
-  },
-  "keywords": [
-    "live2d",
-    "motionsync",
-    "lip-sync"
-  ],
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs.js",
-      "import": "./dist/index.es.js"
-    },
-    "./stream": {
-      "types": "./dist/stream.d.ts",
-      "require": "./dist/stream.cjs.js",
-      "import": "./dist/stream.es.js"
-    }
-  },
-  "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
+  "name": "live2d-motionSync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "dev": "cd examples && npm run dev",
-    "build": "vite build",
-    "predeploy": "cd examples && npm run build",
-    "deploy": "gh-pages -d examples/dist"
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.8.0",
   "devDependencies": {
-    "gh-pages": "^6.3.0",
-    "tsx": "^4.17.0",
-    "vite": "^5.4.11",
-    "vite-plugin-dts": "^4.4.0"
-  },
-  "dependencies": {}
+    "@changesets/cli": "^2.29.5",
+    "@types/node": "^24.0.14",
+    "esbuild-plugin-raw": "^0.1.8",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  }
 }
