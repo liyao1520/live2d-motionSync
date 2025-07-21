@@ -90,7 +90,7 @@ export class CubismMotionSyncData {
             //   .isEqual(cubismParameterList.at(cubismParameterIndex).id)
 
             // fix
-            model._parameterIds[modelParameterIndex] ===
+            (model as any)._parameterIds[modelParameterIndex] ===
             cubismParameterList.at(cubismParameterIndex).id.s
           ) {
             parameterIndex = modelParameterIndex;

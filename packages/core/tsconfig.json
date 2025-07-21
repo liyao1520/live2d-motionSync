@@ -3,11 +3,23 @@
   "compilerOptions": {
     "outDir": "dist",
     "baseUrl": ".",
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "paths": {
-      "@cubism/*": ["../../libs/cubism/src/*"]
+      "@cubism/*": [
+        "../../libs/cubism/src/*"
+      ]
     }
   },
-
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "src/assets"]
+  "include": [
+    "src",
+    "lib.d.ts",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/assets",
+    "../../libs/cubism/src/*",
+    "**/*?raw"
+  ]
 }

@@ -6,11 +6,25 @@
     "build": "tsup",
     "dev": "tsup --watch"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
+    "@pixi/app": "6.5.10",
+    "@pixi/core": "6.5.10",
+    "@pixi/interaction": "6.5.10",
+    "@pixi/ticker": "6.5.10",
+    "@types/lodash-es": "^4.17.12",
+    "esbuild-raw-plugin": "^0.3.1",
+    "lodash-es": "^4.17.21",
+    "pixi-live2d-display": "^0.4.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {

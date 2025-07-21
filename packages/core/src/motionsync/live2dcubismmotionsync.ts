@@ -240,6 +240,7 @@ export class CubismMotionSync {
     return processor;
   }
 
+  // @ts-ignore
   public static delete(instance: CubismMotionSync): void {
     if (!CubismMotionSync.isInitialized()) {
       return;
@@ -371,7 +372,7 @@ export class CubismMotionSync {
       }
     }
   }
-
+  // @ts-ignore
   private analyze(model: CubismModel, processIndex: number): void {
     if (!CubismMotionSync.isInitialized()) {
       return;

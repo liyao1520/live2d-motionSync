@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright(c) Live2D Inc. All rights reserved.
  *
@@ -31,7 +32,7 @@ class LAppAudioWorkletProcessor extends AudioWorkletProcessor {
     for (let currentChannel = 0; currentChannel < inputArray.length; ++currentChannel) {
       let inputChannel = inputArray[currentChannel];
       let outputChannel = output[currentChannel];
-      for (let i = 0; i < inputChannel.length; ++i){
+      for (let i = 0; i < inputChannel.length; ++i) {
         outputChannel[i] = inputChannel[i];
       }
     }
