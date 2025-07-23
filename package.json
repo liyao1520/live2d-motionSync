@@ -1,6 +1,6 @@
 {
   "name": "live2d-motionSync",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "workspaces": [
@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "react": "pnpm --filter react dev",
+    "docs": "cd docs && pnpm dev",
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish"

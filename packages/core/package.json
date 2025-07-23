@@ -1,11 +1,19 @@
 {
   "name": "@live2d-motionsync/core",
-  "version": "1.0.0",
+  "version": "0.0.1-test-02",
   "description": "live2d-motionsync core",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "private": false,
   "scripts": {
     "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "tsup  --watch"
   },
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -17,17 +25,18 @@
   "license": "ISC",
   "packageManager": "pnpm@10.8.0",
   "dependencies": {
-    "@pixi/app": "6.5.10",
-    "@pixi/core": "6.5.10",
-    "@pixi/interaction": "6.5.10",
-    "@pixi/ticker": "6.5.10",
-    "@types/lodash-es": "^4.17.12",
-    "esbuild-raw-plugin": "^0.3.1",
+    "@pixi/app": "^6",
+    "@pixi/core": "^6",
+    "@pixi/ticker": "^6",
+    "@pixi/interaction": "^6",
+    "pixi.js": "^6.4.2",
     "lodash-es": "^4.17.21",
     "pixi-live2d-display": "^0.4.0",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@types/uuid": "^10.0.0"
+    "@types/uuid": "^10.0.0",
+    "@types/lodash-es": "^4.17.12",
+    "esbuild-raw-plugin": "^0.3.1"
   }
 }

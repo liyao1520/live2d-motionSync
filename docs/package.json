@@ -1,0 +1,32 @@
+{
+  "name": "docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbo --port 3001",
+    "start": "next start",
+    "postinstall": "fumadocs-mdx"
+  },
+  "dependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
+    "@live2d-motionsync/core": "workspace:^",
+    "@orama/tokenizers": "^3.1.11",
+    "fumadocs-core": "15.6.5",
+    "fumadocs-mdx": "11.7.0",
+    "fumadocs-ui": "15.6.5",
+    "next": "15.4.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "24.0.15",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3"
+  }
+}
