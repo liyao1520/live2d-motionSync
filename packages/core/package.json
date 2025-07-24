@@ -27,16 +27,17 @@
   "dependencies": {
     "@pixi/app": "^6",
     "@pixi/core": "^6",
-    "@pixi/ticker": "^6",
     "@pixi/interaction": "^6",
-    "pixi.js": "^6.4.2",
+    "@pixi/ticker": "^6",
+    "crunker": "^2.4.0",
     "lodash-es": "^4.17.21",
     "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.4.2",
     "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "@types/uuid": "^10.0.0",
     "@types/lodash-es": "^4.17.12",
+    "@types/uuid": "^10.0.0",
     "esbuild-raw-plugin": "^0.3.1"
   }
 }

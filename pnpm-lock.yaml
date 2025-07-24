@@ -96,6 +96,9 @@ importers:
       '@pixi/ticker':
         specifier: ^6
         version: 6.5.10(@pixi/extensions@6.5.10)(@pixi/settings@6.5.10(@pixi/constants@6.5.10))
+      crunker:
+        specifier: ^2.4.0
+        version: 2.4.0
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1769,6 +1772,9 @@ packages:
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
+
+  crunker@2.4.0:
+    resolution: {integrity: sha512-3J0aBgLaB8jpGh6o+bisjYzOEkJLYxhnisHXogjY4fxYewh1aVCptWAz7RSTYPncCyxdfA+UaWAM1BrQiZvZgQ==}
 
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -4864,6 +4870,8 @@ snapshots:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  crunker@2.4.0: {}
 
   cssesc@3.0.0: {}
 

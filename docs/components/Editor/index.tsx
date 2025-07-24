@@ -67,25 +67,7 @@ async function Editor(props: EditorProps) {
                   box-sizing: border-box;
                 }
               `,
-              "/index.tsx": dedent`
-import React, { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./styles.css";
 
-// inject tailwindcss
-const script = document.createElement("script");
-script.src =  "https://cdn.jsdmirror.com/npm/@tailwindcss/browser@4";
-document.head.appendChild(script);
-
-import App from "./App";
-
-const root = createRoot(document.getElementById("root"));
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-              `,
               ...files,
             }}
             options={{

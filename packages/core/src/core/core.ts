@@ -1,3 +1,4 @@
+import Crunker from "crunker";
 import { csmVector } from "@cubism/type/csmvector";
 import {
   CubismMotionSync,
@@ -38,12 +39,48 @@ export class MotionSyncCore {
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
     this.stop();
-    this.audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+    const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+    this.audioBuffer = this.audioBufferAppendSilence(audioBuffer, 0.1);
   }
 
   protected async loadAudioBuffer(audioBuffer: AudioBuffer) {
     this.stop();
-    this.audioBuffer = audioBuffer;
+    this.audioBuffer = this.audioBufferAppendSilence(audioBuffer, 0.1);
+  }
+
+  protected audioBufferAppendSilence(
+    audioBuffer: AudioBuffer,
+    durationInSeconds: number
+  ) {
+    const crunker = new Crunker();
+    return crunker.mergeAudio([
+      audioBuffer,
+      this.createSilentBuffer(durationInSeconds),
+    ]);
+  }
+
+  protected createSilentBuffer(
+    durationInSeconds: number,
+    numberOfChannels = 2
+  ) {
+    const audioContext = new AudioContext();
+    const sampleRate = audioContext.sampleRate;
+    const frameCount = Math.floor(sampleRate * durationInSeconds);
+    const buffer = audioContext.createBuffer(
+      numberOfChannels,
+      frameCount,
+      sampleRate
+    );
+
+    // 将所有声道的数据设置为0
+    for (let channel = 0; channel < numberOfChannels; channel++) {
+      const channelData = buffer.getChannelData(channel);
+      for (let i = 0; i < frameCount; i++) {
+        channelData[i] = 0; // 静音
+      }
+    }
+
+    return buffer;
   }
 
   protected resetMouthStatus() {
