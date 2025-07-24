@@ -20,7 +20,9 @@ export default function App() {
     };
   }, []);
   const playAudio = () => {
-    live2dMotionSync.current?.motionSync.play("");
+    live2dMotionSync.current?.motionSync.play(
+      "https://cdn.jsdmirror.com/gh/liyao1520/live2d-motionSync@main/docs/public/demo.wav"
+    );
   };
   const stopAudio = () => {
     live2dMotionSync.current?.motionSync.stop();
