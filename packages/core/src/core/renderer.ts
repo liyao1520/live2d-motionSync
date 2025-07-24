@@ -27,28 +27,17 @@ export interface Live2dRender {
 }
 
 export class Live2dRenderer {
-  private model: Live2DModel;
-  private app: Application;
-  private modelRatio: number = 1;
   constructor(
     private readonly onRenderBefore: () => void,
     private readonly loadLive2DModel: () => Promise<typeof Live2DModel>
   ) {}
-  async render(
-    canvas: HTMLCanvasElement,
-    options: IRenderOptions
-  ): Promise<Live2dRender> {
+  async render(canvas: HTMLCanvasElement, options: IRenderOptions) {
     this.onRenderBefore();
-    const { modelURL, autoInteract, ...rest } = options;
+    const { autoInteract } = options;
     if (autoInteract) {
       const { InteractionManager } = await import("@pixi/interaction");
       extensions.add(InteractionManager);
     }
-    const app = new Application({
-      view: canvas,
-      resizeTo: canvas.parentElement,
-      ...rest,
-    });
 
     const MotionSync = await import("./core").then((m) => m.MotionSync);
 
@@ -59,34 +48,118 @@ export class Live2dRenderer {
       Live2DModel.registerTicker(Ticker);
     }
 
-    const model = await Live2DModel.from(modelURL, {
+    const live2dMotionSync = new Live2dMotionSync(
+      canvas,
+      options,
+      Live2DModel,
+      MotionSync
+    );
+    await live2dMotionSync.render();
+
+    return live2dMotionSync;
+  }
+}
+
+export class Live2dMotionSync {
+  private readonly Live2DModel: typeof Live2DModel;
+  private readonly MotionSync: typeof MotionSync;
+  private readonly canvas: HTMLCanvasElement;
+  private readonly options: IRenderOptions;
+  public app: Application;
+  public model: Live2DModel;
+  public motionSync: MotionSync;
+  public modelRatio: number;
+  private resizeObserver: ResizeObserver;
+  constructor(
+    canvas: HTMLCanvasElement,
+    options: IRenderOptions,
+    Live2DModelConstructor: any,
+    MotionSyncConstructor: any
+  ) {
+    this.canvas = canvas;
+    this.options = options;
+    this.Live2DModel = Live2DModelConstructor;
+    this.MotionSync = MotionSyncConstructor;
+    const { modelURL, autoInteract, ...rest } = options;
+  }
+  enableAutoResize() {
+    if (this.resizeObserver) return;
+    this.resizeObserver = new ResizeObserver(() => {
+      this.centerModel();
+    });
+    this.resizeObserver.observe(this.canvas);
+  }
+  disableAutoResize() {
+    this.resizeObserver.disconnect();
+    this.resizeObserver = null;
+  }
+  async render() {
+    const { modelURL, autoInteract, ...rest } = this.options;
+    const app = new Application({
+      view: this.canvas,
+      resizeTo: this.canvas.parentElement,
+      ...rest,
+    });
+    const model = await this.Live2DModel.from(modelURL, {
       autoInteract: autoInteract,
     });
 
-    const motionSync = new MotionSync(model.internalModel);
-    await motionSync.loadMotionSync();
+    const motionSync = new this.MotionSync(model.internalModel);
 
-    app.stage.addChild(model);
+    await motionSync.loadMotionSync();
 
     this.model = model;
     this.app = app;
+    this.motionSync = motionSync;
 
-    this.modelRatio = model.width / model.height;
-    this.centerModel();
+    const bounds = model.getBounds();
 
-    return {
-      app,
-      motionSync,
-      model,
-    };
+    this.modelRatio = bounds.width / bounds.height;
+
+    app.stage.addChild(model);
+
+    setTimeout(() => {
+      this.centerModel();
+    }, 0);
   }
-  centerModel() {
-    if (!this.model) return;
-    const { app, model } = this;
 
-    model.height = app.view.height;
-    model.width = model.height * this.modelRatio;
-    model.x = app.view.width / 2 - model.width / 2;
-    model.y = app.view.height / 2 - model.height / 2;
+  centerModel() {
+    const { app, model, modelRatio } = this;
+    if (!app || !model) return;
+    const devicePixelRatio = app.renderer.resolution;
+    const appViewRatio = app.view.width / app.view.height;
+    if (appViewRatio > modelRatio) {
+      model.height = app.view.height / devicePixelRatio;
+      model.width = model.height * modelRatio;
+      model.x = app.view.width / devicePixelRatio / 2 - model.width / 2;
+      model.y = 0;
+    } else {
+      model.width = app.view.width / devicePixelRatio;
+      model.height = model.width / modelRatio;
+      model.x = 0;
+      model.y = app.view.height / devicePixelRatio / 2 - model.height / 2;
+    }
+  }
+
+  /**
+   * 清理资源
+   */
+  destroy() {
+    if (this.app) {
+      this.app.destroy(false, {
+        baseTexture: true,
+        children: true,
+        texture: true,
+      });
+    }
+    if (this.model) {
+      this.model.destroy({
+        baseTexture: true,
+        children: true,
+        texture: true,
+      });
+    }
+    this.model = null;
+    this.app = null;
   }
 }

@@ -1,16 +1,24 @@
-import { Sandpack } from "@codesandbox/sandpack-react";
+import {
+  SandpackCodeEditor,
+  SandpackLayout,
+  SandpackPreview,
+  SandpackProvider,
+} from "@codesandbox/sandpack-react";
 import fs from "fs";
 import path from "path";
+import dedent from "dedent";
 import { memo } from "react";
 
 interface EditorProps {
   title?: string;
   description?: string;
   file: string;
+  height?: string;
+  previewMode?: boolean;
 }
 
 async function Editor(props: EditorProps) {
-  const { file } = props;
+  const { file, height = "500px", previewMode = false } = props;
   const filePath = path.join(process.cwd(), "codes", file);
   // 读取文件内容
   const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -21,7 +29,12 @@ async function Editor(props: EditorProps) {
       {/* Editor Container */}
       <div className="relative">
         {/* Toolbar */}
-        <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-2">
+        <div
+          style={{
+            display: previewMode ? "none" : "flex",
+          }}
+          className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-2"
+        >
           <div className="flex items-center space-x-4">
             <span className="text-sm font-medium text-gray-700">
               {props.title || "代码编辑器"}
@@ -40,34 +53,65 @@ async function Editor(props: EditorProps) {
 
         {/* Sandpack Editor */}
         <div className="relative">
-          <Sandpack
-            template={"react"}
+          <SandpackProvider
+            template={"react-ts"}
             theme="light"
             files={{
-              "/App.js": fileContent,
+              "/App.tsx": fileContent,
+              "/styles.css": dedent`
+                html,body,#root {
+                  margin: 0;
+                  padding: 0;
+                  width: 100%;
+                  height: 100%;
+                  box-sizing: border-box;
+                }
+              `,
+              "/index.tsx": dedent`
+import React, { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+// inject tailwindcss
+const script = document.createElement("script");
+script.src =  "https://cdn.jsdmirror.com/npm/@tailwindcss/browser@4";
+document.head.appendChild(script);
+
+import App from "./App";
+
+const root = createRoot(document.getElementById("root"));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+              `,
               ...files,
             }}
+            options={{
+              visibleFiles: ["/App.tsx", "/styles.css"],
+              autorun: true,
+              initMode: "user-visible",
+              initModeObserverOptions: { rootMargin: "1400px 0px" },
+              bundlerURL: "https://sandpack-bundler.li-yao.me",
+            }}
             customSetup={{
-              // npmRegistries: [
-              //   {
-              //     enabledScopes: [],
-              //     limitToScopes: false,
-              //     registryUrl: "https://registry.npmmirror.com/",
-              //     proxyEnabled: false,
-              //   },
-              // ],
               dependencies: {
                 "@live2d-motionsync/core": "0.0.1-test-02",
               },
             }}
-            options={{
-              editorHeight: "600px",
-              autorun: true,
-              initMode: "user-visible",
-              initModeObserverOptions: { rootMargin: "1400px 0px" },
-              bundlerURL: "https://sandpack-bundler-service.vercel.app",
-            }}
-          />
+          >
+            <SandpackLayout
+              style={
+                {
+                  "--sp-layout-height": height,
+                } as React.CSSProperties
+              }
+            >
+              {!previewMode && <SandpackCodeEditor />}
+              <SandpackPreview />
+            </SandpackLayout>
+          </SandpackProvider>
         </div>
       </div>
     </div>
