@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useRef } from "react";
 import renderer, { Live2dMotionSync } from "@live2d-motionsync/core";
 export default function App() {

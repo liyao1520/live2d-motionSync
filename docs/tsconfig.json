@@ -43,7 +43,7 @@
     "**/*.tsx",
     "content/**/*.mdx",
     ".next/types/**/*.ts",
-    "codes/**/*.ts"
+    "app/playground/**/*.ts"
   ],
   "exclude": [
     "node_modules"
