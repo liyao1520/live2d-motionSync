@@ -19,7 +19,12 @@ interface EditorProps {
 
 async function Editor(props: EditorProps) {
   const { file, height = "500px", previewMode = false } = props;
-  const filePath = path.join(process.cwd(), "app/playground", file, "page.tsx");
+  const filePath = path.join(
+    process.cwd(),
+    "/app/[lang]/playground",
+    file,
+    "page.tsx"
+  );
   // 读取文件内容
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const files = loadLocalPackageFiles("@live2d-motionsync/core");
