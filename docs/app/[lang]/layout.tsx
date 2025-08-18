@@ -38,7 +38,7 @@ export default async function Layout({
       <head>
         <SandPackCSS />
       </head>
-      <body className="flex flex-col min-h-screen">
+      <body>
         <RootProvider
           i18n={{
             locale: lang,

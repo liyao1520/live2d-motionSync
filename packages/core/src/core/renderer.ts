@@ -5,6 +5,7 @@ import { Ticker } from "@pixi/ticker";
 import { extensions } from "@pixi/core";
 
 import { TickerPlugin } from "@pixi/ticker";
+import { debounce } from "lodash-es";
 // 使用新的扩展系统注册插件
 
 extensions.add(TickerPlugin);
@@ -84,9 +85,15 @@ export class Live2dMotionSync {
   }
   enableAutoResize() {
     if (this.resizeObserver) return;
-    this.resizeObserver = new ResizeObserver(() => {
-      this.centerModel();
-    });
+    this.resizeObserver = new ResizeObserver(
+      debounce(
+        () => {
+          this.centerModel();
+        },
+        100,
+        { leading: true, trailing: true }
+      )
+    );
     this.resizeObserver.observe(this.canvas);
   }
   disableAutoResize() {
@@ -123,21 +130,24 @@ export class Live2dMotionSync {
     }, 0);
   }
 
-  centerModel() {
+  centerModel(mode: "fit-height" | "fit-width" = "fit-height") {
     const { app, model, modelRatio } = this;
     if (!app || !model) return;
     const devicePixelRatio = app.renderer.resolution;
-    const appViewRatio = app.view.width / app.view.height;
-    if (appViewRatio > modelRatio) {
+
+    if (mode === "fit-height") {
+      console.log(app.view.height, devicePixelRatio);
       model.height = app.view.height / devicePixelRatio;
       model.width = model.height * modelRatio;
       model.x = app.view.width / devicePixelRatio / 2 - model.width / 2;
       model.y = 0;
-    } else {
+    } else if (mode === "fit-width") {
       model.width = app.view.width / devicePixelRatio;
       model.height = model.width / modelRatio;
       model.x = 0;
       model.y = app.view.height / devicePixelRatio / 2 - model.height / 2;
+    } else {
+      throw new Error("Invalid mode");
     }
   }
 

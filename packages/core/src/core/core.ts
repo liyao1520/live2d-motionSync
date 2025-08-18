@@ -247,6 +247,7 @@ export class MotionSync extends MotionSyncCore {
         this.audioSource.start(0);
         this.audioSource.onended = () => {
           resolve();
+          this.resetMouthStatus();
           this.playNextSegment();
         };
         this.audioContextPreviousTime = this.audioContext.currentTime;
