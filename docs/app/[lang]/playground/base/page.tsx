@@ -52,7 +52,7 @@ export default function App() {
           stop audio
         </button>
       </div>
-      <div style={{ flex: 1, width: "100%" }}>
+      <div style={{ flex: 1, width: "100%", overflow: "hidden" }}>
         <canvas ref={canvasRef}></canvas>
       </div>
     </div>

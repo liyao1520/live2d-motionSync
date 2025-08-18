@@ -40,47 +40,20 @@ export class MotionSyncCore {
     const arrayBuffer = await response.arrayBuffer();
     this.stop();
     const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-    this.audioBuffer = this.audioBufferAppendSilence(audioBuffer, 0.1);
+    this.audioBuffer = audioBuffer;
   }
 
+  protected urlToAudioBuffer(url: string) {
+    return new Promise<AudioBuffer>(async (resolve, reject) => {
+      const response = await fetch(url);
+      const arrayBuffer = await response.arrayBuffer();
+      const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+      resolve(audioBuffer);
+    });
+  }
   protected async loadAudioBuffer(audioBuffer: AudioBuffer) {
     this.stop();
-    this.audioBuffer = this.audioBufferAppendSilence(audioBuffer, 0.1);
-  }
-
-  protected audioBufferAppendSilence(
-    audioBuffer: AudioBuffer,
-    durationInSeconds: number
-  ) {
-    const crunker = new Crunker();
-    return crunker.mergeAudio([
-      audioBuffer,
-      this.createSilentBuffer(durationInSeconds),
-    ]);
-  }
-
-  protected createSilentBuffer(
-    durationInSeconds: number,
-    numberOfChannels = 2
-  ) {
-    const audioContext = new AudioContext();
-    const sampleRate = audioContext.sampleRate;
-    const frameCount = Math.floor(sampleRate * durationInSeconds);
-    const buffer = audioContext.createBuffer(
-      numberOfChannels,
-      frameCount,
-      sampleRate
-    );
-
-    // 将所有声道的数据设置为0
-    for (let channel = 0; channel < numberOfChannels; channel++) {
-      const channelData = buffer.getChannelData(channel);
-      for (let i = 0; i < frameCount; i++) {
-        channelData[i] = 0; // 静音
-      }
-    }
-
-    return buffer;
+    this.audioBuffer = audioBuffer;
   }
 
   protected resetMouthStatus() {
@@ -232,7 +205,8 @@ export class MotionSyncCore {
 }
 
 export class MotionSync extends MotionSyncCore {
-  protected audioQueue: (string | AudioBuffer)[] = [];
+  private _timer: NodeJS.Timeout | null = null;
+  protected audioQueue: (AudioBuffer | Promise<AudioBuffer>)[] = [];
   async play(src: string | AudioBuffer) {
     return new Promise<void>(async (resolve, reject) => {
       if (typeof src === "string") {
@@ -245,10 +219,17 @@ export class MotionSync extends MotionSyncCore {
         this.audioSource.buffer = this.audioBuffer;
         this.audioSource.connect(this.audioContext.destination);
         this.audioSource.start(0);
+        clearTimeout(this._timer);
         this.audioSource.onended = () => {
           resolve();
-          this.resetMouthStatus();
-          this.playNextSegment();
+          // 延迟100ms后重置嘴巴状态
+          this._timer = setTimeout(() => {
+            this.resetMouthStatus();
+          }, 100);
+          this.audioSource?.disconnect();
+          this.audioSource = null; // 释放，方便队列调度
+
+          this.playNextSegment(); // 在这里调度下一个
         };
         this.audioContextPreviousTime = this.audioContext.currentTime;
       } else {
@@ -256,22 +237,35 @@ export class MotionSync extends MotionSyncCore {
       }
     });
   }
-  public appendPlay(src: string | AudioBuffer) {
-    if (this.audioQueue.length === 0) {
-      return this.play(src);
+  public async appendPlay(src: string | AudioBuffer) {
+    if (typeof src === "string") {
+      this.audioQueue.push(this.urlToAudioBuffer(src));
     } else {
       this.audioQueue.push(src);
     }
+
+    // 如果当前没有在播放，就开始播放队列
+    if (!this.audioSource) {
+      this.playNextSegment();
+    }
   }
-  public playNextSegment() {
+  public async playNextSegment() {
     if (this.audioQueue.length === 0) {
       return;
     }
-    const src = this.audioQueue.shift();
-    if (src) {
-      this.play(src);
+
+    const src = await this.audioQueue.shift();
+
+    if (!src) return;
+
+    try {
+      await this.play(src);
+    } catch (err) {
+      console.error("播放失败:", err);
+      this.playNextSegment(); // 播放失败时尝试播放下一个
     }
   }
+
   public stop() {
     super.stop();
     this.audioQueue = [];

@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "react": "pnpm --filter react dev",
+    "core": "pnpm --filter core dev",
     "docs": "cd docs && pnpm dev",
     "changeset": "changeset",
     "version-packages": "changeset version",

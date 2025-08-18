@@ -136,7 +136,6 @@ export class Live2dMotionSync {
     const devicePixelRatio = app.renderer.resolution;
 
     if (mode === "fit-height") {
-      console.log(app.view.height, devicePixelRatio);
       model.height = app.view.height / devicePixelRatio;
       model.width = model.height * modelRatio;
       model.x = app.view.width / devicePixelRatio / 2 - model.width / 2;
