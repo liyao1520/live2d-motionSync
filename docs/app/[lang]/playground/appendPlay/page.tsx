@@ -28,9 +28,13 @@ export default function App() {
       `${BASE_URL}/clip/2.wav`,
       `${BASE_URL}/clip/3.wav`,
     ];
-    for (const audio of audios) {
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      live2dMotionSync.current?.motionSync.appendPlay(audio);
+    const audioBuffers = await Promise.all(
+      audios.map((audio) =>
+        live2dMotionSync.current?.motionSync.urlToAudioBuffer(audio)
+      )
+    );
+    for (const audioBuffer of audioBuffers) {
+      live2dMotionSync.current?.motionSync.appendPlay(audioBuffer);
     }
   };
   const stopAudio = () => {

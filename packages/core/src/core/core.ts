@@ -35,15 +35,17 @@ export class MotionSyncCore {
     CubismMotionSync.initialize();
   }
 
-  protected async loadAudio(url: string) {
+  protected async loadAudio(url: string, stopOtherAudio = true) {
     const response = await fetch(url);
     const arrayBuffer = await response.arrayBuffer();
-    this.stop();
+    if (stopOtherAudio) {
+      this.stop();
+    }
     const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
     this.audioBuffer = audioBuffer;
   }
 
-  protected urlToAudioBuffer(url: string) {
+  public urlToAudioBuffer(url: string) {
     return new Promise<AudioBuffer>(async (resolve, reject) => {
       const response = await fetch(url);
       const arrayBuffer = await response.arrayBuffer();
@@ -51,8 +53,13 @@ export class MotionSyncCore {
       resolve(audioBuffer);
     });
   }
-  protected async loadAudioBuffer(audioBuffer: AudioBuffer) {
-    this.stop();
+  protected async loadAudioBuffer(
+    audioBuffer: AudioBuffer,
+    stopOtherAudio = true
+  ) {
+    if (stopOtherAudio) {
+      this.stop();
+    }
     this.audioBuffer = audioBuffer;
   }
 
@@ -87,28 +94,6 @@ export class MotionSyncCore {
     this.audioElapsedTime = 0;
     this.soundBuffer.clear();
     this.soundBuffer = new csmVector<number>();
-  }
-
-  async play(src: string | AudioBuffer) {
-    return new Promise<void>(async (resolve, reject) => {
-      if (typeof src === "string") {
-        await this.loadAudio(src);
-      } else {
-        await this.loadAudioBuffer(src);
-      }
-      if (this.audioBuffer) {
-        this.audioSource = this.audioContext.createBufferSource();
-        this.audioSource.buffer = this.audioBuffer;
-        this.audioSource.connect(this.audioContext.destination);
-        this.audioSource.start(0);
-        this.audioSource.onended = () => {
-          resolve();
-        };
-        this.audioContextPreviousTime = this.audioContext.currentTime;
-      } else {
-        reject(new Error("audioBuffer is null"));
-      }
-    });
   }
 
   protected updateMotionSync() {
@@ -207,12 +192,12 @@ export class MotionSyncCore {
 export class MotionSync extends MotionSyncCore {
   private _timer: NodeJS.Timeout | null = null;
   protected audioQueue: (AudioBuffer | Promise<AudioBuffer>)[] = [];
-  async play(src: string | AudioBuffer) {
+  async play(src: string | AudioBuffer, stopOtherAudio = true) {
     return new Promise<void>(async (resolve, reject) => {
       if (typeof src === "string") {
-        await this.loadAudio(src);
+        await this.loadAudio(src, stopOtherAudio);
       } else {
-        await this.loadAudioBuffer(src);
+        await this.loadAudioBuffer(src, stopOtherAudio);
       }
       if (this.audioBuffer) {
         this.audioSource = this.audioContext.createBufferSource();
@@ -237,12 +222,8 @@ export class MotionSync extends MotionSyncCore {
       }
     });
   }
-  public async appendPlay(src: string | AudioBuffer) {
-    if (typeof src === "string") {
-      this.audioQueue.push(this.urlToAudioBuffer(src));
-    } else {
-      this.audioQueue.push(src);
-    }
+  public async appendPlay(src: AudioBuffer) {
+    this.audioQueue.push(src);
 
     // 如果当前没有在播放，就开始播放队列
     if (!this.audioSource) {
@@ -259,7 +240,7 @@ export class MotionSync extends MotionSyncCore {
     if (!src) return;
 
     try {
-      await this.play(src);
+      await this.play(src, false);
     } catch (err) {
       console.error("播放失败:", err);
       this.playNextSegment(); // 播放失败时尝试播放下一个
