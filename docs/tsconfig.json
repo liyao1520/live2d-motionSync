@@ -17,11 +17,11 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "paths": {
       "@/.source": [
-        "./.source/index.ts"
+        "./.source/server.ts"
       ],
       "@/*": [
         "./*"
@@ -43,7 +43,8 @@
     "**/*.tsx",
     "content/**/*.mdx",
     ".next/types/**/*.ts",
-    "app/playground/**/*.ts"
+    "app/playground/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

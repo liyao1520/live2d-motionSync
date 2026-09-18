@@ -1,0 +1,11 @@
+node_modules
+dist
+pnpm-lock.yaml
+docs/public
+docs/.source
+docs/.next
+packages/core/src/generated
+packages/core/src/assets/*.js
+packages/core/src/assets/*.d.ts
+packages/core/licenses
+test-results

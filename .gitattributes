@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Official runtime files must retain their exact bytes for checksum verification.
+packages/core/src/assets/*.js -text
+packages/core/src/assets/*.d.ts -text

@@ -1,25 +1,5 @@
 {
   "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "baseUrl": ".",
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "paths": {
-      "@cubism/*": [
-        "../../libs/cubism/src/*"
-      ]
-    }
-  },
-  "include": [
-    "src",
-    "lib.d.ts",
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "src/assets",
-    "../../libs/cubism/src/*",
-    "**/*?raw"
-  ]
+  "compilerOptions": { "noEmit": true },
+  "include": ["src/**/*.ts"]
 }

@@ -1,19 +1,14 @@
-import DynamicLink from "fumadocs-core/dynamic-link";
-import Link from "next/link";
+import DynamicLink from 'fumadocs-core/dynamic-link';
 
 export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col justify-center text-center">
-      <h1 className="mb-4 text-2xl font-bold">Hello World</h1>
+      <h1 className="mb-4 text-2xl font-bold">Live2D MotionSync 2.0</h1>
       <p className="text-fd-muted-foreground">
-        You can open{" "}
-        <DynamicLink
-          href="/[lang]/docs"
-          className="text-fd-foreground font-semibold underline"
-        >
+        模型渲染与口型同步，从这里开始：{' '}
+        <DynamicLink href="/[lang]/docs" className="text-fd-foreground font-semibold underline">
           /docs
-        </DynamicLink>{" "}
-        and see the documentation.
+        </DynamicLink>{' '}
       </p>
     </main>
   );

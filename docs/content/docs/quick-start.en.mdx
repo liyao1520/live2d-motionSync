@@ -1,11 +1,29 @@
 ---
-title: 你好，世界
-description: 你的第一个文档
+title: Quick start v2
+description: Render and speak with a single SDK
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+```ts
+import { createPlayer } from '@live2d-motionsync/core';
+const player = await createPlayer({ canvas, model: '/avatar/avatar.model3.json' });
+button.onclick = async () => {
+  await player.unlockAudio();
+  await player.play('/hello.wav').finished;
+};
+// On unmount:
+await player.destroy();
+```
 
-## What is Next?
+- play interrupts and clears pending work; enqueue is explicit FIFO for finite audio.
+- Models can be a model3 URL, complete ZIP Blob, or a path-preserving file collection.
+- PCM writers await write for backpressure; end drains; stop cancels.
+- MediaStream analysis does not monitor/play back audio or stop caller-owned tracks.
+- Background rendering stops, files pause internally, realtime audio is discarded.
+- Official MotionSync requires a valid model configuration. Without one, auto uses amplitude-based fallback and reports its capability.
+- Modern WebGL browsers are targeted. Chromium is tested; physical mobile devices and the complete Cubism 4/5 feature set are not yet certified.
+- React/Vue/vanilla examples consume the same SDK. SSR imports work; creation is client-only.
 
 
+
+<Editor title="Playback" file="base" />
 

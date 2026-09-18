@@ -1,16 +1,9 @@
-# v1 规划
+# 2.0 后续验收
 
-- [] monorepo 改造
-- [] packages/core 核心能力
-- [] packages/react React 项目引入
-- [] packages/utils 工具包
-- [] 简化的 API，方案接入
-- [] fumadocs docs 文档
-- [] base demo 示例
-- [] react demo 示例
-- [] AI + 虚拟人对话 示例
-- [] 实现音频管理器更简单的管理驱动口型和音频
-- [] 更小的包体积，优化 Pixi
-- [] Cubism 4 部分模型兼容
-- [] 性能优化
-- [] 单元测试
+当前实现与自动化验证见 [验证矩阵](docs/research/v2-validation.md)。
+
+- 确认专有 Core 随通用 npm 库再分发条件后再开放公开发布。
+- iOS Safari / Android Chrome 真机：音频手势、来电打断、后台恢复、内存。
+- 收集有权用于 CI 的 Cubism 4/5 模型集，逐项验收遮罩、混合、物理、表情、新版特性。
+- 长时间 TTS、网络抖动、真实 WebRTC 输入的端到端延迟与内存基线。
+- 按后续需求增加暂停、进度、音量等公开控制，不扩展本次首发范围。

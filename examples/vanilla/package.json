@@ -1,0 +1,15 @@
+{
+  "name": "example-vanilla",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@live2d-motionsync/core": "workspace:*"
+  },
+  "devDependencies": {
+    "vite": "8.3.0"
+  }
+}

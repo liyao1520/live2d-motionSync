@@ -1,190 +1,35 @@
-<!-- english docs -->
+# Live2D MotionSync 2.0
 
-# live2d-motionsync
+One framework-independent TypeScript SDK for Live2D rendering, official MotionSync lip synchronization, files, MediaStream, and streaming PCM. Version **2.0.0-alpha.0** replaces the v1 API.
 
-[中文文档](./README_ZH.md)
+See the complete [Chinese guide](README_ZH.md), [examples](examples/README.md), and [validation matrix](docs/research/v2-validation.md).
 
-A live2d motionsync library
-
-![demo](./static/demo.gif)
-
-[codesandbox demo](https://codesandbox.io/p/sandbox/5yyr55?file=%2Fpackage.json%3A16%2C23)
-
-## Prerequisites
-
-1. **Only support Cubism 4 models**
-
-2. **Models need to support motionsync3**
-
-   Reference: https://docs.live2d.com/en/cubism-editor-manual/motion-sync/
-
-## Install
-
-```bash
-npm install live2d-motionsync
+```sh
+pnpm install
+pnpm build
+pnpm dev
 ```
 
-## Usage
-
-audio
+Requires Node 24.11+ and pnpm 10.30.3. The playground uses existing repository demo assets.
 
 ```ts
-import { MotionSync } from "live2d-motionsync";
+import { createPlayer } from '@live2d-motionsync/core';
+const player = await createPlayer({ canvas, model: '/avatar/avatar.model3.json' });
+button.onclick = async () => {
+  await player.unlockAudio();
+  await player.play('/hello.wav').finished;
+};
+// On unmount:
+await player.destroy();
 ```
 
-media stream
+- play interrupts and clears pending work; enqueue is explicit FIFO for finite audio.
+- Models can be a model3 URL, complete ZIP Blob, or a path-preserving file collection.
+- PCM writers await write for backpressure; end drains; stop cancels.
+- MediaStream analysis does not monitor/play back audio or stop caller-owned tracks.
+- Background rendering stops, files pause internally, realtime audio is discarded.
+- Official MotionSync requires a valid model configuration. Without one, auto uses amplitude-based fallback and reports its capability.
+- Modern WebGL browsers are targeted. Chromium is tested; physical mobile devices and the complete Cubism 4/5 feature set are not yet certified.
+- React/Vue/vanilla examples consume the same SDK. SSR imports work; creation is client-only.
 
-```ts
-import { MotionSync } from "live2d-motionsync/stream";
-```
-
-Install `pixi-live2d-display`
-
-```bash
-npm install pixi-live2d-display pixi.js@6.5.10
-
-```
-
-```ts
-import * as PIXI from "pixi.js";
-import { Live2DModel } from "pixi-live2d-display";
-import { MotionSync } from "live2d-motionsync";
-
-// expose PIXI to window so that this plugin is able to
-// reference window.PIXI.Ticker to automatically update Live2D models
-window.PIXI = PIXI;
-
-(async function () {
-  const app = new PIXI.Application({
-    view: document.getElementById("canvas"),
-  });
-
-  const model = await Live2DModel.from("kei_vowels_pro.model3.json");
-
-  // init motionsync
-  const motionSync = new MotionSync(model.internalModel);
-  // load motionsync file
-  motionSync.loadMotionSyncFromUrl("kei_vowels_pro.motionsync3.json");
-  // if no motionsync3 file, load default motionsync3 config
-  // motionSync.loadDefaultMotionSync();
-
-  // ensure page interaction
-  // play audio
-  motionSync.play("/audio/test.wav").then(() => {
-    console.log("play end");
-  });
-  // stop audio
-  // motionSync.reset();
-
-  app.stage.addChild(model);
-
-  // transforms
-  model.x = 100;
-  model.y = 100;
-  model.rotation = Math.PI;
-  model.skew.x = Math.PI;
-  model.scale.set(2, 2);
-  model.anchor.set(0.5, 0.5);
-
-  // interaction
-  model.on("hit", (hitAreas) => {
-    if (hitAreas.includes("body")) {
-      model.motion("tap_body");
-    }
-  });
-})();
-```
-
-## MotionSync API
-
-### `constructor(internalModel: any)`
-
-Initialize a new `MotionSync` instance.
-
-- **Parameters:**
-
-  - `internalModel`: The internal model object containing the core model and other necessary components.
-
-- **Description:**
-  - This constructor uses the provided `internalModel` to initialize the `MotionSync` class and start and initialize the `CubismMotionSync` framework.
-
-### `async play(src: string | AudioBuffer): Promise<void>`
-
-- **Return:**
-
-  - `Promise<void>`: A Promise that resolves when the audio playback ends.
-
-Play audio from specified source.
-
-- **Parameters:**
-
-  - `src`: The audio source, which can be a URL string or an `AudioBuffer` object.
-
-- **Description:**
-
-  - This method loads audio from the given source and starts playback. It returns a Promise that resolves when the audio playback ends.
-
-### `reset()`
-
-Reset the `MotionSync` instance to its initial state.
-
-- **Description:**
-  - This method stops any ongoing audio playback and resets the mouth state.
-
-### `loadMotionSync(buffer: ArrayBuffer, samplesPerSec = SamplesPerSec)`
-
-Load motion sync data from `ArrayBuffer`.
-
-- **Parameters:**
-
-  - `buffer`: The `ArrayBuffer` containing the motion sync data.
-  - `samplesPerSec`: The sample rate of the audio data (default is 48000).
-
-- **Description:**
-  - This method uses the provided motion sync data to initialize the `CubismMotionSync` instance.
-
-### `async loadDefaultMotionSync(samplesPerSec = SamplesPerSec)`
-
-Load default motion sync data.
-
-- **Parameters:**
-
-  - `samplesPerSec`: The sample rate of the audio data (default is 48000).
-
-- **Description:**
-  - This method loads the default motion sync data from a predefined URL.
-
-### `async loadMotionSyncFromUrl(url: string, samplesPerSec = SamplesPerSec)`
-
-Load motion sync data from URL.
-
-- **Parameters:**
-
-  - `url`: The URL of the motion sync data.
-  - `samplesPerSec`: The sample rate of the audio data (default is 48000).
-
-- **Description:**
-
-  - This method fetches the motion sync data from the specified URL and initializes the `CubismMotionSync` instance. If the fetch fails, it falls back to loading the default motion sync data.
-
-## MotionSync Stream
-
-```ts
-import { MotionSync } from "live2d-motionsync/stream";
-
-const motionSync = new MotionSync(model.internalModel);
-motionSync.loadMotionSyncFromUrl("kei_vowels_pro.motionsync3.json");
-const mediaStream = await navigator.mediaDevices.getUserMedia({
-  audio: true,
-});
-motionSync.play(mediaStream);
-
-function stop() {
-  motionSync.reset();
-  mediaStream.getTracks().forEach((track) => track.stop());
-}
-
-// stop()
-```
-
-- [pixi-live2d-display](https://github.com/pixijs/pixi-live2d-display)
+Core scripts are bundled lazily; consumers do not copy runtime files. **Public npm redistribution of proprietary Live2D runtimes remains unconfirmed and publishing is gated.** Local tgz installation is tested, not a statement of redistribution permission. See [third-party notices](packages/core/THIRD_PARTY_NOTICES.md) and [runtime research](docs/research/v2-runtime-distribution.md).
